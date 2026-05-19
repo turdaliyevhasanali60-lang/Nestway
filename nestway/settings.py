@@ -23,7 +23,7 @@ SECRET_KEY = env('SECRET_KEY', default='django-insecure-default-key')
 
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
+ALLOWED_HOSTS = ['nestway-demo-production.up.railway.app', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
