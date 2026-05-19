@@ -1,0 +1,660 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home - {{ site_settings.company_name|default:"Nestway" }}{% endblock %}
+
+{% block content %}
+<!-- Hero background style -->
+<style>
+    .hero-bg {
+        background-image: url("{% static 'images/truck2.png' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #FF4500;
+        color: #ffffff;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        padding: 14px 28px;
+        height: 50px;
+        min-height: 50px;
+        border-radius: 8px;
+        border: none;
+        text-decoration: none;
+        transition: background-color 0.15s, transform 0.15s;
+    }
+    .hero-cta:hover {
+        background-color: #D63A00;
+        transform: translateY(-1px);
+        color: #ffffff;
+        text-decoration: none;
+    }
+</style>
+
+<!-- Section 01 — Hero -->
+<div class="hero hero-bg relative w-full h-auto md:min-h-screen md:h-[100dvh] flex items-center overflow-hidden pb-24 pt-8 md:pb-0 md:pt-0">
+
+
+    <div class="hero__content relative z-[2] w-full max-w-[700px] flex flex-col justify-center pt-[80px]"
+        style="padding-left: clamp(24px, 8vw, 80px); padding-right: clamp(24px, 4vw, 48px);">
+        <!-- Headline block -->
+        <div class="hero__display text-left relative"
+            style="line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 36px;">
+            <span class="accent absolute hidden md:block"
+                style="color: rgba(0, 139, 139, 0.2); font-size: clamp(120px, 20vw, 220px); font-family: 'Unbounded', sans-serif; font-weight: 900; top: -60px; left: -20px; z-index: -1; user-select: none;">KEEP</span>
+            <span class="block text-white m-hero-title"
+                style="font-size: clamp(3.5rem, 6vw, 5.5rem); font-family: 'Unbounded', sans-serif; font-weight: 700;">Trucks
+                Loaded.</span>
+            <span class="block text-white m-hero-title"
+                style="font-size: clamp(3.5rem, 6vw, 5.5rem); font-family: 'Unbounded', sans-serif; font-weight: 700;">Drivers
+                Paid.</span>
+            <span class="block text-white m-hero-title"
+                style="font-size: clamp(3.5rem, 6vw, 5.5rem); font-family: 'Unbounded', sans-serif; font-weight: 700;">Miles
+                Rolling.</span>
+        </div>
+
+        <!-- Brand slogan -->
+        <div style="margin-bottom: 36px;">
+            <div style="margin-bottom: 8px;">
+                <span style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 1.2rem; color: #ffffff; letter-spacing: 0.01em;">All Ways Home</span>
+            </div>
+            <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin: 0;">Helping drivers run steady loads with frequent home time across the Eastern U.S.</p>
+        </div>
+
+        <!-- CTA -->
+        <div style="margin-bottom: 28px;">
+            <a href="{% url 'contact' %}" class="hero-cta m-full-btn">
+                Apply in 3 Minutes &rarr;
+            </a>
+        </div>
+
+        <!-- Trust strip — 3 items, wraps on mobile -->
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-2 md:gap-5">
+            <span
+                style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); white-space: nowrap;"><span
+                    style="color: #F4A259;">★</span> <span style="color: rgba(255,255,255,0.95);">4.8</span> driver
+                rating</span>
+            <span class="hidden md:inline" style="color: rgba(255,255,255,0.2); font-size: 13px;">&middot;</span>
+            <span
+                style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); white-space: nowrap;"><span
+                    style="color: rgba(255,255,255,0.95);">350+</span> active drivers</span>
+            <span class="hidden md:inline" style="color: rgba(255,255,255,0.2); font-size: 13px;">&middot;</span>
+            <span
+                style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); white-space: nowrap;">Home
+                weekly guaranteed</span>
+        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator hidden md:flex flex-col items-center" id="scrollIndicator">
+        <span class="scroll-label" style="font-family: 'Inter', sans-serif;">Scroll</span>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 8l5 5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    </div>
+</div>
+
+<!-- Section 02 — Why Nestway -->
+<!-- Section 02 — Why Nestway -->
+<section class="m-section-pad" style="background: #F5F0E8; padding: 120px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+        
+        <!-- Top Row -->
+        <div style="margin-bottom: 60px; max-width: 800px;">
+            <!-- Eyebrow -->
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0;">WHY NESTWAY</div>
+                <div style="width: 40px; height: 2px; background: #1AAFA0;"></div>
+            </div>
+            <!-- Headline -->
+            <h2 class="m-section-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 42px; line-height: 1.1; text-transform: uppercase; color: #111111; margin: 0 0 20px 0; letter-spacing: 0.02em;">
+                What we actually <span style="color: #E8440A;">deliver.</span>
+            </h2>
+            <!-- Subtext -->
+            <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #666666; line-height: 1.6; font-weight: 400; margin: 0; max-width: 440px;">
+                Every number below is guaranteed in your contract. We built Nestway for drivers who've heard enough promises.
+            </p>
+        </div>
+
+        <!-- 2x2 Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-[16px] m-gap-12">
+            
+            <!-- Box 1 (Top Left) -->
+            <div class="m-card-pad" style="background: #111111; border-radius: 12px; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center;">
+                <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 24px;">HOME TIME</div>
+                <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(4rem, 6vw, 5.5rem); line-height: 0.9; text-transform: uppercase; color: #E8440A; margin-bottom: 12px; letter-spacing: -0.01em;">48hrs</div>
+                <div class="m-card-title" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #ffffff; margin-bottom: 16px;">Home every single weekend</div>
+                <div class="m-body-text" style="font-family: 'Inter', sans-serif; font-size: 1.05rem; color: rgba(255,255,255,0.6); line-height: 1.6; font-weight: 400;">Friday evening to Monday morning. Every week, no exceptions &mdash; it's in your contract.</div>
+            </div>
+
+            <!-- Box 2 (Top Right) -->
+            <div class="m-card-pad" style="background: #ffffff; border-radius: 12px; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center;">
+                <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #888888; margin-bottom: 24px;">AVERAGE PAY</div>
+                <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(4rem, 6vw, 5.5rem); line-height: 0.9; text-transform: uppercase; color: #111111; margin-bottom: 12px; letter-spacing: -0.01em;">$0.68 <span style="color: #1AAFA0;">CPM</span></div>
+                <div class="m-card-title" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #111111; margin-bottom: 16px;">Top 15% in the industry</div>
+                <div class="m-body-text" style="font-family: 'Inter', sans-serif; font-size: 1.05rem; color: #666666; line-height: 1.6; font-weight: 400;">Transparent weekly settlements. No holdbacks, no forced dispatch, no surprises.</div>
+            </div>
+
+            <!-- Box 3 (Bottom Left) -->
+            <div class="m-card-pad" style="background: #ffffff; border-radius: 12px; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center;">
+                <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #888888; margin-bottom: 24px;">FLEET AGE</div>
+                <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(4rem, 6vw, 5.5rem); line-height: 0.9; text-transform: uppercase; color: #1AAFA0; margin-bottom: 12px; letter-spacing: -0.01em;">2.3yrs</div>
+                <div class="m-card-title" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #111111; margin-bottom: 16px;">Average truck age</div>
+                <div class="m-body-text" style="font-family: 'Inter', sans-serif; font-size: 1.05rem; color: #666666; line-height: 1.6; font-weight: 400;">All 2021+ equipment. Less downtime means more miles and more money every week.</div>
+            </div>
+
+            <!-- Box 4 (Bottom Right) -->
+            <div class="m-card-pad" style="background: #ffffff; border-radius: 12px; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center;">
+                <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #888888; margin-bottom: 24px;">COVERAGE</div>
+                <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(4rem, 6vw, 5.5rem); line-height: 0.9; text-transform: uppercase; color: #111111; margin-bottom: 12px; letter-spacing: -0.01em;">Eastern U.S.</div>
+                <div class="m-card-title" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #111111; margin-bottom: 16px;">Pre-planned lanes</div>
+                <div class="m-body-text" style="font-family: 'Inter', sans-serif; font-size: 1.05rem; color: #666666; line-height: 1.6; font-weight: 400;">Consistent loads, no deadheading. You know your week before it starts.</div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Section 03 — What Drivers Say -->
+<style>
+    .testimonial-section {
+        display: flex;
+        min-height: 600px;
+        overflow: hidden;
+    }
+    .testimonial-photo {
+        width: 45%;
+        flex-shrink: 0;
+        position: relative;
+        transform: translateX(-40px);
+        opacity: 0;
+        transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+    }
+    .testimonial-photo.in-view {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    .testimonial-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    .testimonial-photo::after {
+        content: '';
+        position: absolute;
+        top: 0; right: 0; bottom: 0;
+        width: 120px;
+        background: linear-gradient(to right, transparent, #111111);
+        pointer-events: none;
+    }
+    .testimonial-panel {
+        flex: 1;
+        background: #111111;
+        padding: 60px 56px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        transform: translateX(40px);
+        opacity: 0;
+        transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+    }
+    .testimonial-panel.in-view {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    .testimonial-quote-text {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.5s ease-out 0.3s, transform 0.5s ease-out 0.3s;
+    }
+    .testimonial-panel.in-view .testimonial-quote-text {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .testi-nav-pill {
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.12);
+        cursor: pointer;
+        background: #1A1A1A;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, color 0.2s, border-color 0.2s;
+        flex-shrink: 0;
+    }
+    .testi-nav-pill:hover {
+        border-color: #F4A259;
+        color: #F4A259;
+    }
+    .testi-slide {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    @media (max-width: 768px) {
+        .testimonial-section { flex-direction: column; }
+        .testimonial-photo { width: 100%; height: 320px; transform: translateY(-20px); }
+        .testimonial-photo::after { display: none; }
+        .testimonial-panel { transform: translateY(20px); padding: 20px 24px; }
+    }
+</style>
+
+<section class="testimonial-section" id="testimonialSection" x-data="{ active: 0 }">
+
+    <!-- LEFT: Photo -->
+    <div class="testimonial-photo" id="testiPhoto">
+        <img src="{% static 'images/driver_window.png' %}" alt="Nestway driver leaning out of truck window">
+    </div>
+
+    <!-- RIGHT: Orange panel -->
+    <div class="testimonial-panel" id="testiPanel">
+
+        <!-- Decorative watermark quote -->
+        <div aria-hidden="true" style="position: absolute; top: 20px; left: 40px; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 10rem; line-height: 1; color: rgba(255,255,255,0.04); pointer-events: none; user-select: none; z-index: 0;">&ldquo;</div>
+
+        <!-- Section label -->
+        <div style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 32px; position: relative; z-index: 1;">What Drivers Say</div>
+
+        <!-- Slides -->
+        <div class="testimonial-quote-text" style="position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; justify-content: center;">
+
+            <!-- Slide 0 -->
+            <div class="testi-slide" x-show="active === 0" x-transition.opacity.duration.300ms>
+                <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.4rem; line-height: 1.6; color: #ffffff; margin: 0 0 32px;">I'm finally getting the home time they promised. Earning more and seeing my kids on weekends — that's what I signed up for.</p>
+                <div style="width: 48px; height: 2px; background: #F4A259; margin-bottom: 24px;"></div>
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <div style="width: 44px; height: 44px; border-radius: 50%; background: #008B8B; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; color: #ffffff; flex-shrink: 0;">JD</div>
+                    <div>
+                        <div style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.05rem; color: #ffffff; line-height: 1.2;">John D.</div>
+                        <div style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 3px;">3 years with Nestway</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 1 -->
+            <div class="testi-slide" x-show="active === 1" x-transition.opacity.duration.300ms style="display:none;">
+                <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.4rem; line-height: 1.6; color: #ffffff; margin: 0 0 32px;">Top 15% pay in the industry isn't just a claim. It's what I take home every single week. No games, no deductions I can't explain.</p>
+                <div style="width: 48px; height: 2px; background: #F4A259; margin-bottom: 24px;"></div>
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <div style="width: 44px; height: 44px; border-radius: 50%; background: #008B8B; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; color: #ffffff; flex-shrink: 0;">MS</div>
+                    <div>
+                        <div style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.05rem; color: #ffffff; line-height: 1.2;">Mike S.</div>
+                        <div style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 3px;">1.5 years with Nestway</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="testi-slide" x-show="active === 2" x-transition.opacity.duration.300ms style="display:none;">
+                <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.4rem; line-height: 1.6; color: #ffffff; margin: 0 0 32px;">The dispatchers actually treat you with respect. That makes all the difference when you're 800 miles from home.</p>
+                <div style="width: 48px; height: 2px; background: #F4A259; margin-bottom: 24px;"></div>
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <div style="width: 44px; height: 44px; border-radius: 50%; background: #008B8B; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; color: #ffffff; flex-shrink: 0;">RJ</div>
+                    <div>
+                        <div style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.05rem; color: #ffffff; line-height: 1.2;">Robert J.</div>
+                        <div style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 3px;">4 years with Nestway</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom: Nav pills + dots -->
+        <div style="display: flex; align-items: center; justify-content: flex-end; gap: 16px; margin-top: 40px; position: relative; z-index: 1;">
+            <!-- Dots -->
+            <div style="display: flex; align-items: center; gap: 8px; margin-right: auto;">
+                <button @click="active = 0" :style="active === 0 ? 'width:8px;height:8px;background:#F4A259;' : 'width:6px;height:6px;background:rgba(255,255,255,0.2);'" style="border-radius:50%; border:none; cursor:pointer; padding:0; transition: all 0.2s;" aria-label="Slide 1"></button>
+                <button @click="active = 1" :style="active === 1 ? 'width:8px;height:8px;background:#F4A259;' : 'width:6px;height:6px;background:rgba(255,255,255,0.2);'" style="border-radius:50%; border:none; cursor:pointer; padding:0; transition: all 0.2s;" aria-label="Slide 2"></button>
+                <button @click="active = 2" :style="active === 2 ? 'width:8px;height:8px;background:#F4A259;' : 'width:6px;height:6px;background:rgba(255,255,255,0.2);'" style="border-radius:50%; border:none; cursor:pointer; padding:0; transition: all 0.2s;" aria-label="Slide 3"></button>
+            </div>
+            <!-- Prev pill -->
+            <button @click="active = active === 0 ? 2 : active - 1" class="testi-nav-pill" aria-label="Previous testimonial">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <!-- Next pill -->
+            <button @click="active = active === 2 ? 0 : active + 1" class="testi-nav-pill" aria-label="Next testimonial">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    (function() {
+        var section = document.getElementById('testimonialSection');
+        var photo = document.getElementById('testiPhoto');
+        var panel = document.getElementById('testiPanel');
+        if (!section || !photo || !panel) return;
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    photo.classList.add('in-view');
+                    panel.classList.add('in-view');
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.2 });
+        observer.observe(section);
+    })();
+</script>
+
+<!-- Section 04 — FAQ -->
+<style>
+    .faq-section {
+        background: #F5F0E8;
+        padding: 100px 80px;
+    }
+    .faq-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 35% 1fr;
+        gap: 80px;
+        align-items: start;
+    }
+    .faq-left {
+        position: sticky;
+        top: 100px;
+        display: flex;
+        flex-direction: column;
+    }
+    .faq-accordion {
+        border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .faq-item {
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .faq-btn {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 24px 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        outline: none;
+    }
+    .faq-q-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: #111111;
+        transition: color 0.2s, padding-left 0.2s, border-left 0.2s;
+        border-left: 0px solid transparent;
+    }
+    .faq-btn:hover .faq-q-text {
+        color: #E8440A;
+    }
+    .faq-icon {
+        color: #008B8B;
+        font-size: 1.4rem;
+        transition: transform 0.2s, color 0.2s;
+        flex-shrink: 0;
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    /* Active states */
+    .faq-item.is-open .faq-q-text {
+        color: #111111;
+        border-left: 3px solid #E8440A;
+        padding-left: 16px;
+    }
+    .faq-item.is-open .faq-icon {
+        color: #E8440A;
+        transform: rotate(45deg);
+    }
+    /* Grid animation for max-height */
+    .faq-answer-wrapper {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.3s ease;
+    }
+    .faq-item.is-open .faq-answer-wrapper {
+        grid-template-rows: 1fr;
+    }
+    .faq-answer-inner {
+        overflow: hidden;
+    }
+    .faq-answer {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: rgba(0,0,0,0.6);
+        padding: 12px 0 8px 0;
+    }
+    @media (max-width: 900px) {
+        .faq-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        .faq-left {
+            position: static;
+        }
+        .faq-section {
+            padding: 40px 24px;
+        }
+    }
+</style>
+
+<section class="faq-section">
+    <div class="faq-grid">
+        <!-- LEFT COLUMN -->
+        <div class="faq-left">
+            <div style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: #008B8B; margin-bottom: 24px;">FAQ</div>
+            <h2 class="m-section-title" style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 3.5rem; line-height: 1.1; color: #111111; margin: 0 0 16px;">Got<br>Questions?</h2>
+            <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.9rem; color: rgba(0,0,0,0.6); margin: 0 0 48px;">Everything drivers ask before they apply.</p>
+            
+            <div>
+                <div style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 1rem; color: #111111; margin-bottom: 4px;">Still unsure?</div>
+                <a href="{% url 'contact' %}" style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.9rem; color: #008B8B; text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Talk to our team &rarr;</a>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="faq-accordion" x-data="{ open: null }">
+
+            <!-- Q1 -->
+            <div class="faq-item" :class="open === 1 ? 'is-open' : ''">
+                <button @click="open = open === 1 ? null : 1" class="faq-btn">
+                    <span class="faq-q-text">What routes are available?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer-inner">
+                        <div class="faq-answer m-body-text">We run OTR and regional routes across the Eastern U.S. &mdash; primarily high-volume Amazon and freight corridors.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="faq-item" :class="open === 2 ? 'is-open' : ''">
+                <button @click="open = open === 2 ? null : 2" class="faq-btn">
+                    <span class="faq-q-text">How often do I get home?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer-inner">
+                        <div class="faq-answer m-body-text">Every week. Friday evening to Monday morning, guaranteed. No exceptions, no load pressure.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="faq-item" :class="open === 3 ? 'is-open' : ''">
+                <button @click="open = open === 3 ? null : 3" class="faq-btn">
+                    <span class="faq-q-text">What does the pay package look like?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer-inner">
+                        <div class="faq-answer m-body-text">$0.65&ndash;$0.72/mile with an average of $0.68 CPM. Transparent, weekly direct deposit. Zero holdbacks.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="faq-item" :class="open === 4 ? 'is-open' : ''">
+                <button @click="open = open === 4 ? null : 4" class="faq-btn">
+                    <span class="faq-q-text">What's the truck age and condition?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer-inner">
+                        <div class="faq-answer m-body-text">Our fleet averages 2.3 years old. All trucks are 2021 or newer &mdash; maintained, clean, and ready to roll.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="faq-item" :class="open === 5 ? 'is-open' : ''">
+                <button @click="open = open === 5 ? null : 5" class="faq-btn">
+                    <span class="faq-q-text">How do I apply and how long does it take?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer-wrapper">
+                    <div class="faq-answer-inner">
+                        <div class="faq-answer m-body-text">3 minutes online. We review within 24 hours and will call you directly to walk through next steps.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Section 05 — Bottom CTA section -->
+<style>
+    .cta-section {
+        position: relative;
+        background: #0D0D0D;
+        padding: 120px 24px;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .cta-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        max-width: 1000px;
+        height: 600px;
+        background: radial-gradient(ellipse at center, rgba(0,139,139,0.12) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+    .cta-content {
+        position: relative;
+        z-index: 1;
+        max-width: 700px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .cta-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #008B8B;
+        margin-bottom: 24px;
+    }
+    .cta-headline {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: 3.2rem;
+        line-height: 1.15;
+        color: #ffffff;
+        margin: 0 0 48px 0;
+    }
+    .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #FF4500;
+        color: #ffffff;
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        padding: 18px 48px;
+        border-radius: 999px;
+        text-decoration: none;
+        transition: background 0.2s, box-shadow 0.2s;
+    }
+    .cta-button:hover {
+        background: #D63A00;
+        box-shadow: 0 8px 32px rgba(255,69,0,0.35);
+    }
+    .cta-trust-row {
+        margin-top: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.5);
+    }
+    .cta-trust-dot {
+        color: #008B8B;
+    }
+    .cta-trust-star {
+        color: #F4A259;
+    }
+    @media (max-width: 768px) {
+        .cta-headline {
+            font-size: 30px;
+        }
+        .cta-trust-row {
+            flex-direction: column;
+            gap: 8px;
+        }
+        .cta-trust-dot {
+            display: none;
+        }
+    }
+</style>
+
+<section class="cta-section m-section-pad">
+    <div class="cta-glow"></div>
+    <div class="cta-content">
+        <div class="cta-label">JOIN THE TEAM</div>
+        <h2 class="cta-headline m-section-title">Ready to run with a company that keeps its promises?</h2>
+        <a href="{% url 'contact' %}" class="cta-button m-full-btn">Apply in 3 Minutes &rarr;</a>
+        
+        <div class="cta-trust-row">
+            <span><span class="cta-trust-star">★</span> 4.8 Driver Rating</span>
+            <span class="cta-trust-dot">&middot;</span>
+            <span>350+ Active Drivers</span>
+            <span class="cta-trust-dot">&middot;</span>
+            <span>Home Weekly Guaranteed</span>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

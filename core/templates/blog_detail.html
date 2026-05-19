@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} - {{ site_settings.company_name|default:"Nestway" }}{% endblock %}
+
+{% block content %}
+<div class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10 text-center">
+            <div class="text-sm text-gray-500 mb-3">{{ post.published_at|date:"F d, Y" }}</div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#1a1a1a]">{{ post.title }}</h1>
+        </div>
+
+        {% if post.cover_image %}
+        <div class="mb-12">
+            <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-auto max-h-[500px] object-cover rounded-xl shadow-md">
+        </div>
+        {% endif %}
+
+        <div class="prose max-w-none">
+            {{ post.body|linebreaks }}
+        </div>
+        
+        <div class="mt-16 pt-8 border-t border-gray-100 text-center">
+            <a href="{% url 'blog' %}" class="inline-flex items-center text-brand font-semibold hover:text-accent transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Back to Blog
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

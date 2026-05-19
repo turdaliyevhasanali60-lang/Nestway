@@ -1,0 +1,10 @@
+Django==5.2a1
+gunicorn
+psycopg2-binary
+django-environ
+django-unfold
+whitenoise
+resend
+cloudinary
+django-cloudinary-storage
+Pillow

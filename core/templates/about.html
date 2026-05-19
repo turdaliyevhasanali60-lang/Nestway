@@ -1,0 +1,416 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About Us — Nestway Dispatching{% endblock %}
+
+{% block head %}
+<style>
+    .fixed.top-0 {
+        background: #0a0a0a !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<style>
+    .about-page {
+        background: #0a0a0a;
+        color: #ffffff;
+    }
+    
+    /* 1. Hero */
+    .about-hero {
+        position: relative;
+        padding-top: 140px; /* space for navbar */
+        background: #0a0a0a;
+        overflow: hidden;
+    }
+    .about-hero-glow {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(ellipse at 30% 80%, rgba(0,139,139,0.12) 0%, transparent 60%);
+        pointer-events: none;
+        z-index: 0;
+    }
+    .about-hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 0 24px;
+    }
+    .about-hero-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #008B8B;
+        margin-bottom: 24px;
+    }
+    .about-hero-headline {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: clamp(3rem, 5vw, 4rem);
+        color: #ffffff;
+        margin: 0 0 24px;
+        line-height: 1.1;
+    }
+    .about-hero-subline {
+        font-family: 'Inter', sans-serif;
+        font-weight: 300;
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.5);
+        margin: 0 0 60px;
+    }
+    .about-hero-img-wrap {
+        position: relative;
+        width: 100%;
+        line-height: 0;
+        z-index: 1;
+    }
+    .about-hero-img {
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+        border-radius: 0;
+    }
+    .about-hero-img-gradient {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 20%;
+        background: linear-gradient(to top, #0a0a0a, transparent);
+        pointer-events: none;
+    }
+    @media (max-width: 900px) {
+        .about-hero-img { height: 400px; }
+    }
+
+    /* 2. Stats Section */
+    .about-stats {
+        background: #F0EBE1;
+        padding: 80px 24px;
+        text-align: center;
+    }
+    .about-stats-headline {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: clamp(2rem, 3vw, 2.8rem);
+        color: #111111;
+        margin: 0 0 16px;
+    }
+    .about-stats-divider {
+        width: 64px;
+        height: 2px;
+        background: #F4A259;
+        margin: 0 auto 48px;
+    }
+    .about-stats-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+    }
+    .stat-item {
+        background: rgba(0,0,0,0.03);
+        border: 1px solid rgba(0,0,0,0.08);
+        border-radius: 16px;
+        padding: 32px 24px;
+    }
+    .stat-num {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: 3rem;
+        color: #111111;
+        margin: 0 0 12px;
+    }
+    .stat-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #777777;
+        line-height: 1.4;
+        margin: 0;
+    }
+    @media (max-width: 900px) {
+        .about-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .stat-num { font-size: 2.5rem; }
+    }
+    @media (max-width: 767px) {
+        .about-stats-grid { grid-template-columns: 1fr; gap: 12px; }
+    }
+
+    /* 3. Team Built For Truckers */
+    .about-team {
+        background: #0a0a0a;
+        padding: 100px 24px;
+    }
+    .about-team-grid {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+    }
+    .about-team-headline {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: 2.4rem;
+        color: #ffffff;
+        margin: 0 0 24px;
+        line-height: 1.2;
+    }
+    .about-team-body {
+        font-family: 'Inter', sans-serif;
+        font-weight: 400;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: rgba(255,255,255,0.6);
+        margin: 0;
+    }
+    .about-check-list {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    .about-check-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+    .about-check-icon {
+        color: #008B8B;
+        flex-shrink: 0;
+    }
+    .about-check-text {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 1.05rem;
+        color: #ffffff;
+    }
+    @media (max-width: 900px) {
+        .about-team-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+    @media (max-width: 767px) {
+        .about-team-grid { gap: 24px; }
+    }
+
+    /* 4. CEO Section */
+    .about-ceo {
+        background: #F0EBE1;
+        padding: 120px 24px;
+    }
+    .about-ceo-grid {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+    }
+    .about-ceo-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #008B8B;
+        margin-bottom: 16px;
+    }
+    .about-ceo-name {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: 1.6rem;
+        color: #111111;
+        margin: 0 0 16px;
+    }
+    .about-ceo-divider {
+        width: 48px;
+        height: 2px;
+        background: #F4A259;
+        margin: 0 0 24px;
+    }
+    .about-ceo-body {
+        font-family: 'Inter', sans-serif;
+        font-weight: 400;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: #777777;
+        margin: 0;
+    }
+    .about-ceo-img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 16px;
+        border: 1px solid rgba(0,139,139,0.25);
+    }
+    @media (max-width: 900px) {
+        .about-ceo-grid { grid-template-columns: 1fr; gap: 48px; }
+        .about-ceo-img { height: 400px; }
+    }
+    @media (max-width: 767px) {
+        .about-ceo-grid { display: flex; flex-direction: column-reverse; gap: 24px; }
+    }
+
+    /* 5. Bottom CTA Strip */
+    .about-cta {
+        background: #0a0a0a;
+        padding: 120px 24px;
+        text-align: center;
+        border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .about-cta-headline {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: clamp(32px, 4vw, 48px);
+        color: #ffffff;
+        margin-bottom: 40px;
+    }
+    .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #FF4500;
+        color: #ffffff;
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        padding: 18px 48px;
+        border-radius: 999px;
+        text-decoration: none;
+        transition: background 0.2s, box-shadow 0.2s;
+    }
+    .cta-button:hover {
+        background: #D63A00;
+        box-shadow: 0 8px 32px rgba(255,69,0,0.35);
+    }
+    .trust-row {
+        margin-top: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.5);
+    }
+</style>
+
+<div class="about-page">
+
+    <!-- 1. HERO -->
+    <section class="about-hero">
+        <div class="about-hero-glow"></div>
+        <div class="about-hero-content">
+            <div class="about-hero-label">OUR STORY</div>
+            <h1 class="about-hero-headline m-hero-title">About Nestway</h1>
+            <p class="about-hero-subline m-body-text">A team built on the road. A company built for it.</p>
+        </div>
+        <div class="about-hero-img-wrap">
+            <img src="{% static 'images/Nestway-Team.webp' %}" alt="Nestway Team" class="about-hero-img">
+            <div class="about-hero-img-gradient"></div>
+        </div>
+    </section>
+
+    <!-- 2. STATS -->
+    <section class="about-stats m-section-pad">
+        <h2 class="about-stats-headline m-section-title">Numbers that speak for themselves</h2>
+        <div class="about-stats-divider"></div>
+        <div class="about-stats-grid">
+            <div class="stat-item m-card-pad">
+                <div class="stat-num m-stat-num">500+</div>
+                <div class="stat-label">Owner-Operators<br>Served</div>
+            </div>
+            <div class="stat-item m-card-pad">
+                <div class="stat-num m-stat-num">35%</div>
+                <div class="stat-label">Avg. Deadhead<br>Mile Reduction</div>
+            </div>
+            <div class="stat-item m-card-pad">
+                <div class="stat-num m-stat-num">98%</div>
+                <div class="stat-label">On-Time<br>Delivery Rate</div>
+            </div>
+            <div class="stat-item m-card-pad">
+                <div class="stat-num m-stat-num">Weekly</div>
+                <div class="stat-label">Transparent<br>Settlements</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. TEAM BUILT FOR TRUCKERS -->
+    <section class="about-team m-section-pad">
+        <div class="about-team-grid">
+            <div>
+                <h2 class="about-team-headline m-section-title">A Team Built for Truckers</h2>
+                <p class="about-team-body m-body-text">
+                    Our dispatchers, accountants, and safety specialists come from the trucking industry.
+                    We don't just know the paperwork — we know the road.
+                </p>
+            </div>
+            <div class="about-check-list">
+                <div class="about-check-item">
+                    <svg class="about-check-icon" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                    <span class="about-check-text">Industry veterans, not call center agents</span>
+                </div>
+                <div class="about-check-item">
+                    <svg class="about-check-icon" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                    <span class="about-check-text">Available 24/7 when you're on the road</span>
+                </div>
+                <div class="about-check-item">
+                    <svg class="about-check-icon" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                    <span class="about-check-text">Specialized in Eastern US Amazon freight</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CEO -->
+    <section class="about-ceo m-section-pad">
+        <div class="about-ceo-grid">
+            <div>
+                <div class="about-ceo-label">Meet Our CEO</div>
+                <h3 class="about-ceo-name m-section-title">Khamidjon Odilov</h3>
+                <div class="about-ceo-divider"></div>
+                <p class="about-ceo-body m-body-text">
+                    Our CEO founded Nestway with one mission: give owner-operators the tools, support, and
+                    transparency they deserve. With years of hands-on experience in trucking logistics, he
+                    built a company that treats drivers as partners — not just contractors.
+                </p>
+            </div>
+            <div>
+                <img src="{% static 'images/CEO-Nestway.webp' %}" alt="Khamidjon Odilov — Founder & CEO of Nestway" class="about-ceo-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. BOTTOM CTA -->
+    <section class="about-cta m-section-pad">
+        <h2 class="about-cta-headline m-section-title">Ready to run with a company that keeps its promises?</h2>
+        <a href="{% url 'contact' %}" class="cta-button m-full-btn">Apply in 3 Minutes &rarr;</a>
+        
+        <div class="trust-row">
+            <span><span style="color: #F4A259;">★</span> 4.8 Driver Rating</span>
+            <span style="color: #008B8B;">&middot;</span>
+            <span>350+ Active Drivers</span>
+            <span style="color: #008B8B;">&middot;</span>
+            <span>Home Weekly Guaranteed</span>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

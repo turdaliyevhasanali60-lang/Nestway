@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog - {{ site_settings.company_name|default:"Nestway" }}{% endblock %}
+
+{% block head %}
+<style>
+    .fixed.top-0 {
+        background: #0a0a0a !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="py-10 md:py-20 bg-brand text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white">Blog</h1>
+</div>
+
+<div class="py-10 md:py-20 bg-[#f5f5f5]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for post in posts %}
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+                {% if post.cover_image %}
+                <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-56 object-cover">
+                {% else %}
+                <div class="w-full h-56 bg-gray-200 flex items-center justify-center text-gray-400">No Image</div>
+                {% endif %}
+                <div class="p-8 flex-grow flex flex-col">
+                    <div class="text-sm text-gray-500 mb-3">{{ post.published_at|date:"M d, Y" }}</div>
+                    <h3 class="text-2xl font-bold text-[#1a1a1a] mb-4"><a href="{% url 'blog_detail' post.slug %}" class="hover:text-brand transition-colors">{{ post.title }}</a></h3>
+                    <p class="text-gray-600 mb-6 flex-grow">{{ post.body|truncatechars:150 }}</p>
+                    <div class="mt-auto pt-4 border-t border-gray-100">
+                        <a href="{% url 'blog_detail' post.slug %}" class="text-accent font-semibold hover:opacity-80 transition-opacity">Read more &rarr;</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center text-gray-500">No blog posts available.</div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
