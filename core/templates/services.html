@@ -158,9 +158,10 @@
             </a>
 
             <!-- 06 CTA Block -->
-            <div class="srv-card m-card-pad" style="background: #F0EBE1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: none; padding: 48px; cursor: default;">
-                <div class="m-section-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(3rem, 5vw, 4.5rem); text-transform: uppercase; color: #111111; line-height: 1; margin-bottom: 32px;">READY TO ROLL?</div>
-                <a href="{% url 'contact' %}" class="cta-button m-full-btn">Apply in 3 Minutes &rarr;</a>
+            <div class="srv-card m-card-pad" style="background: #111111; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: none; padding: 48px; cursor: default;">
+                <div class="m-section-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); text-transform: uppercase; color: #ffffff; line-height: 1; margin-bottom: 16px;">READY TO ROLL?</div>
+                <p style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: rgba(255,255,255,0.6); margin-bottom: 32px;">Book a free 15-minute consultation with our CEO.</p>
+                <a href="{% url 'contact' %}" class="cta-button m-full-btn">Book Free Consultation &rarr;</a>
             </div>
             
         </div>
@@ -179,6 +180,15 @@
                 <li><span style="color: #E8440A;">&bull;</span> <span>No forced dispatch — you always have the final say on the load.</span></li>
                 <li><span style="color: #E8440A;">&bull;</span> <span>24/7 support while you're on the road.</span></li>
             </ul>
+            <!-- Lead Magnet -->
+            <div style="margin-top: 48px; padding: 36px 40px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+                <div>
+                    <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 8px;">FREE CONSULTATION</div>
+                    <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.8rem; text-transform: uppercase; color: #ffffff; line-height: 1.1;">Want to upgrade your dispatching?</div>
+                    <div style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: rgba(255,255,255,0.55); margin-top: 8px;">Contact our Business Development Team for a free consultation.</div>
+                </div>
+                <a href="{% url 'contact' %}" class="cta-button" style="flex-shrink: 0;">Talk to Our Team &rarr;</a>
+            </div>
         </div>
     </section>
 
@@ -193,6 +203,15 @@
                 <li><span style="color: #E8440A;">&bull;</span> <span>Full management of IFTA reporting and quarterly filings.</span></li>
                 <li><span style="color: #E8440A;">&bull;</span> <span>Year-end tax preparation assistance available for owner-operators.</span></li>
             </ul>
+            <!-- Lead Magnet -->
+            <div style="margin-top: 48px; padding: 36px 40px; background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+                <div>
+                    <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 8px;">FREE CONSULTATION</div>
+                    <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.8rem; text-transform: uppercase; color: #111111; line-height: 1.1;">Want to cut costs &amp; increase profits?</div>
+                    <div style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #777; margin-top: 8px;">Connect with our accounting experts and get a free consultation.</div>
+                </div>
+                <a href="{% url 'contact' %}" class="cta-button" style="flex-shrink: 0;">Talk to Our Experts &rarr;</a>
+            </div>
         </div>
     </section>
 
@@ -207,6 +226,15 @@
                 <li><span style="color: #E8440A;">&bull;</span> <span>24/7 assistance for roadside inspections and accident reporting.</span></li>
                 <li><span style="color: #E8440A;">&bull;</span> <span>Proactive safety training modules to keep your record clean.</span></li>
             </ul>
+            <!-- Lead Magnet -->
+            <div style="margin-top: 48px; padding: 36px 40px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+                <div>
+                    <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 8px;">FREE CONSULTATION</div>
+                    <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.8rem; text-transform: uppercase; color: #ffffff; line-height: 1.1;">Want to protect your CSA score?</div>
+                    <div style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: rgba(255,255,255,0.55); margin-top: 8px;">Get a free DOT compliance review from our safety specialists.</div>
+                </div>
+                <a href="{% url 'contact' %}" class="cta-button" style="flex-shrink: 0;">Get Free Review &rarr;</a>
+            </div>
         </div>
     </section>
 
@@ -221,6 +249,15 @@
                 <li><span style="color: #E8440A;">&bull;</span> <span>National accounts for discounts on fuel, tires, and emergency repairs.</span></li>
                 <li><span style="color: #E8440A;">&bull;</span> <span>Late-model equipment sourcing for drivers looking to lease or upgrade.</span></li>
             </ul>
+            <!-- Lead Magnet -->
+            <div style="margin-top: 48px; padding: 36px 40px; background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+                <div>
+                    <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 8px;">FREE CONSULTATION</div>
+                    <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.8rem; text-transform: uppercase; color: #111111; line-height: 1.1;">Want to maximize your fleet uptime?</div>
+                    <div style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #777; margin-top: 8px;">Speak with our fleet management team and get a free consultation.</div>
+                </div>
+                <a href="{% url 'contact' %}" class="cta-button" style="flex-shrink: 0;">Talk to Our Team &rarr;</a>
+            </div>
         </div>
     </section>
 
@@ -235,6 +272,15 @@
                 <li><span style="color: #E8440A;">&bull;</span> <span>P&amp;L (Profit &amp; Loss) reviews to help you maximize your margins.</span></li>
                 <li><span style="color: #E8440A;">&bull;</span> <span>Strategic planning for adding trucks and hiring your first drivers.</span></li>
             </ul>
+            <!-- Lead Magnet -->
+            <div style="margin-top: 48px; padding: 36px 40px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+                <div>
+                    <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 8px;">FREE CONSULTATION</div>
+                    <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.8rem; text-transform: uppercase; color: #ffffff; line-height: 1.1;">Want to scale your operation?</div>
+                    <div style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: rgba(255,255,255,0.55); margin-top: 8px;">Book a free 15-min strategy session with our CEO today.</div>
+                </div>
+                <a href="{% url 'contact' %}" class="cta-button" style="flex-shrink: 0;">Book Free Session &rarr;</a>
+            </div>
         </div>
     </section>
 

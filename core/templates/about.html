@@ -400,15 +400,23 @@
 
     <!-- 5. BOTTOM CTA -->
     <section class="about-cta m-section-pad">
-        <h2 class="about-cta-headline m-section-title">Ready to run with a company that keeps its promises?</h2>
-        <a href="{% url 'contact' %}" class="cta-button m-full-btn">Apply in 3 Minutes &rarr;</a>
-        
-        <div class="trust-row">
-            <span><span style="color: #F4A259;">★</span> 4.8 Driver Rating</span>
-            <span style="color: #008B8B;">&middot;</span>
-            <span>350+ Active Drivers</span>
-            <span style="color: #008B8B;">&middot;</span>
-            <span>Home Weekly Guaranteed</span>
+        <div style="max-width: 700px; margin: 0 auto;">
+            <div style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: #008B8B; margin-bottom: 16px;">FREE CONSULTATION</div>
+            <h2 class="about-cta-headline m-section-title">Ready to run with a company that keeps its promises?</h2>
+            <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 40px;">Book a free 15-minute consultation directly with our CEO — no pressure, just answers.</p>
+            <form action="{% url 'contact' %}" method="POST" style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 24px;">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Your Name" required style="flex: 1; min-width: 180px; padding: 14px 20px; border-radius: 10px; border: none; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none;">
+                <input type="tel" name="phone" placeholder="Phone Number" required style="flex: 1; min-width: 180px; padding: 14px 20px; border-radius: 10px; border: none; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none;">
+                <button type="submit" class="cta-button" style="border: none; cursor: pointer;">Book with CEO &rarr;</button>
+            </form>
+            <div class="trust-row">
+                <span><span style="color: #F4A259;">★</span> 4.8 Driver Rating</span>
+                <span style="color: #008B8B;">&middot;</span>
+                <span>350+ Active Drivers</span>
+                <span style="color: #008B8B;">&middot;</span>
+                <span>Home Weekly Guaranteed</span>
+            </div>
         </div>
     </section>
 

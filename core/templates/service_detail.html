@@ -51,19 +51,29 @@
                             </li>
                             {% endfor %}
                         </ul>
-                        <a href="{% url 'contact' %}" class="mt-10 inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-brand rounded-xl hover:bg-brand/90 transition-colors shadow-lg hover:shadow-xl">
-                            Let's Talk Business
-                            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                        </a>
+                        <!-- Lead Magnet -->
+                        <div style="margin-top: 40px; padding: 32px; background: #111; border-radius: 16px; border: 1px solid rgba(255,255,255,0.07);">
+                            <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: #008B8B; margin-bottom: 10px;">FREE CONSULTATION</div>
+                            <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.2rem; color: #ffffff; margin-bottom: 8px;">Ready to get started?</div>
+                            <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-bottom: 20px;">Book a free 15-min consultation with our team today.</p>
+                            <a href="{% url 'contact' %}" class="mt-10 inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white rounded-xl transition-colors shadow-lg" style="background: #FF4500; text-decoration: none;" onmouseover="this.style.background='#D63A00'" onmouseout="this.style.background='#FF4500'">
+                                Book Free Consultation &rarr;
+                            </a>
+                        </div>
                     {% else %}
                         <h3 class="text-3xl font-bold text-[#1a1a1a] mb-6">Experience the Nestway Difference</h3>
                         <p class="text-lg text-gray-700 leading-relaxed mb-8">
                             Our {{ service.title|lower }} are tailored to fit the unique demands of owner-operators and small fleets. We prioritize your profitability and schedule, handling the heavy lifting so you can focus on the road ahead.
                         </p>
-                        <a href="{% url 'contact' %}" class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-brand rounded-xl hover:bg-brand/90 transition-colors shadow-lg hover:shadow-xl">
-                            Let's Talk Business
-                            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                        </a>
+                        <!-- Lead Magnet -->
+                        <div style="margin-top: 40px; padding: 32px; background: #111; border-radius: 16px; border: 1px solid rgba(255,255,255,0.07);">
+                            <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: #008B8B; margin-bottom: 10px;">FREE CONSULTATION</div>
+                            <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.2rem; color: #ffffff; margin-bottom: 8px;">Ready to get started?</div>
+                            <p style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-bottom: 20px;">Book a free 15-min consultation with our team today.</p>
+                            <a href="{% url 'contact' %}" class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white rounded-xl transition-colors shadow-lg" style="background: #FF4500; text-decoration: none;" onmouseover="this.style.background='#D63A00'" onmouseout="this.style.background='#FF4500'">
+                                Book Free Consultation &rarr;
+                            </a>
+                        </div>
                     {% endif %}
                     {% endwith %}
                 </div>
@@ -103,14 +113,13 @@
                     </div>
                 </div>
 
-                <!-- CTA Box -->
-                <div class="bg-accent rounded-3xl p-8 lg:p-10 shadow-xl text-center md:text-left">
-                    <h3 class="text-3xl font-extrabold text-white mb-4">Ready to Take Control?</h3>
-                    <p class="text-white/90 text-lg mb-8 leading-relaxed">
-                        Partner with us to secure better freight, optimize your routes, and drive your trucking business to the next level.
-                    </p>
-                    <a href="{% url 'contact' %}" class="inline-block bg-white text-accent font-bold text-lg px-8 py-4 rounded-xl hover:bg-gray-50 transition-colors shadow-md">
-                        Get Started Today
+                <!-- Lead Magnet Box -->
+                <div style="background: #0D0D0D; border-radius: 24px; padding: 40px; border: 1px solid rgba(255,255,255,0.07);">
+                    <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: #008B8B; margin-bottom: 12px;">FREE CONSULTATION</div>
+                    <h3 style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.5rem; color: #ffffff; margin-bottom: 12px; line-height: 1.2;">Ready to Take Control?</h3>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: rgba(255,255,255,0.55); margin-bottom: 28px; line-height: 1.6;">Partner with us to secure better freight, optimize your routes, and drive your business to the next level. Book a free 15-min call with our CEO.</p>
+                    <a href="{% url 'contact' %}" class="inline-block font-bold text-lg px-8 py-4 rounded-xl shadow-md w-full text-center" style="background: #FF4500; color: white; text-decoration: none; display: block;" onmouseover="this.style.background='#D63A00'" onmouseout="this.style.background='#FF4500'">
+                        Book Free Consultation &rarr;
                     </a>
                 </div>
             </div>

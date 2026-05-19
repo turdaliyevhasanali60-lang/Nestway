@@ -45,7 +45,7 @@
             <!-- Desktop CTA -->
             <div class="hidden md:block">
                 <a href="{% url 'contact' %}" class="inline-flex items-center justify-center text-[14px] font-[600] px-[20px] py-[9px] rounded-[6px] transition-all duration-150 no-underline" style="font-family: 'Inter', sans-serif; border: 1.5px solid #FF4500; color: #ffffff; background: #FF4500;" onmouseover="this.style.background='#D63A00'; this.style.borderColor='#D63A00';" onmouseout="this.style.background='#FF4500'; this.style.borderColor='#FF4500';">
-                    Apply Now &rarr;
+                    Book 15-Min Free Consultation &rarr;
                 </a>
             </div>
 
@@ -93,7 +93,7 @@
         </nav>
 
         <a href="{% url 'contact' %}" class="w-full flex items-center justify-center bg-[#FF4500] text-white text-[16px] font-[700] h-[52px] rounded-[6px] no-underline mt-auto" style="font-family: 'Inter', sans-serif;" @click="mobileMenuOpen = false">
-            Apply Now &rarr;
+            Book 15-Min Free Consultation &rarr;
         </a>
     </div>
 
@@ -196,6 +196,11 @@
         }, { passive: true });
       })();
     </script>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" style="position: fixed; bottom: 24px; right: 24px; z-index: 999; background-color: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 .002 5.382.002 12.028c0 2.12.553 4.191 1.604 6.012L.031 24l6.113-1.603a11.972 11.972 0 005.887 1.543h.005c6.645 0 12.028-5.382 12.028-12.028C24.064 5.382 18.681 0 12.031 0zm0 21.968a9.982 9.982 0 01-5.086-1.385l-.365-.216-3.782.992.997-3.69-.237-.377a9.99 9.99 0 01-1.523-5.321c0-5.511 4.485-9.996 9.996-9.996 2.671 0 5.183 1.041 7.072 2.932A9.957 9.957 0 0122.02 12.03c0 5.513-4.487 9.997-9.989 9.997l-.001-.059zm5.492-7.502c-.302-.151-1.785-.881-2.062-.981-.277-.1-.478-.151-.679.151-.201.302-.781.981-.957 1.182-.176.201-.352.226-.654.075-.302-.151-1.274-.47-2.427-1.503-.896-.803-1.501-1.796-1.677-2.098-.176-.302-.019-.465.132-.616.136-.136.302-.352.453-.528.151-.176.201-.302.302-.503.101-.201.05-.377-.025-.528-.075-.151-.679-1.637-.931-2.241-.245-.589-.494-.509-.679-.519-.176-.009-.377-.009-.578-.009-.201 0-.528.075-.805.377-.277.302-1.056 1.032-1.056 2.516 0 1.484 1.082 2.918 1.233 3.119.151.201 2.125 3.242 5.146 4.544.718.309 1.278.494 1.716.632.721.229 1.378.196 1.895.118.577-.086 1.785-.729 2.036-1.434.251-.704.251-1.307.176-1.434-.075-.127-.277-.202-.579-.353z"/></svg>
+    </a>
 
     {% block scripts %}{% endblock %}
 </body>
