@@ -125,41 +125,35 @@
     <div style="position: absolute; bottom: 18%; right: -4%; font-family: 'Unbounded', sans-serif; font-size: 28vw; font-weight: 900; color: rgba(255,255,255,0.045); letter-spacing: -0.03em; z-index: 3; pointer-events: none; user-select: none; line-height: 1;">MILES</div>
 
     <!-- Layer 4 — Content Block -->
-    <div style="position: absolute; top: 14%; left: 0; right: 0; padding: 0 24px; display: flex; flex-direction: column; gap: 0; z-index: 4;">
+    <div style="position: absolute; top: 14%; bottom: 40px; left: 0; right: 0; padding: 0 24px; display: flex; flex-direction: column; gap: 0; z-index: 4;">
         <!-- Headline -->
         <div style="margin-bottom: 18px; line-height: 1.08; letter-spacing: -0.02em; text-rendering: optimizeLegibility;">
-            <div style="font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 10.5vw; color: #FFFFFF;">Trucks Loaded.</div>
-            <div style="font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 10.5vw; color: #FFFFFF;">Drivers Paid.</div>
-            <div style="font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 10.5vw; color: #FFFFFF;">Miles Rolling.</div>
+            <div style="font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 11.5vw; color: #FFFFFF;">Trucks Loaded.</div>
+            <div style="font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 11.5vw; color: #FFFFFF;">Drivers Paid.</div>
+            <div style="font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 11.5vw; color: #FFFFFF;">Miles Rolling.</div>
         </div>
 
         <!-- Brand Line -->
-        <div style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: #20B2A0; letter-spacing: 0.04em; margin-top: 8px; margin-bottom: 10px; text-transform: none; white-space: nowrap;">Keep Miles Rolling.</div>
+        <div style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: #20B2A0; letter-spacing: 0.04em; margin-top: 8px; margin-bottom: 10px; text-transform: none;">Built for Drivers Who Want More Miles.</div>
 
         <!-- Body Copy -->
-        <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 400; line-height: 1.6; color: rgba(255,255,255,0.78); max-width: 85%; margin: 8px 0 28px; padding: 0;">Nationwide OTR freight with consistent miles, strong dispatch support, and high weekly earning potential.</p>
+        <p style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 400; line-height: 1.6; color: rgba(255,255,255,0.78); max-width: 85%; margin: 8px 0 28px; padding: 0;">High-paying OTR freight with steady miles and real dispatch support.</p>
 
-        <!-- CTA Button -->
-        <a href="{% url 'contact' %}" class="m-cta-btn" style="display: inline-flex; align-items: center; justify-content: center; width: 100%; height: 52px; background: #F04E1F; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; color: #FFFFFF; letter-spacing: 0.01em; text-decoration: none; box-shadow: 0 4px 24px rgba(240,78,31,0.45); margin-bottom: 24px; transition: transform 0.1s ease;">
-            15-Min Free Consultation <span style="margin-left: 8px;">&rarr;</span>
-        </a>
+        <div style="margin-top: auto;">
+            <!-- CTA Button -->
+            <a href="{% url 'contact' %}" class="m-cta-btn" style="display: inline-flex; align-items: center; justify-content: center; width: 100%; height: 52px; background: #F04E1F; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; color: #FFFFFF; letter-spacing: 0.01em; text-decoration: none; box-shadow: 0 4px 24px rgba(240,78,31,0.45); margin-bottom: 24px; transition: transform 0.1s ease;">
+                15-Min Free Consultation <span style="margin-left: 8px;">&rarr;</span>
+            </a>
 
-        <!-- Trust Stats Row -->
-        <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 0; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.75); white-space: nowrap;">
-            <div><span style="color: #F5A623; font-size: 11px; margin-right: 2px;">★</span> <span style="font-weight: 700; color: #FFFFFF;">4.8</span> Rating</div>
-            <div style="color: rgba(255,255,255,0.3); padding: 0 10px;">&middot;</div>
-            <div><span style="font-weight: 700; color: #FFFFFF;">350+</span> Drivers</div>
-            <div style="color: rgba(255,255,255,0.3); padding: 0 10px;">&middot;</div>
-            <div>OTR Freight</div>
+            <!-- Trust Stats Row -->
+            <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 0; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.75); white-space: nowrap;">
+                <div><span style="color: #F5A623; font-size: 11px; margin-right: 2px;">★</span> <span style="font-weight: 700; color: #FFFFFF;">4.8</span> Rating</div>
+                <div style="color: rgba(255,255,255,0.3); padding: 0 10px;">&middot;</div>
+                <div><span style="font-weight: 700; color: #FFFFFF;">350+</span> Drivers</div>
+                <div style="color: rgba(255,255,255,0.3); padding: 0 10px;">&middot;</div>
+                <div>OTR freight</div>
+            </div>
         </div>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div style="position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 4px; pointer-events: none; z-index: 4;">
-        <span style="font-family: 'Inter', sans-serif; font-size: 9px; letter-spacing: 0.2em; color: rgba(255,255,255,0.45); line-height: 1;">SCROLL</span>
-        <svg class="chevron-bounce" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
     </div>
 </div>
 
