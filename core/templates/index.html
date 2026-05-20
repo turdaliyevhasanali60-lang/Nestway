@@ -222,6 +222,30 @@
 
         </div>
 
+        <!-- Explore Services Button -->
+        <style>
+            .explore-services-btn {
+                background-color: transparent;
+                border: 1.5px solid #1a1a1a;
+                color: #1a1a1a;
+                border-radius: 6px;
+                padding: 14px 32px;
+                font-weight: 600;
+                font-size: 15px;
+                font-family: 'Inter', sans-serif;
+                transition: background-color 0.2s ease, color 0.2s ease;
+                display: inline-block;
+                text-decoration: none;
+            }
+            .explore-services-btn:hover {
+                background-color: #1a1a1a;
+                color: #ffffff;
+            }
+        </style>
+        <div style="margin-top: 48px; text-align: left;">
+            <a href="{% url 'services' %}" class="explore-services-btn">Explore Our Services &rarr;</a>
+        </div>
+
     </div>
 </section>
 
