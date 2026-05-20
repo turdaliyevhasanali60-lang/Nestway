@@ -103,7 +103,7 @@
                 <h2 class="m-section-title" style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 40px); color: #111111; margin: 0; text-transform: uppercase;">Success Stories</h2>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {% for post in success_stories %}
                 <a href="{% url 'blog_detail' post.slug %}" class="blog-card group flex flex-col" style="background: #F5F0E8; border: 1px solid rgba(0,0,0,0.05);">
                     <div class="w-full h-[292px] overflow-hidden">
@@ -111,15 +111,15 @@
                         <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105">
                         {% else %}
                         <div class="w-full h-full bg-[#0a0a0a] flex items-center justify-center relative overflow-hidden">
-                            <div style="position: absolute; width: 280px; height: 280px; background: radial-gradient(circle, rgba(232, 68, 10, 0.22) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(25px);"></div>
-                            <img src="{% static 'images/logo.png' %}" alt="Nestway Logo" class="h-16 w-auto relative z-10 opacity-85 transform transition-transform duration-500 group-hover:scale-110 select-none">
+                            <div style="position: absolute; width: 200px; height: 200px; background: radial-gradient(circle, rgba(232, 68, 10, 0.22) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(25px);"></div>
+                            <img src="{% static 'images/logo.png' %}" alt="Nestway Logo" class="h-12 w-auto relative z-10 opacity-85 transform transition-transform duration-500 group-hover:scale-110 select-none">
                         </div>
                         {% endif %}
                     </div>
                     <div class="p-6 md:p-8 flex-grow flex flex-col">
                         <div class="text-sm text-gray-500 mb-3" style="font-family: 'Inter', sans-serif;">{{ post.published_at|date:"M d, Y" }}</div>
-                        <h3 class="m-card-title mb-4" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2.2rem; text-transform: uppercase; color: #111111; line-height: 1.1; letter-spacing: 0.02em;">{{ post.title }}</h3>
-                        <p class="m-body-text text-gray-600 mb-6 flex-grow" style="font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.6;">{{ post.body|striptags|truncatechars:180 }}</p>
+                        <h3 class="m-card-title mb-4" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2rem; text-transform: uppercase; color: #111111; line-height: 1.2; letter-spacing: 0.02em;">{{ post.title }}</h3>
+                        <p class="m-body-text text-gray-600 mb-6 flex-grow" style="font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.6;">{{ post.body|striptags|truncatechars:150 }}</p>
                         <div class="mt-auto pt-4 border-t border-gray-200/50" style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; color: #E8440A;">
                             Read Success Story &rarr;
                         </div>
