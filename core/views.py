@@ -69,7 +69,12 @@ def blog(request):
     if posts is None:
         posts = list(BlogPost.objects.filter(is_published=True))
         cache.set('published_posts', posts, 300)  # 5 min — new posts appear quickly
-    return render(request, 'blog.html', {'posts': posts})
+    success_stories = [p for p in posts if p.category == 'success_story']
+    articles = [p for p in posts if p.category == 'article']
+    return render(request, 'blog.html', {
+        'success_stories': success_stories,
+        'articles': articles
+    })
 
 def blog_detail(request, slug):
     cache_key = f'blog_detail_{slug}'

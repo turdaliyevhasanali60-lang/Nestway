@@ -94,28 +94,73 @@
         </div>
     </section>
 
-    <!-- LIST SECTION -->
+    <!-- SUCCESS STORIES SECTION -->
+    <section class="blog-list-section m-section-pad px-6" style="background: #ffffff; max-width: 100%;">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-12">
+                <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: #E8440A; margin-bottom: 8px;">CASE STUDIES</div>
+                <h2 class="m-section-title" style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 40px); color: #111111; margin: 0; text-transform: uppercase;">Success Stories</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {% for post in success_stories %}
+                <a href="{% url 'blog_detail' post.slug %}" class="blog-card flex flex-col" style="background: #F5F0E8; border: 1px solid rgba(0,0,0,0.05);">
+                    {% if post.cover_image %}
+                    <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-64 object-cover">
+                    {% else %}
+                    <div class="w-full h-64 bg-gray-200 flex items-center justify-center text-gray-400">
+                        <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    {% endif %}
+                    <div class="p-6 md:p-8 flex-grow flex flex-col">
+                        <div class="text-sm text-gray-500 mb-3" style="font-family: 'Inter', sans-serif;">{{ post.published_at|date:"M d, Y" }}</div>
+                        <h3 class="m-card-title mb-4" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2.2rem; text-transform: uppercase; color: #111111; line-height: 1.1; letter-spacing: 0.02em;">{{ post.title }}</h3>
+                        <p class="m-body-text text-gray-600 mb-6 flex-grow" style="font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.6;">{{ post.body|striptags|truncatechars:180 }}</p>
+                        <div class="mt-auto pt-4 border-t border-gray-200/50" style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; color: #E8440A;">
+                            Read Success Story &rarr;
+                        </div>
+                    </div>
+                </a>
+                {% empty %}
+                <div class="col-span-full text-center text-gray-500 py-12">No success stories available yet. Check back soon!</div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ARTICLES SECTION -->
     <section class="blog-list-section m-section-pad px-6" style="background: #F0EBE1; max-width: 100%;">
         <div class="max-w-7xl mx-auto">
+            <div class="mb-12">
+                <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 8px;">INSIGHTS & STRATEGIES</div>
+                <h2 class="m-section-title" style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 40px); color: #111111; margin: 0; text-transform: uppercase;">Latest Articles</h2>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {% for post in posts %}
-                <a href="{% url 'blog_detail' post.slug %}" class="blog-card flex flex-col">
+                {% for post in articles %}
+                <a href="{% url 'blog_detail' post.slug %}" class="blog-card flex flex-col" style="background: #ffffff;">
                     {% if post.cover_image %}
                     <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-56 object-cover">
                     {% else %}
-                    <div class="w-full h-56 bg-gray-200 flex items-center justify-center text-gray-400">No Image</div>
+                    <div class="w-full h-56 bg-gray-200 flex items-center justify-center text-gray-400">
+                        <svg class="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                        </svg>
+                    </div>
                     {% endif %}
                     <div class="p-6 md:p-8 flex-grow flex flex-col">
                         <div class="text-sm text-gray-500 mb-3" style="font-family: 'Inter', sans-serif;">{{ post.published_at|date:"M d, Y" }}</div>
                         <h3 class="m-card-title mb-4" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2rem; text-transform: uppercase; color: #111111; line-height: 1.2; letter-spacing: 0.02em;">{{ post.title }}</h3>
                         <p class="m-body-text text-gray-600 mb-6 flex-grow" style="font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.6;">{{ post.body|striptags|truncatechars:150 }}</p>
                         <div class="mt-auto pt-4 border-t border-gray-100" style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; color: #1AAFA0;">
-                            Read more &rarr;
+                            Read Article &rarr;
                         </div>
                     </div>
                 </a>
                 {% empty %}
-                <div class="col-span-full text-center text-gray-500 py-12">No blog posts available.</div>
+                <div class="col-span-full text-center text-gray-500 py-12">No articles available.</div>
                 {% endfor %}
             </div>
         </div>

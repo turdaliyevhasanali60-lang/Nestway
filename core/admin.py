@@ -30,7 +30,8 @@ class ServiceAdmin(ModelAdmin):
 
 @admin.register(BlogPost)
 class BlogPostAdmin(ModelAdmin):
-    list_display = ('title', 'is_published', 'published_at')
+    list_display = ('title', 'category', 'is_published', 'published_at')
+    list_filter = ('category', 'is_published')
     prepopulated_fields = {'slug': ('title',)}
 
 @admin.register(ContactLead)

@@ -57,9 +57,14 @@ class ServiceFeature(models.Model):
         return f"{self.service.title} — {self.title}"
 
 class BlogPost(models.Model):
+    CATEGORY_CHOICES = [
+        ('article', 'Article'),
+        ('success_story', 'Success Story'),
+    ]
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, max_length=255)
     body = models.TextField()
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='article')
     cover_image = models.ImageField(upload_to='blog/', blank=True)
     published_at = models.DateTimeField(default=timezone.now)
     is_published = models.BooleanField(default=False)
