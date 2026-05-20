@@ -190,7 +190,11 @@
             <!-- 01 Dispatching -->
             <a href="#dispatching" class="srv-card" style="background: #ffffff;">
                 <div class="srv-card-img-wrap">
+                    {% if services.0.image %}
+                    <img src="{{ services.0.image.url }}" alt="{{ services.0.title }}">
+                    {% else %}
                     <img src="{% static 'images/services/dispatching.png' %}" alt="Dispatching Services">
+                    {% endif %}
                 </div>
                 <div class="srv-card-content">
                     <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.5rem; color: rgba(0,0,0,0.15); margin-bottom: 12px;">01</div>
@@ -204,7 +208,11 @@
             <!-- 02 Accounting -->
             <a href="#accounting" class="srv-card">
                 <div class="srv-card-img-wrap">
+                    {% if services.1.image %}
+                    <img src="{{ services.1.image.url }}" alt="{{ services.1.title }}">
+                    {% else %}
                     <img src="{% static 'images/services/accounting.png' %}" alt="Accounting Services">
+                    {% endif %}
                 </div>
                 <div class="srv-card-content">
                     <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.5rem; color: rgba(0,0,0,0.15); margin-bottom: 12px;">02</div>
@@ -218,7 +226,11 @@
             <!-- 03 Safety -->
             <a href="#safety" class="srv-card">
                 <div class="srv-card-img-wrap">
+                    {% if services.2.image %}
+                    <img src="{{ services.2.image.url }}" alt="{{ services.2.title }}">
+                    {% else %}
                     <img src="{% static 'images/services/safety.png' %}" alt="Safety Services">
+                    {% endif %}
                 </div>
                 <div class="srv-card-content">
                     <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.5rem; color: rgba(0,0,0,0.15); margin-bottom: 12px;">03</div>
@@ -232,7 +244,11 @@
             <!-- 04 Fleet Management -->
             <a href="#fleet" class="srv-card">
                 <div class="srv-card-img-wrap">
+                    {% if services.3.image %}
+                    <img src="{{ services.3.image.url }}" alt="{{ services.3.title }}">
+                    {% else %}
                     <img src="{% static 'images/services/fleet.png' %}" alt="Fleet Management">
+                    {% endif %}
                 </div>
                 <div class="srv-card-content">
                     <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.5rem; color: rgba(0,0,0,0.15); margin-bottom: 12px;">04</div>
@@ -246,7 +262,11 @@
             <!-- 05 Business Consulting -->
             <a href="#consulting" class="srv-card">
                 <div class="srv-card-img-wrap">
+                    {% if services.4.image %}
+                    <img src="{{ services.4.image.url }}" alt="{{ services.4.title }}">
+                    {% else %}
                     <img src="{% static 'images/services/consulting.png' %}" alt="Business Consulting">
+                    {% endif %}
                 </div>
                 <div class="srv-card-content">
                     <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.5rem; color: rgba(0,0,0,0.15); margin-bottom: 12px;">05</div>
