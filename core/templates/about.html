@@ -57,7 +57,7 @@
     .about-hero-headline {
         font-family: 'Unbounded', sans-serif;
         font-weight: 700;
-        font-size: clamp(3rem, 5vw, 4rem);
+        font-size: clamp(2rem, 8vw, 4rem);
         color: #ffffff;
         margin: 0 0 24px;
         line-height: 1.1;
@@ -92,6 +92,9 @@
     }
     @media (max-width: 900px) {
         .about-hero-img { height: 400px; }
+    }
+    @media (max-width: 767px) {
+        .about-hero-img { height: 280px; }
     }
 
     /* 2. Stats Section */
@@ -156,6 +159,9 @@
         background: #0a0a0a;
         padding: 100px 24px;
     }
+    @media (max-width: 767px) {
+        .about-team { padding: 64px 24px !important; }
+    }
     .about-team-grid {
         max-width: 1000px;
         margin: 0 auto;
@@ -167,7 +173,7 @@
     .about-team-headline {
         font-family: 'Unbounded', sans-serif;
         font-weight: 700;
-        font-size: 2.4rem;
+        font-size: clamp(1.8rem, 6vw, 2.4rem);
         color: #ffffff;
         margin: 0 0 24px;
         line-height: 1.2;
@@ -264,6 +270,9 @@
     }
     @media (max-width: 767px) {
         .about-ceo-grid { display: flex; flex-direction: column-reverse; gap: 24px; }
+        .about-ceo-img { height: 320px !important; }
+        .about-ceo { padding: 64px 24px !important; }
+        .about-cta { padding: 64px 24px !important; }
     }
 
     /* 5. Bottom CTA Strip */

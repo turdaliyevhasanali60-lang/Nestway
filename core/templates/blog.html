@@ -50,7 +50,7 @@
     .blog-hero-headline {
         font-family: 'Unbounded', sans-serif;
         font-weight: 700;
-        font-size: clamp(3rem, 5vw, 4rem);
+        font-size: clamp(2rem, 8vw, 4rem);
         color: #ffffff;
         margin: 0 0 24px;
         line-height: 1.1;
@@ -95,8 +95,8 @@
     </section>
 
     <!-- LIST SECTION -->
-    <section class="blog-list-section m-section-pad" style="background: #F0EBE1; max-width: 100%;">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="blog-list-section m-section-pad px-6" style="background: #F0EBE1; max-width: 100%;">
+        <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {% for post in posts %}
                 <a href="{% url 'blog_detail' post.slug %}" class="blog-card flex flex-col">
@@ -105,7 +105,7 @@
                     {% else %}
                     <div class="w-full h-56 bg-gray-200 flex items-center justify-center text-gray-400">No Image</div>
                     {% endif %}
-                    <div class="p-8 flex-grow flex flex-col">
+                    <div class="p-6 md:p-8 flex-grow flex flex-col">
                         <div class="text-sm text-gray-500 mb-3" style="font-family: 'Inter', sans-serif;">{{ post.published_at|date:"M d, Y" }}</div>
                         <h3 class="m-card-title mb-4" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2rem; text-transform: uppercase; color: #111111; line-height: 1.2; letter-spacing: 0.02em;">{{ post.title }}</h3>
                         <p class="m-body-text text-gray-600 mb-6 flex-grow" style="font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.6;">{{ post.body|striptags|truncatechars:150 }}</p>

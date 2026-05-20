@@ -61,7 +61,7 @@
     .services-hero-headline {
         font-family: 'Unbounded', sans-serif;
         font-weight: 700;
-        font-size: clamp(3rem, 5vw, 4rem);
+        font-size: clamp(2rem, 8vw, 4rem);
         color: #ffffff;
         margin: 0 0 24px;
         line-height: 1.1;
@@ -90,6 +90,11 @@
         text-decoration: none;
         cursor: pointer;
         border-radius: 16px;
+    }
+    @media (max-width: 767px) {
+        .srv-card {
+            padding: 24px !important;
+        }
     }
     .srv-card:hover {
         background: #f5f5f5 !important;
@@ -152,8 +157,8 @@
     </section>
 
     <!-- SERVICES GRID -->
-    <section class="services-list-section m-section-pad" style="background: #F0EBE1; max-width: 100%; padding: 80px 0 0;">
-        <div class="grid grid-cols-1 md:grid-cols-3 m-gap-12" style="gap: 20px; max-width: 1200px; margin: 0 auto; padding: 0 24px 80px;">
+    <section class="services-list-section m-section-pad" style="background: #F0EBE1; max-width: 100%;">
+        <div class="grid grid-cols-1 md:grid-cols-3 m-gap-12" style="gap: 20px; max-width: 1200px; margin: 0 auto; padding: 0 24px 0;">
             
             <!-- 01 Dispatching -->
             <a href="#dispatching" class="srv-card m-card-pad" style="background: #ffffff;">
@@ -211,7 +216,7 @@
             </a>
 
             <!-- 06 CTA Block -->
-            <div class="m-card-pad" style="background: #111111; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: none; padding: 48px; cursor: default; border-radius: 16px;">
+            <div class="m-card-pad bg-[#111111] flex flex-col items-center justify-center text-center rounded-[16px] cursor-default">
                 <div class="m-section-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); text-transform: uppercase; color: #ffffff; line-height: 1; margin-bottom: 16px;">READY TO ROLL?</div>
                 <p style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: rgba(255,255,255,0.6); margin-bottom: 32px;">Book a free 15-minute consultation with our CEO.</p>
                 <a href="{% url 'contact' %}" class="cta-button m-full-btn">Book Free Consultation &rarr;</a>
@@ -223,7 +228,7 @@
     <!-- 3. DETAILED BREAKDOWN -->
 
     <!-- 01 Dispatching — DARK -->
-    <section id="dispatching" class="m-section-pad" style="background: #0a0a0a; padding: 100px 24px;">
+    <section id="dispatching" class="m-section-pad px-6 md:px-10" style="background: #0a0a0a;">
         <div style="max-width: 1000px; margin: 0 auto;">
             <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 16px;">01 &mdash; Dispatching</div>
             <h2 class="m-section-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; color: #ffffff; margin: 0 0 32px; letter-spacing: 0.02em;">Real-Time Load Matching</h2>
@@ -234,7 +239,7 @@
                 <li><span style="color: #E8440A;">&bull;</span> <span>24/7 support while you're on the road.</span></li>
             </ul>
             <!-- Lead Magnet -->
-            <div style="margin-top: 48px; padding: 36px 40px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+            <div class="lead-magnet-card" style="margin-top: 48px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
                 <div>
                     <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 8px;">FREE CONSULTATION</div>
                     <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.8rem; text-transform: uppercase; color: #ffffff; line-height: 1.1;">Want to upgrade your dispatching?</div>
@@ -246,7 +251,7 @@
     </section>
 
     <!-- 02 Accounting — OFF-WHITE -->
-    <section id="accounting" class="m-section-pad" style="background: #F0EBE1; padding: 100px 24px;">
+    <section id="accounting" class="m-section-pad px-6 md:px-10" style="background: #F0EBE1;">
         <div style="max-width: 1000px; margin: 0 auto;">
             <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 16px;">02 &mdash; Accounting</div>
             <h2 class="m-section-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; color: #111111; margin: 0 0 32px; letter-spacing: 0.02em;">Transparent Settlements</h2>
@@ -257,7 +262,7 @@
                 <li><span style="color: #E8440A;">&bull;</span> <span>Year-end tax preparation assistance available for owner-operators.</span></li>
             </ul>
             <!-- Lead Magnet -->
-            <div style="margin-top: 48px; padding: 36px 40px; background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+            <div class="lead-magnet-card" style="margin-top: 48px; background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
                 <div>
                     <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 8px;">FREE CONSULTATION</div>
                     <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.8rem; text-transform: uppercase; color: #111111; line-height: 1.1;">Want to cut costs &amp; increase profits?</div>
@@ -269,7 +274,7 @@
     </section>
 
     <!-- 03 Safety — DARK -->
-    <section id="safety" class="m-section-pad" style="background: #0a0a0a; padding: 100px 24px;">
+    <section id="safety" class="m-section-pad px-6 md:px-10" style="background: #0a0a0a;">
         <div style="max-width: 1000px; margin: 0 auto;">
             <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 16px;">03 &mdash; Safety</div>
             <h2 class="m-section-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; color: #ffffff; margin: 0 0 32px; letter-spacing: 0.02em;">Compliance &amp; Protection</h2>
@@ -280,7 +285,7 @@
                 <li><span style="color: #E8440A;">&bull;</span> <span>Proactive safety training modules to keep your record clean.</span></li>
             </ul>
             <!-- Lead Magnet -->
-            <div style="margin-top: 48px; padding: 36px 40px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+            <div class="lead-magnet-card" style="margin-top: 48px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
                 <div>
                     <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 8px;">FREE CONSULTATION</div>
                     <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.8rem; text-transform: uppercase; color: #ffffff; line-height: 1.1;">Want to protect your CSA score?</div>
@@ -292,7 +297,7 @@
     </section>
 
     <!-- 04 Fleet — OFF-WHITE -->
-    <section id="fleet" class="m-section-pad" style="background: #F0EBE1; padding: 100px 24px;">
+    <section id="fleet" class="m-section-pad px-6 md:px-10" style="background: #F0EBE1;">
         <div style="max-width: 1000px; margin: 0 auto;">
             <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 16px;">04 &mdash; Fleet Management</div>
             <h2 class="m-section-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; color: #111111; margin: 0 0 32px; letter-spacing: 0.02em;">Keeping You Rolling</h2>
@@ -303,7 +308,7 @@
                 <li><span style="color: #E8440A;">&bull;</span> <span>Late-model equipment sourcing for drivers looking to lease or upgrade.</span></li>
             </ul>
             <!-- Lead Magnet -->
-            <div style="margin-top: 48px; padding: 36px 40px; background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+            <div class="lead-magnet-card" style="margin-top: 48px; background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
                 <div>
                     <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 8px;">FREE CONSULTATION</div>
                     <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.8rem; text-transform: uppercase; color: #111111; line-height: 1.1;">Want to maximize your fleet uptime?</div>
@@ -315,7 +320,7 @@
     </section>
 
     <!-- 05 Consulting — DARK -->
-    <section id="consulting" class="m-section-pad" style="background: #0a0a0a; padding: 100px 24px;">
+    <section id="consulting" class="m-section-pad px-6 md:px-10" style="background: #0a0a0a;">
         <div style="max-width: 1000px; margin: 0 auto;">
             <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 16px;">05 &mdash; Business Consulting</div>
             <h2 class="m-section-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; color: #ffffff; margin: 0 0 32px; letter-spacing: 0.02em;">Scale Your Operation</h2>
@@ -326,7 +331,7 @@
                 <li><span style="color: #E8440A;">&bull;</span> <span>Strategic planning for adding trucks and hiring your first drivers.</span></li>
             </ul>
             <!-- Lead Magnet -->
-            <div style="margin-top: 48px; padding: 36px 40px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+            <div class="lead-magnet-card" style="margin-top: 48px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
                 <div>
                     <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 8px;">FREE CONSULTATION</div>
                     <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.8rem; text-transform: uppercase; color: #ffffff; line-height: 1.1;">Want to scale your operation?</div>

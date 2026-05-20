@@ -38,6 +38,8 @@
 </style>
 
 <div class="hero hero-bg relative w-full min-h-screen flex items-center overflow-hidden" style="min-height: 100vh; min-height: 100svh;">
+    <!-- Gradient Overlay for Mobile Readability -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/25 md:from-black/75 md:via-black/40 md:to-transparent z-[1] pointer-events-none"></div>
     <div class="hero__content relative z-[2] w-full max-w-[700px] flex flex-col justify-center pt-[80px]"
         style="padding-left: clamp(24px, 8vw, 80px); padding-right: clamp(24px, 4vw, 48px);">
         <!-- Headline block -->
@@ -99,7 +101,7 @@
 <!-- Section 02 — Why Nestway -->
 <!-- Section 02 — Why Nestway -->
 <section class="m-section-pad" style="background: #F5F0E8; padding: 120px 0;">
-    <div style="max-width: 1440px; margin: 0 auto; padding: 0 40px;">
+    <div class="max-w-[1440px] mx-auto px-6 md:px-10">
         
         <!-- Top Row -->
         <div style="margin-bottom: 60px; max-width: 1000px;">
@@ -122,7 +124,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px] m-gap-12">
             
             <!-- Box 1 (Top Left) -->
-            <div class="m-card-pad" style="background: #111111; border-radius: 12px; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center;">
+            <div class="m-card-pad bg-[#111111] rounded-[12px] flex flex-col justify-center">
                 <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 24px;">HOME TIME</div>
                 <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(4rem, 6vw, 5.5rem); line-height: 0.9; text-transform: uppercase; color: #E8440A; margin-bottom: 12px; letter-spacing: -0.01em;">Flexible</div>
                 <div class="m-card-title" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #ffffff; margin-bottom: 16px;">Home time on your schedule</div>
@@ -130,7 +132,7 @@
             </div>
 
             <!-- Box 2 (Top Right) -->
-            <div class="m-card-pad" style="background: #ffffff; border-radius: 12px; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center;">
+            <div class="m-card-pad bg-[#ffffff] rounded-[12px] flex flex-col justify-center">
                 <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #888888; margin-bottom: 24px;">AVERAGE PAY</div>
                 <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(4rem, 6vw, 5.5rem); line-height: 0.9; text-transform: uppercase; color: #111111; margin-bottom: 12px; letter-spacing: -0.01em;">$0.68 <span style="color: #1AAFA0;">CPM</span></div>
                 <div class="m-card-title" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #111111; margin-bottom: 16px;">Top 15% in the industry</div>
@@ -138,7 +140,7 @@
             </div>
 
             <!-- Box 3 (Bottom Left) -->
-            <div class="m-card-pad" style="background: #ffffff; border-radius: 12px; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center;">
+            <div class="m-card-pad bg-[#ffffff] rounded-[12px] flex flex-col justify-center">
                 <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #888888; margin-bottom: 24px;">FLEET AGE</div>
                 <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(4rem, 6vw, 5.5rem); line-height: 0.9; text-transform: uppercase; color: #1AAFA0; margin-bottom: 12px; letter-spacing: -0.01em;">2.3yrs</div>
                 <div class="m-card-title" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #111111; margin-bottom: 16px;">Average truck age</div>
@@ -146,7 +148,7 @@
             </div>
 
             <!-- Box 4 (Bottom Right) -->
-            <div class="m-card-pad" style="background: #ffffff; border-radius: 12px; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center;">
+            <div class="m-card-pad bg-[#ffffff] rounded-[12px] flex flex-col justify-center">
                 <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #888888; margin-bottom: 24px;">COVERAGE</div>
                 <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(4rem, 6vw, 5.5rem); line-height: 0.9; text-transform: uppercase; color: #111111; margin-bottom: 12px; letter-spacing: -0.01em;">48 States</div>
                 <div class="m-card-title" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #111111; margin-bottom: 16px;">OTR &amp; Regional Lanes</div>
@@ -242,10 +244,10 @@
         justify-content: center;
     }
     @media (max-width: 768px) {
-        .testimonial-section { flex-direction: column; }
-        .testimonial-photo { width: 100%; height: 320px; transform: translateY(-20px); }
+        .testimonial-section { flex-direction: column; min-height: auto; }
+        .testimonial-photo { width: 100%; height: 280px; transform: none !important; opacity: 1 !important; }
         .testimonial-photo::after { display: none; }
-        .testimonial-panel { transform: translateY(20px); padding: 20px 24px; }
+        .testimonial-panel { transform: none !important; opacity: 1 !important; padding: 40px 24px !important; }
     }
 </style>
 
@@ -445,7 +447,7 @@
             position: static;
         }
         .faq-section {
-            padding: 40px 24px;
+            padding: 64px 24px !important;
         }
     }
 </style>
@@ -455,8 +457,8 @@
         <!-- LEFT COLUMN -->
         <div class="faq-left">
             <div style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: #008B8B; margin-bottom: 24px;">FAQ</div>
-            <h2 class="m-section-title" style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 3.5rem; line-height: 1.1; color: #111111; margin: 0 0 16px;">Got<br>Questions?</h2>
-            <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.9rem; color: rgba(0,0,0,0.6); margin: 0 0 48px;">Everything drivers ask before they apply.</p>
+            <h2 class="m-section-title" style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1.1; color: #111111; margin: 0 0 16px;">Got<br>Questions?</h2>
+            <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.95rem; color: rgba(0,0,0,0.6); margin: 0 0 32px;">Everything drivers ask before they apply.</p>
             
             <div>
                 <div style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 1rem; color: #111111; margin-bottom: 4px;">Still unsure?</div>
@@ -624,7 +626,7 @@
     }
     @media (max-width: 768px) {
         .cta-headline {
-            font-size: 30px;
+            font-size: clamp(1.8rem, 6vw, 2.4rem) !important;
         }
         .cta-trust-row {
             flex-direction: column;

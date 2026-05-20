@@ -33,7 +33,12 @@
     }
     .blog-detail-content-section {
         background: #F0EBE1;
-        padding: 60px 24px 100px;
+        padding: 80px 24px 120px;
+    }
+    @media (max-width: 767px) {
+        .blog-detail-content-section {
+            padding: 40px 16px 64px !important;
+        }
     }
     .blog-readability-card {
         background: #ffffff;
@@ -48,11 +53,11 @@
     <!-- HERO -->
     <section class="blog-detail-hero">
         <div class="blog-detail-hero-glow"></div>
-        <div class="relative z-10 max-w-4xl mx-auto px-4">
+        <div class="relative z-10 max-w-4xl mx-auto px-6">
             <div style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: #008B8B; margin-bottom: 16px;">
                 Published: {{ post.published_at|date:"F d, Y" }}
             </div>
-            <h1 style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3.2rem); color: #ffffff; line-height: 1.25; margin: 0;">
+            <h1 class="m-hero-title" style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3.2rem); color: #ffffff; line-height: 1.25; margin: 0;">
                 {{ post.title }}
             </h1>
         </div>
@@ -60,7 +65,7 @@
 
     <!-- CONTENT -->
     <section class="blog-detail-content-section">
-        <div class="max-w-4xl mx-auto blog-readability-card p-6 md:p-12">
+        <div class="max-w-4xl mx-auto blog-readability-card p-5 md:p-12">
             {% if post.cover_image %}
             <div class="mb-10 overflow-hidden rounded-xl">
                 <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-auto max-h-[500px] object-cover">
