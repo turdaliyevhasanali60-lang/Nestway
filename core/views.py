@@ -25,7 +25,7 @@ def index(request):
     latest_posts = cache.get('index_latest_posts')
     if latest_posts is None:
         latest_posts = list(BlogPost.objects.filter(is_published=True)[:3])
-        cache.set('index_latest_posts', latest_posts, 86400)
+        cache.set('index_latest_posts', latest_posts, 300)  # 5 min — refreshes quickly after new posts
         
     return render(request, 'index.html', {
         'services': services,
@@ -36,7 +36,7 @@ def services(request):
     services_list = cache.get('active_services')
     if services_list is None:
         services_list = list(Service.objects.filter(is_active=True))
-        cache.set('active_services', services_list, 86400)
+        cache.set('active_services', services_list, 3600)  # 1 hour
     return render(request, 'services.html', {'services': services_list})
 
 def about(request):
@@ -68,7 +68,7 @@ def blog(request):
     posts = cache.get('published_posts')
     if posts is None:
         posts = list(BlogPost.objects.filter(is_published=True))
-        cache.set('published_posts', posts, 86400)
+        cache.set('published_posts', posts, 300)  # 5 min — new posts appear quickly
     return render(request, 'blog.html', {'posts': posts})
 
 def blog_detail(request, slug):
@@ -76,7 +76,7 @@ def blog_detail(request, slug):
     post = cache.get(cache_key)
     if post is None:
         post = get_object_or_404(BlogPost, slug=slug, is_published=True)
-        cache.set(cache_key, post, 86400)
+        cache.set(cache_key, post, 300)  # 5 min
     return render(request, 'blog_detail.html', {'post': post})
 
 def contact(request):
