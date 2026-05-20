@@ -87,9 +87,28 @@
         background-color: #111111;
         position: relative;
     }
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 24px;
+    }
     @media (min-width: 768px) {
         .blog-card-img-wrap {
             height: 200px;
+        }
+        .blog-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 32px;
+        }
+    }
+    @media (max-width: 767px) {
+        .blog-card {
+            max-width: 310px !important;
+            width: 100% !important;
+            margin: 0 auto !important;
+        }
+        .blog-card-img-wrap {
+            height: 140px !important;
         }
     }
 </style>
@@ -115,7 +134,7 @@
                 <h2 class="m-section-title" style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 40px); color: #111111; margin: 0; text-transform: uppercase;">Success Stories</h2>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="blog-grid">
                 {% for post in success_stories %}
                 <a href="{% url 'blog_detail' post.slug %}" class="blog-card group flex flex-col" style="background: #F5F0E8; border: 1px solid rgba(0,0,0,0.05);">
                     <div class="blog-card-img-wrap">
@@ -152,7 +171,7 @@
                 <h2 class="m-section-title" style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 40px); color: #111111; margin: 0; text-transform: uppercase;">Latest Articles</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="blog-grid">
                 {% for post in articles %}
                 <a href="{% url 'blog_detail' post.slug %}" class="blog-card group flex flex-col" style="background: #ffffff;">
                     <div class="blog-card-img-wrap">
