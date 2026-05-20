@@ -23,12 +23,55 @@
         background: #0a0a0a;
     }
     
-    /* Hero */
+    /* Hero matching about page style */
     .services-hero {
-        padding: 120px 24px 80px;
-        max-width: 1200px;
+        position: relative;
+        padding-top: 140px; /* space for navbar */
+        padding-bottom: 80px;
+        background: #0a0a0a;
+        overflow: hidden;
+    }
+    .services-hero-glow {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(ellipse at 70% 80%, rgba(0,139,139,0.12) 0%, transparent 60%);
+        pointer-events: none;
+        z-index: 0;
+    }
+    .services-hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
         margin: 0 auto;
-        text-align: left;
+        text-align: center;
+        padding: 0 24px;
+    }
+    .services-hero-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #008B8B;
+        margin-bottom: 24px;
+    }
+    .services-hero-headline {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: clamp(3rem, 5vw, 4rem);
+        color: #ffffff;
+        margin: 0 0 24px;
+        line-height: 1.1;
+    }
+    .services-hero-subline {
+        font-family: 'Inter', sans-serif;
+        font-weight: 300;
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.5);
+        margin: 0;
     }
 
     /* Grid */
@@ -98,8 +141,18 @@
 
 <div class="services-page">
 
+    <!-- HERO -->
+    <section class="services-hero">
+        <div class="services-hero-glow"></div>
+        <div class="services-hero-content">
+            <div class="services-hero-label">OUR SERVICES</div>
+            <h1 class="services-hero-headline m-hero-title">What We Offer</h1>
+            <p class="services-hero-subline m-body-text">Tailored dispatching, accounting, and safety solutions designed to keep your business moving forward.</p>
+        </div>
+    </section>
+
     <!-- SERVICES GRID -->
-    <section class="services-list-section m-section-pad" style="background: #F0EBE1; max-width: 100%; padding: 100px 0 0;">
+    <section class="services-list-section m-section-pad" style="background: #F0EBE1; max-width: 100%; padding: 80px 0 0;">
         <div class="grid grid-cols-1 md:grid-cols-3 m-gap-12" style="gap: 20px; max-width: 1200px; margin: 0 auto; padding: 0 24px 80px;">
             
             <!-- 01 Dispatching -->
