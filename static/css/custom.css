@@ -230,6 +230,19 @@ html, body {
     width: 32px;
     height: 32px;
 }
+@media (max-width: 767px) {
+    .whatsapp-float {
+        bottom: 24px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+    .whatsapp-float svg {
+        width: 22px;
+        height: 22px;
+    }
+}
 
 /* Testimonial Quote CSS Grid Stack */
 .testimonial-quote-text {
