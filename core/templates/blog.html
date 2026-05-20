@@ -106,7 +106,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {% for post in success_stories %}
                 <a href="{% url 'blog_detail' post.slug %}" class="blog-card group flex flex-col" style="background: #F5F0E8; border: 1px solid rgba(0,0,0,0.05);">
-                    <div class="w-full h-56 overflow-hidden">
+                    <div class="w-full h-[292px] overflow-hidden">
                         {% if post.cover_image %}
                         <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105">
                         {% else %}
@@ -143,7 +143,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {% for post in articles %}
                 <a href="{% url 'blog_detail' post.slug %}" class="blog-card group flex flex-col" style="background: #ffffff;">
-                    <div class="w-full h-56 overflow-hidden">
+                    <div class="w-full h-[292px] overflow-hidden">
                         {% if post.cover_image %}
                         <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105">
                         {% else %}
