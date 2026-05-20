@@ -16,8 +16,8 @@
         </div>
         {% endif %}
 
-        <div class="prose max-w-none">
-            {{ post.body|linebreaks }}
+        <div class="prose prose-brand max-w-none">
+            {{ post.body|safe }}
         </div>
         
         <div class="mt-16 pt-8 border-t border-gray-100 text-center">
