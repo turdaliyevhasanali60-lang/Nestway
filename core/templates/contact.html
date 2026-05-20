@@ -2,8 +2,19 @@
 
 {% block title %}Contact Us - {{ site_settings.company_name|default:"Nestway" }}{% endblock %}
 
+{% block head %}
+<style>
+    .fixed.top-0 {
+        background: #0a0a0a !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="py-10 md:py-20 bg-gray-50 min-h-screen">
+<div class="pt-28 pb-10 md:pt-36 md:pb-20 bg-gray-50 min-h-screen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
             <h1 class="text-4xl md:text-5xl font-extrabold text-[#1a1a1a]">Contact Us</h1>
