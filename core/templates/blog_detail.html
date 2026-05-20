@@ -79,9 +79,9 @@
                 {% if post.cover_image %}
                 <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-auto max-h-[500px] object-cover">
                 {% else %}
-                <div class="w-full h-[320px] md:h-[400px] bg-[#0a0a0a] flex items-center justify-center relative overflow-hidden">
-                    <div style="position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(0, 139, 139, 0.22) 0%, transparent 75%); top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(30px);"></div>
-                    <img src="{% static 'images/logo.png' %}" alt="Nestway Logo" class="h-14 w-auto relative z-10 opacity-90 select-none">
+                <div style="width: 100%; height: 350px; background-color: #111111; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                    <div style="position: absolute; width: 250px; height: 250px; background: radial-gradient(circle, {% if post.category == 'success_story' %}rgba(232, 68, 10, 0.25){% else %}rgba(26, 175, 160, 0.25){% endif %} 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(25px);"></div>
+                    <img src="{% static 'images/logo.png' %}" alt="Nestway Logo" style="height: 54px; width: auto; position: relative; z-10; opacity: 0.95;" class="select-none">
                 </div>
                 {% endif %}
             </div>

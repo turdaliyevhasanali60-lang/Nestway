@@ -106,13 +106,13 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {% for post in success_stories %}
                 <a href="{% url 'blog_detail' post.slug %}" class="blog-card group flex flex-col" style="background: #F5F0E8; border: 1px solid rgba(0,0,0,0.05);">
-                    <div class="w-full h-[292px] overflow-hidden">
+                    <div style="width: 100%; height: 200px; overflow: hidden; background-color: #111111; position: relative;">
                         {% if post.cover_image %}
                         <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105">
                         {% else %}
-                        <div class="w-full h-full bg-[#0a0a0a] flex items-center justify-center relative overflow-hidden">
-                            <div style="position: absolute; width: 200px; height: 200px; background: radial-gradient(circle, rgba(232, 68, 10, 0.22) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(25px);"></div>
-                            <img src="{% static 'images/logo.png' %}" alt="Nestway Logo" class="h-12 w-auto relative z-10 opacity-85 transform transition-transform duration-500 group-hover:scale-110 select-none">
+                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                            <div style="position: absolute; width: 160px; height: 160px; background: radial-gradient(circle, rgba(232, 68, 10, 0.25) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(20px);"></div>
+                            <img src="{% static 'images/logo.png' %}" alt="Nestway Logo" style="height: 48px; width: auto; position: relative; z-10; opacity: 0.95;" class="transform transition-transform duration-500 group-hover:scale-110 select-none">
                         </div>
                         {% endif %}
                     </div>
@@ -143,13 +143,13 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {% for post in articles %}
                 <a href="{% url 'blog_detail' post.slug %}" class="blog-card group flex flex-col" style="background: #ffffff;">
-                    <div class="w-full h-[292px] overflow-hidden">
+                    <div style="width: 100%; height: 200px; overflow: hidden; background-color: #111111; position: relative;">
                         {% if post.cover_image %}
                         <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105">
                         {% else %}
-                        <div class="w-full h-full bg-[#0a0a0a] flex items-center justify-center relative overflow-hidden">
-                            <div style="position: absolute; width: 200px; height: 200px; background: radial-gradient(circle, rgba(26, 175, 160, 0.22) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(20px);"></div>
-                            <img src="{% static 'images/logo.png' %}" alt="Nestway Logo" class="h-12 w-auto relative z-10 opacity-85 transform transition-transform duration-500 group-hover:scale-110 select-none">
+                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                            <div style="position: absolute; width: 160px; height: 160px; background: radial-gradient(circle, rgba(26, 175, 160, 0.25) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(20px);"></div>
+                            <img src="{% static 'images/logo.png' %}" alt="Nestway Logo" style="height: 48px; width: auto; position: relative; z-10; opacity: 0.95;" class="transform transition-transform duration-500 group-hover:scale-110 select-none">
                         </div>
                         {% endif %}
                     </div>
