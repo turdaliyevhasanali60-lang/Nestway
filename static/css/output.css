@@ -1296,12 +1296,12 @@ video {
   padding-bottom: 2rem;
 }
 
-.pt-32 {
-  padding-top: 8rem;
+.pt-24 {
+  padding-top: 6rem;
 }
 
-.pt-36 {
-  padding-top: 9rem;
+.pt-32 {
+  padding-top: 8rem;
 }
 
 .pt-4 {
@@ -1835,8 +1835,8 @@ body {
     padding-bottom: 5rem;
   }
 
-  .md\:pt-48 {
-    padding-top: 12rem;
+  .md\:pt-32 {
+    padding-top: 8rem;
   }
 
   .md\:text-2xl {
