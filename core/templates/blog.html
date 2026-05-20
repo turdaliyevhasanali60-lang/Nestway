@@ -101,6 +101,40 @@
             gap: 32px;
         }
     }
+    .blog-card-title {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: #111111;
+        line-height: 1.15;
+        letter-spacing: 0.02em;
+        font-size: 1.75rem;
+        margin-top: 0;
+        margin-bottom: 12px;
+        transition: color 0.2s;
+    }
+    .blog-card-desc {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #555555;
+        margin-top: 0;
+        margin-bottom: 16px;
+    }
+    .blog-card-date {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.8rem;
+        color: #888888;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 8px;
+    }
+    .blog-card-link {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: color 0.2s;
+    }
     @media (max-width: 767px) {
         .blog-grid {
             display: flex !important;
@@ -108,10 +142,6 @@
             scroll-snap-type: x mandatory !important;
             -webkit-overflow-scrolling: touch !important;
             gap: 16px !important;
-            margin-left: -24px !important;
-            margin-right: -24px !important;
-            padding-left: 24px !important;
-            padding-right: 24px !important;
             padding-bottom: 16px !important;
             scrollbar-width: none !important;
         }
@@ -125,6 +155,23 @@
         }
         .blog-card-img-wrap {
             height: 150px !important;
+        }
+        .blog-card-title {
+            font-size: 1.35rem !important;
+            line-height: 1.25 !important;
+            margin-bottom: 8px !important;
+        }
+        .blog-card-desc {
+            font-size: 0.85rem !important;
+            line-height: 1.5 !important;
+            margin-bottom: 12px !important;
+        }
+        .blog-card-date {
+            font-size: 0.75rem !important;
+            margin-bottom: 6px !important;
+        }
+        .blog-card-link {
+            font-size: 0.85rem !important;
         }
     }
 </style>
@@ -143,7 +190,7 @@
     </section>
 
     <!-- SUCCESS STORIES SECTION -->
-    <section class="blog-list-section m-section-pad px-6" style="background: #ffffff; max-width: 100%;">
+    <section class="blog-list-section m-section-pad px-6" style="background: #ffffff; max-width: 100%; overflow: hidden;">
         <div class="max-w-7xl mx-auto">
             <div class="mb-12">
                 <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: #E8440A; margin-bottom: 8px;">CASE STUDIES</div>
@@ -164,10 +211,10 @@
                         {% endif %}
                     </div>
                     <div class="p-5 md:p-8 flex-grow flex flex-col">
-                        <div class="text-sm text-gray-500 mb-2" style="font-family: 'Inter', sans-serif;">{{ post.published_at|date:"M d, Y" }}</div>
-                        <h3 class="m-card-title mb-2 md:mb-4" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2rem; text-transform: uppercase; color: #111111; line-height: 1.2; letter-spacing: 0.02em;">{{ post.title }}</h3>
-                        <p class="m-body-text text-gray-600 mb-4 md:mb-6 flex-grow" style="font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.6;">{{ post.body|striptags|truncatechars:110 }}</p>
-                        <div class="mt-auto pt-4 border-t border-gray-200/50" style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; color: #E8440A;">
+                        <div class="blog-card-date">{{ post.published_at|date:"M d, Y" }}</div>
+                        <h3 class="blog-card-title">{{ post.title }}</h3>
+                        <p class="blog-card-desc flex-grow">{{ post.body|striptags|truncatechars:110 }}</p>
+                        <div class="mt-auto pt-4 border-t border-gray-200/50 blog-card-link" style="color: #E8440A;">
                             Read Success Story &rarr;
                         </div>
                     </div>
@@ -180,7 +227,7 @@
     </section>
 
     <!-- ARTICLES SECTION -->
-    <section class="blog-list-section m-section-pad px-6" style="background: #F0EBE1; max-width: 100%;">
+    <section class="blog-list-section m-section-pad px-6" style="background: #F0EBE1; max-width: 100%; overflow: hidden;">
         <div class="max-w-7xl mx-auto">
             <div class="mb-12">
                 <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 8px;">INSIGHTS & STRATEGIES</div>
@@ -201,10 +248,10 @@
                         {% endif %}
                     </div>
                     <div class="p-5 md:p-8 flex-grow flex flex-col">
-                        <div class="text-sm text-gray-500 mb-2" style="font-family: 'Inter', sans-serif;">{{ post.published_at|date:"M d, Y" }}</div>
-                        <h3 class="m-card-title mb-2 md:mb-4" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2rem; text-transform: uppercase; color: #111111; line-height: 1.2; letter-spacing: 0.02em;">{{ post.title }}</h3>
-                        <p class="m-body-text text-gray-600 mb-4 md:mb-6 flex-grow" style="font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.6;">{{ post.body|striptags|truncatechars:110 }}</p>
-                        <div class="mt-auto pt-4 border-t border-gray-100" style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; color: #1AAFA0;">
+                        <div class="blog-card-date">{{ post.published_at|date:"M d, Y" }}</div>
+                        <h3 class="blog-card-title">{{ post.title }}</h3>
+                        <p class="blog-card-desc flex-grow">{{ post.body|striptags|truncatechars:110 }}</p>
+                        <div class="mt-auto pt-4 border-t border-gray-100 blog-card-link" style="color: #1AAFA0;">
                             Read Article &rarr;
                         </div>
                     </div>
