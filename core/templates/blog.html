@@ -10,37 +10,115 @@
         -webkit-backdrop-filter: none !important;
         border-bottom: 1px solid rgba(255,255,255,0.06) !important;
     }
+    .blog-page {
+        background: #0a0a0a;
+    }
+    .blog-hero {
+        position: relative;
+        padding-top: 140px; /* space for navbar */
+        padding-bottom: 80px;
+        background: #0a0a0a;
+        overflow: hidden;
+    }
+    .blog-hero-glow {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(ellipse at 70% 80%, rgba(0,139,139,0.12) 0%, transparent 60%);
+        pointer-events: none;
+        z-index: 0;
+    }
+    .blog-hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 0 24px;
+    }
+    .blog-hero-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #008B8B;
+        margin-bottom: 24px;
+    }
+    .blog-hero-headline {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: clamp(3rem, 5vw, 4rem);
+        color: #ffffff;
+        margin: 0 0 24px;
+        line-height: 1.1;
+    }
+    .blog-hero-subline {
+        font-family: 'Inter', sans-serif;
+        font-weight: 300;
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.5);
+        margin: 0;
+    }
+    .blog-list-section {
+        padding: 80px 0;
+    }
+    .blog-card {
+        background: #ffffff;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: transform 0.2s, box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .blog-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="py-10 md:py-20 bg-brand text-center">
-    <h1 class="text-4xl md:text-5xl font-extrabold text-white">Blog</h1>
-</div>
-
-<div class="py-10 md:py-20 bg-[#f5f5f5]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {% for post in posts %}
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col">
-                {% if post.cover_image %}
-                <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-56 object-cover">
-                {% else %}
-                <div class="w-full h-56 bg-gray-200 flex items-center justify-center text-gray-400">No Image</div>
-                {% endif %}
-                <div class="p-8 flex-grow flex flex-col">
-                    <div class="text-sm text-gray-500 mb-3">{{ post.published_at|date:"M d, Y" }}</div>
-                    <h3 class="text-2xl font-bold text-[#1a1a1a] mb-4"><a href="{% url 'blog_detail' post.slug %}" class="hover:text-brand transition-colors">{{ post.title }}</a></h3>
-                    <p class="text-gray-600 mb-6 flex-grow">{{ post.body|striptags|truncatechars:150 }}</p>
-                    <div class="mt-auto pt-4 border-t border-gray-100">
-                        <a href="{% url 'blog_detail' post.slug %}" class="text-accent font-semibold hover:opacity-80 transition-opacity">Read more &rarr;</a>
-                    </div>
-                </div>
-            </div>
-            {% empty %}
-            <div class="col-span-full text-center text-gray-500">No blog posts available.</div>
-            {% endfor %}
+<div class="blog-page">
+    <!-- HERO -->
+    <section class="blog-hero">
+        <div class="blog-hero-glow"></div>
+        <div class="blog-hero-content">
+            <div class="blog-hero-label">UPDATES & INSIGHTS</div>
+            <h1 class="blog-hero-headline m-hero-title">Blog</h1>
+            <p class="blog-hero-subline m-body-text">Expert guides, blueprints, and strategies for trucking logistics and fleet optimization.</p>
         </div>
-    </div>
+    </section>
+
+    <!-- LIST SECTION -->
+    <section class="blog-list-section m-section-pad" style="background: #F0EBE1; max-width: 100%;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {% for post in posts %}
+                <a href="{% url 'blog_detail' post.slug %}" class="blog-card flex flex-col">
+                    {% if post.cover_image %}
+                    <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-56 object-cover">
+                    {% else %}
+                    <div class="w-full h-56 bg-gray-200 flex items-center justify-center text-gray-400">No Image</div>
+                    {% endif %}
+                    <div class="p-8 flex-grow flex flex-col">
+                        <div class="text-sm text-gray-500 mb-3" style="font-family: 'Inter', sans-serif;">{{ post.published_at|date:"M d, Y" }}</div>
+                        <h3 class="m-card-title mb-4" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2rem; text-transform: uppercase; color: #111111; line-height: 1.2; letter-spacing: 0.02em;">{{ post.title }}</h3>
+                        <p class="m-body-text text-gray-600 mb-6 flex-grow" style="font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.6;">{{ post.body|striptags|truncatechars:150 }}</p>
+                        <div class="mt-auto pt-4 border-t border-gray-100" style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; color: #1AAFA0;">
+                            Read more &rarr;
+                        </div>
+                    </div>
+                </a>
+                {% empty %}
+                <div class="col-span-full text-center text-gray-500 py-12">No blog posts available.</div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 </div>
 {% endblock %}

@@ -2,30 +2,82 @@
 
 {% block title %}{{ post.title }} - {{ site_settings.company_name|default:"Nestway" }}{% endblock %}
 
+{% block head %}
+<style>
+    .fixed.top-0 {
+        background: #0a0a0a !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    }
+    .blog-detail-page {
+        background: #0a0a0a;
+    }
+    .blog-detail-hero {
+        position: relative;
+        padding-top: 140px; /* space for navbar */
+        padding-bottom: 60px;
+        background: #0a0a0a;
+        overflow: hidden;
+        text-align: center;
+    }
+    .blog-detail-hero-glow {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(ellipse at 70% 80%, rgba(0,139,139,0.08) 0%, transparent 60%);
+        pointer-events: none;
+        z-index: 0;
+    }
+    .blog-detail-content-section {
+        background: #F0EBE1;
+        padding: 60px 24px 100px;
+    }
+    .blog-readability-card {
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="py-20 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mb-10 text-center">
-            <div class="text-sm text-gray-500 mb-3">{{ post.published_at|date:"F d, Y" }}</div>
-            <h1 class="text-4xl md:text-5xl font-extrabold text-[#1a1a1a]">{{ post.title }}</h1>
+<div class="blog-detail-page">
+    <!-- HERO -->
+    <section class="blog-detail-hero">
+        <div class="blog-detail-hero-glow"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4">
+            <div style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: #008B8B; margin-bottom: 16px;">
+                Published: {{ post.published_at|date:"F d, Y" }}
+            </div>
+            <h1 style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3.2rem); color: #ffffff; line-height: 1.25; margin: 0;">
+                {{ post.title }}
+            </h1>
         </div>
+    </section>
 
-        {% if post.cover_image %}
-        <div class="mb-12">
-            <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-auto max-h-[500px] object-cover rounded-xl shadow-md">
-        </div>
-        {% endif %}
+    <!-- CONTENT -->
+    <section class="blog-detail-content-section">
+        <div class="max-w-4xl mx-auto blog-readability-card p-6 md:p-12">
+            {% if post.cover_image %}
+            <div class="mb-10 overflow-hidden rounded-xl">
+                <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-auto max-h-[500px] object-cover">
+            </div>
+            {% endif %}
 
-        <div class="prose prose-brand max-w-none">
-            {{ post.body|safe }}
+            <div class="prose prose-brand max-w-none">
+                {{ post.body|safe }}
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-100 text-center">
+                <a href="{% url 'blog' %}" class="inline-flex items-center text-brand font-semibold hover:text-accent transition-colors" style="font-family: 'Inter', sans-serif;">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    Back to Blog
+                </a>
+            </div>
         </div>
-        
-        <div class="mt-16 pt-8 border-t border-gray-100 text-center">
-            <a href="{% url 'blog' %}" class="inline-flex items-center text-brand font-semibold hover:text-accent transition-colors">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                Back to Blog
-            </a>
-        </div>
-    </div>
+    </section>
 </div>
 {% endblock %}
