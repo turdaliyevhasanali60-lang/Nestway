@@ -104,16 +104,17 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {% for post in success_stories %}
-                <a href="{% url 'blog_detail' post.slug %}" class="blog-card flex flex-col" style="background: #F5F0E8; border: 1px solid rgba(0,0,0,0.05);">
-                    {% if post.cover_image %}
-                    <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-64 object-cover">
-                    {% else %}
-                    <div class="w-full h-64 bg-gray-200 flex items-center justify-center text-gray-400">
-                        <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
+                <a href="{% url 'blog_detail' post.slug %}" class="blog-card group flex flex-col" style="background: #F5F0E8; border: 1px solid rgba(0,0,0,0.05);">
+                    <div class="w-full h-64 overflow-hidden">
+                        {% if post.cover_image %}
+                        <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105">
+                        {% else %}
+                        <div class="w-full h-full bg-[#0a0a0a] flex items-center justify-center relative overflow-hidden">
+                            <div style="position: absolute; width: 180px; height: 180px; background: radial-gradient(circle, rgba(232, 68, 10, 0.22) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(25px);"></div>
+                            <img src="{% static 'images/logo.png' %}" alt="Nestway Logo" class="h-10 w-auto relative z-10 opacity-85 transform transition-transform duration-500 group-hover:scale-110 select-none">
+                        </div>
+                        {% endif %}
                     </div>
-                    {% endif %}
                     <div class="p-6 md:p-8 flex-grow flex flex-col">
                         <div class="text-sm text-gray-500 mb-3" style="font-family: 'Inter', sans-serif;">{{ post.published_at|date:"M d, Y" }}</div>
                         <h3 class="m-card-title mb-4" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2.2rem; text-transform: uppercase; color: #111111; line-height: 1.1; letter-spacing: 0.02em;">{{ post.title }}</h3>
@@ -140,16 +141,17 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {% for post in articles %}
-                <a href="{% url 'blog_detail' post.slug %}" class="blog-card flex flex-col" style="background: #ffffff;">
-                    {% if post.cover_image %}
-                    <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-56 object-cover">
-                    {% else %}
-                    <div class="w-full h-56 bg-gray-200 flex items-center justify-center text-gray-400">
-                        <svg class="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
-                        </svg>
+                <a href="{% url 'blog_detail' post.slug %}" class="blog-card group flex flex-col" style="background: #ffffff;">
+                    <div class="w-full h-56 overflow-hidden">
+                        {% if post.cover_image %}
+                        <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105">
+                        {% else %}
+                        <div class="w-full h-full bg-[#0a0a0a] flex items-center justify-center relative overflow-hidden">
+                            <div style="position: absolute; width: 140px; height: 140px; background: radial-gradient(circle, rgba(26, 175, 160, 0.22) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); filter: blur(20px);"></div>
+                            <img src="{% static 'images/logo.png' %}" alt="Nestway Logo" class="h-8 w-auto relative z-10 opacity-85 transform transition-transform duration-500 group-hover:scale-110 select-none">
+                        </div>
+                        {% endif %}
                     </div>
-                    {% endif %}
                     <div class="p-6 md:p-8 flex-grow flex flex-col">
                         <div class="text-sm text-gray-500 mb-3" style="font-family: 'Inter', sans-serif;">{{ post.published_at|date:"M d, Y" }}</div>
                         <h3 class="m-card-title mb-4" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2rem; text-transform: uppercase; color: #111111; line-height: 1.2; letter-spacing: 0.02em;">{{ post.title }}</h3>
