@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
+from django.core.cache import cache
 from .models import SiteSettings, Service, BlogPost, ContactLead, AboutPage, NotificationEmail
 import resend
 import logging
@@ -7,40 +8,75 @@ import logging
 logger = logging.getLogger(__name__)
 
 def site_settings_processor(request):
+    site_settings = cache.get('site_settings')
+    if site_settings is None:
+        site_settings = SiteSettings.load()
+        cache.set('site_settings', site_settings, 86400)
     return {
-        'site_settings': SiteSettings.load()
+        'site_settings': site_settings
     }
 
 def index(request):
-    services = Service.objects.filter(is_active=True)[:5]
-    latest_posts = BlogPost.objects.filter(is_published=True)[:3]
+    services = cache.get('index_services')
+    if services is None:
+        services = list(Service.objects.filter(is_active=True)[:5])
+        cache.set('index_services', services, 86400)
+        
+    latest_posts = cache.get('index_latest_posts')
+    if latest_posts is None:
+        latest_posts = list(BlogPost.objects.filter(is_published=True)[:3])
+        cache.set('index_latest_posts', latest_posts, 86400)
+        
     return render(request, 'index.html', {
         'services': services,
         'latest_posts': latest_posts
     })
 
 def services(request):
-    services_list = Service.objects.filter(is_active=True)
+    services_list = cache.get('active_services')
+    if services_list is None:
+        services_list = list(Service.objects.filter(is_active=True))
+        cache.set('active_services', services_list, 86400)
     return render(request, 'services.html', {'services': services_list})
 
 def about(request):
-    about_page = AboutPage.load()
+    about_page = cache.get('about_page')
+    if about_page is None:
+        about_page = AboutPage.load()
+        cache.set('about_page', about_page, 86400)
     return render(request, 'about.html', {'about': about_page})
 
 def service_detail(request, slug):
-    service = get_object_or_404(Service, slug=slug, is_active=True)
-    other_services = Service.objects.filter(is_active=True).exclude(id=service.id)[:3]
+    cache_key = f'service_detail_{slug}'
+    service = cache.get(cache_key)
+    if service is None:
+        service = get_object_or_404(Service, slug=slug, is_active=True)
+        cache.set(cache_key, service, 86400)
+        
+    other_services_key = f'other_services_{service.id}'
+    other_services = cache.get(other_services_key)
+    if other_services is None:
+        other_services = list(Service.objects.filter(is_active=True).exclude(id=service.id)[:3])
+        cache.set(other_services_key, other_services, 86400)
+        
     return render(request, 'service_detail.html', {
         'service': service,
         'other_services': other_services
     })
 
 def blog(request):
-    posts = BlogPost.objects.filter(is_published=True)
+    posts = cache.get('published_posts')
+    if posts is None:
+        posts = list(BlogPost.objects.filter(is_published=True))
+        cache.set('published_posts', posts, 86400)
     return render(request, 'blog.html', {'posts': posts})
 
 def blog_detail(request, slug):
-    post = get_object_or_404(BlogPost, slug=slug, is_published=True)
+    cache_key = f'blog_detail_{slug}'
+    post = cache.get(cache_key)
+    if post is None:
+        post = get_object_or_404(BlogPost, slug=slug, is_published=True)
+        cache.set(cache_key, post, 86400)
     return render(request, 'blog_detail.html', {'post': post})
 
 def contact(request):

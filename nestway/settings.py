@@ -128,3 +128,11 @@ if DEBUG:
     DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 else:
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# Caching Configuration
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'nestway-cache-storage',
+    }
+}
