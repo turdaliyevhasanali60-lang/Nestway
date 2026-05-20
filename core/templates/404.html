@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}404 Page Not Found - {{ site_settings.company_name|default:"Nestway" }}{% endblock %}
+
+{% block content %}
+<section class="m-section-pad" style="background: #F5F0E8; padding: 160px 0; min-height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center;">
+    <div class="max-w-[1000px] mx-auto px-6 md:px-10">
+        <div style="font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: clamp(6rem, 15vw, 12rem); color: #111111; line-height: 1; margin-bottom: 24px;">404</div>
+        <h1 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); text-transform: uppercase; color: #111111; margin-bottom: 16px; letter-spacing: 0.02em;">Route Not Found</h1>
+        <p style="font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 400; line-height: 1.6; color: #555555; max-width: 600px; margin: 0 auto 40px;">Looks like you've taken a wrong turn. The page you're looking for has moved, been removed, or never existed.</p>
+        <a href="{% url 'index' %}" class="cta-button" style="display: inline-flex; align-items: center; justify-content: center; height: 52px; padding: 0 32px; background: #F04E1F; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; color: #FFFFFF; text-decoration: none; transition: transform 0.2s ease;">
+            Go home &rarr;
+        </a>
+    </div>
+</section>
+{% endblock %}
