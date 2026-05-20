@@ -12,69 +12,89 @@
         border-bottom: 1px solid rgba(255,255,255,0.06) !important;
     }
     .blog-detail-page {
-        background: #0a0a0a;
-    }
-    .blog-detail-hero {
-        position: relative;
-        padding-top: 140px; /* space for navbar */
-        padding-bottom: 60px;
-        background: #0a0a0a;
-        overflow: hidden;
-        text-align: center;
-    }
-    .blog-detail-hero-glow {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(ellipse at 70% 80%, rgba(0,139,139,0.08) 0%, transparent 60%);
-        pointer-events: none;
-        z-index: 0;
+        background: #F0EBE1;
     }
     .blog-detail-content-section {
         background: #F0EBE1;
-        padding: 80px 24px 120px;
+        padding: 40px 24px 120px;
     }
     @media (max-width: 767px) {
         .blog-detail-content-section {
-            padding: 40px 16px 64px !important;
+            padding: 20px 16px 64px !important;
         }
     }
     .blog-readability-card {
         background: #ffffff;
         border-radius: 16px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+        padding: 48px;
+    }
+    @media (max-width: 767px) {
+        .blog-readability-card {
+            padding: 24px 20px !important;
+        }
+    }
+    .post-content h2 {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: clamp(1.4rem, 3vw, 1.8rem);
+        color: #111111;
+        margin-top: 36px;
+        margin-bottom: 16px;
+    }
+    .post-content h3 {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+        color: #111111;
+        margin-top: 28px;
+        margin-bottom: 12px;
+    }
+    .post-content p {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: #2d3748;
+        margin-bottom: 24px;
+    }
+    .post-content ul, .post-content ol {
+        margin-bottom: 24px;
+        padding-left: 20px;
+    }
+    .post-content li {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: #2d3748;
+        margin-bottom: 8px;
+        list-style-type: disc;
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="blog-detail-page">
-    <!-- HERO -->
-    <section class="blog-detail-hero">
-        <div class="blog-detail-hero-glow"></div>
-        <div class="relative z-10 max-w-4xl mx-auto px-6">
-            <div class="flex justify-center items-center gap-3 mb-6">
+<div class="blog-detail-page" style="min-height: 100vh; padding-top: 120px;">
+    <section class="blog-detail-content-section">
+        <div class="max-w-4xl mx-auto blog-readability-card">
+            <!-- Category & Date -->
+            <div class="flex items-center gap-3 mb-6" style="font-family: 'Inter', sans-serif;">
                 {% if post.category == 'success_story' %}
-                <span style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.75rem; background: rgba(232, 68, 10, 0.15); color: #E8440A; padding: 4px 12px; border-radius: 9999px; letter-spacing: 0.05em; text-transform: uppercase;">Success Story</span>
+                <span style="font-weight: 700; font-size: 0.75rem; background: rgba(232, 68, 10, 0.15); color: #E8440A; padding: 4px 12px; border-radius: 9999px; letter-spacing: 0.05em; text-transform: uppercase;">Success Story</span>
                 {% else %}
-                <span style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.75rem; background: rgba(26, 175, 160, 0.15); color: #1AAFA0; padding: 4px 12px; border-radius: 9999px; letter-spacing: 0.05em; text-transform: uppercase;">Article</span>
+                <span style="font-weight: 700; font-size: 0.75rem; background: rgba(26, 175, 160, 0.15); color: #1AAFA0; padding: 4px 12px; border-radius: 9999px; letter-spacing: 0.05em; text-transform: uppercase;">Article</span>
                 {% endif %}
-                <span style="color: rgba(255,255,255,0.4); font-size: 0.8rem; font-family: 'Inter', sans-serif;">&bull;</span>
-                <span style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(255,255,255,0.6);">
+                <span style="color: rgba(0,0,0,0.15); font-size: 0.8rem;">&bull;</span>
+                <span style="font-weight: 500; font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(0,0,0,0.4);">
                     {{ post.published_at|date:"F d, Y" }}
                 </span>
             </div>
-            <h1 class="m-hero-title" style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3.2rem); color: #ffffff; line-height: 1.25; margin: 0;">
+
+            <!-- Title -->
+            <h1 style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.6rem); color: #111111; line-height: 1.25; margin-top: 0; margin-bottom: 32px;">
                 {{ post.title }}
             </h1>
-        </div>
-    </section>
 
-    <!-- CONTENT -->
-    <section class="blog-detail-content-section">
-        <div class="max-w-4xl mx-auto blog-readability-card p-5 md:p-12">
+            <!-- Cover Image -->
             <div class="mb-10 overflow-hidden rounded-xl">
                 {% if post.cover_image %}
                 <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" class="w-full h-auto max-h-[500px] object-cover">
@@ -86,14 +106,16 @@
                 {% endif %}
             </div>
 
-            <div class="prose prose-brand max-w-none">
+            <!-- Body -->
+            <div class="post-content">
                 {{ post.body|safe }}
             </div>
             
-            <div class="mt-12 pt-8 border-t border-gray-100 text-center">
-                <a href="{% url 'blog' %}" class="inline-flex items-center text-brand font-semibold hover:text-accent transition-colors" style="font-family: 'Inter', sans-serif;">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    Back to Blog
+            <!-- Back button -->
+            <div class="mt-12 pt-8 border-t border-gray-200/50 text-center">
+                <a href="{% url 'blog' %}" class="inline-flex items-center text-brand font-semibold hover:text-accent transition-colors" style="font-family: 'Inter', sans-serif; color: #1AAFA0; text-decoration: none; font-weight: 600;">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    <span style="vertical-align: middle;">Back to Blog</span>
                 </a>
             </div>
         </div>
