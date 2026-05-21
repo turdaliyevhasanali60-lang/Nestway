@@ -6,8 +6,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import format_html
 from unfold.admin import ModelAdmin, TabularInline
-from openpyxl import Workbook
-from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+
 from .models import (
     SiteSettings, Service, ServiceFeature, BlogPost, ContactLead,
     AboutPage, NotificationEmail, Testimonial, FAQ
@@ -181,6 +180,8 @@ class DayFilter(admin.SimpleListFilter):
 
 @admin.action(description="Export selected leads to Excel (.xlsx)")
 def export_as_xlsx(modeladmin, request, queryset):
+    from openpyxl import Workbook
+    from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
     wb = Workbook()
     ws = wb.active
     ws.title = "Contact Leads"
