@@ -75,18 +75,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'nestway.wsgi.application'
 
 # Database
-if DEBUG:
-    DATABASES = {
-        'default': env.db('DATABASE_URL', default='sqlite:///db.sqlite3')
-    }
-else:
-    # In production, always use the persistent volume path regardless of DATABASE_URL
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': '/app/data/db.sqlite3',
-        }
-    }
+DATABASES = {
+    'default': env.db('DATABASE_URL', default='sqlite:///db.sqlite3')
+}
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -151,67 +142,7 @@ CACHES = {
     }
 }
 
-# Auto-restore SQLite database and media files on first startup in production
-if not DEBUG:
-    import os
-    import sys
-    import shutil
 
-    # Skip during collectstatic to avoid unnecessary copying in the build phase
-    if 'collectstatic' not in sys.argv:
-        db_path = '/app/data/db.sqlite3'
-        source_db = os.path.join(BASE_DIR, 'db.sqlite3')
-        force_restore = os.environ.get('FORCE_RESTORE_DB', 'False').lower() in ('true', '1', 'yes')
-
-        # 1. Database restoration
-        # Check if the database in the persistent volume is empty of our data (e.g. 0 services)
-        is_empty = True
-        if os.path.exists(db_path) and os.path.getsize(db_path) > 0:
-            try:
-                import sqlite3
-                conn = sqlite3.connect(db_path)
-                cursor = conn.cursor()
-                cursor.execute("SELECT COUNT(*) FROM core_service;")
-                count = cursor.fetchone()[0]
-                if count > 0:
-                    is_empty = False
-                conn.close()
-            except Exception:
-                # If table doesn't exist or query fails, it's considered empty/uninitialized
-                is_empty = True
-
-        if not os.path.exists(db_path) or os.path.getsize(db_path) == 0 or is_empty or force_restore:
-            print(f"[DB Restore] Copying database from git-tracked db.sqlite3 to {db_path} (is_empty={is_empty}, force={force_restore})...")
-            try:
-                os.makedirs(os.path.dirname(db_path), exist_ok=True)
-                if os.path.exists(source_db):
-                    shutil.copy2(source_db, db_path)
-                    print("[DB Restore] Database copied successfully.")
-                else:
-                    print(f"[DB Restore] Source DB {source_db} not found!")
-            except Exception as e:
-                print(f"[DB Restore] Error copying database: {e}")
-
-        # 2. Media files synchronization
-        media_dest = '/app/data/media'
-        source_media = os.path.join(BASE_DIR, 'media')
-
-        if os.path.exists(source_media):
-            print(f"[Media Restore] Synchronizing media files to {media_dest}...")
-            try:
-                os.makedirs(media_dest, exist_ok=True)
-                for root, dirs, files in os.walk(source_media):
-                    for file in files:
-                        src_file = os.path.join(root, file)
-                        rel_path = os.path.relpath(src_file, source_media)
-                        dest_file = os.path.join(media_dest, rel_path)
-                        
-                        os.makedirs(os.path.dirname(dest_file), exist_ok=True)
-                        if not os.path.exists(dest_file) or force_restore:
-                            shutil.copy2(src_file, dest_file)
-                print("[Media Restore] Media files synchronized successfully.")
-            except Exception as e:
-                print(f"[Media Restore] Error copying media files: {e}")
 
 UNFOLD = {
     "SIDEBAR": {
