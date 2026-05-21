@@ -13,9 +13,7 @@ dist/
 build/
 
 # Django
-db.sqlite3
 staticfiles/
-media/
 
 # macOS
 .DS_Store
