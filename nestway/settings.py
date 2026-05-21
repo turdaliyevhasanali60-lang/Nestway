@@ -154,10 +154,24 @@ if not DEBUG:
         force_restore = os.environ.get('FORCE_RESTORE_DB', 'False').lower() in ('true', '1', 'yes')
 
         # 1. Database restoration
-        # Since this runs inside settings.py before SQLite connection opens,
-        # os.path.exists(db_path) is completely accurate and has no auto-created file timing bugs.
-        if not os.path.exists(db_path) or os.path.getsize(db_path) == 0 or force_restore:
-            print(f"[DB Restore] Copying database from git-tracked db.sqlite3 to {db_path}...")
+        # Check if the database in the persistent volume is empty of our data (e.g. 0 services)
+        is_empty = True
+        if os.path.exists(db_path) and os.path.getsize(db_path) > 0:
+            try:
+                import sqlite3
+                conn = sqlite3.connect(db_path)
+                cursor = conn.cursor()
+                cursor.execute("SELECT COUNT(*) FROM core_service;")
+                count = cursor.fetchone()[0]
+                if count > 0:
+                    is_empty = False
+                conn.close()
+            except Exception:
+                # If table doesn't exist or query fails, it's considered empty/uninitialized
+                is_empty = True
+
+        if not os.path.exists(db_path) or os.path.getsize(db_path) == 0 or is_empty or force_restore:
+            print(f"[DB Restore] Copying database from git-tracked db.sqlite3 to {db_path} (is_empty={is_empty}, force={force_restore})...")
             try:
                 os.makedirs(os.path.dirname(db_path), exist_ok=True)
                 if os.path.exists(source_db):
