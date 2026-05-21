@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.core.cache import cache
-from .models import SiteSettings, Service, BlogPost, ContactLead, AboutPage, NotificationEmail
+from .models import SiteSettings, Service, BlogPost, ContactLead, AboutPage, NotificationEmail, Testimonial, FAQ
 import resend
 import logging
 
@@ -26,10 +26,22 @@ def index(request):
     if latest_posts is None:
         latest_posts = list(BlogPost.objects.filter(is_published=True)[:3])
         cache.set('index_latest_posts', latest_posts, 300)  # 5 min — refreshes quickly after new posts
-        
+
+    testimonials = cache.get('active_testimonials')
+    if testimonials is None:
+        testimonials = list(Testimonial.objects.filter(is_active=True))
+        cache.set('active_testimonials', testimonials, 3600)
+
+    faqs = cache.get('active_faqs')
+    if faqs is None:
+        faqs = list(FAQ.objects.filter(is_active=True))
+        cache.set('active_faqs', faqs, 3600)
+
     return render(request, 'index.html', {
         'services': services,
-        'latest_posts': latest_posts
+        'latest_posts': latest_posts,
+        'testimonials': testimonials,
+        'faqs': faqs,
     })
 
 def services(request):
@@ -44,7 +56,10 @@ def about(request):
     if about_page is None:
         about_page = AboutPage.load()
         cache.set('about_page', about_page, 86400)
-    return render(request, 'about.html', {'about': about_page})
+
+    return render(request, 'about.html', {
+        'about': about_page,
+    })
 
 def service_detail(request, slug):
     cache_key = f'service_detail_{slug}'

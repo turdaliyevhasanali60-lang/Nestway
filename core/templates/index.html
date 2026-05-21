@@ -330,14 +330,16 @@
     }
 </style>
 
-<section class="testimonial-section" id="testimonialSection" x-data="{ active: 0 }">
+{% if testimonials %}
+<section class="testimonial-section" id="testimonialSection"
+    x-data="{ active: 0, total: {{ testimonials|length }} }">
 
     <!-- LEFT: Photo -->
     <div class="testimonial-photo" id="testiPhoto">
         <img src="{% static 'images/driver_window.png' %}" alt="Nestway driver leaning out of truck window">
     </div>
 
-    <!-- RIGHT: Orange panel -->
+    <!-- RIGHT: Dark panel -->
     <div class="testimonial-panel" id="testiPanel">
 
         <!-- Decorative watermark quote -->
@@ -348,67 +350,42 @@
 
         <!-- Slides -->
         <div class="testimonial-quote-text" style="position: relative; z-index: 1; flex: 1;">
-
-            <!-- Slide 0 -->
-            <div class="testi-slide" x-show="active === 0" x-transition.opacity.duration.300ms>
-                <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.4rem; line-height: 1.6; color: #ffffff; margin: 0 0 32px;">Man, I used to sit around truck stops for days waiting on a decent load. Since switching to Nestway, my dispatcher actually listens. If I tell them I want to run hard, they keep the miles coming.</p>
+            {% for t in testimonials %}
+            <div class="testi-slide" x-show="active === {{ forloop.counter0 }}" x-transition.opacity.duration.300ms{% if not forloop.first %} style="display:none;"{% endif %}>
+                <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.4rem; line-height: 1.6; color: #ffffff; margin: 0 0 32px;">{{ t.quote }}</p>
                 <div style="width: 48px; height: 2px; background: #F4A259; margin-bottom: 24px;"></div>
                 <div style="display: flex; align-items: center; gap: 14px;">
-                    <div style="width: 44px; height: 44px; border-radius: 50%; background: #008B8B; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; color: #ffffff; flex-shrink: 0;">MT</div>
+                    <div style="width: 44px; height: 44px; border-radius: 50%; background: #008B8B; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; color: #ffffff; flex-shrink: 0;">{{ t.initials }}</div>
                     <div>
-                        <div style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.05rem; color: #ffffff; line-height: 1.2;">Marcus T.</div>
-                        <div style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 3px;">3 years with Nestway</div>
+                        <div style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.05rem; color: #ffffff; line-height: 1.2;">{{ t.author_name }}</div>
+                        <div style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 3px;">{{ t.author_subtitle }}</div>
                     </div>
                 </div>
             </div>
-
-            <!-- Slide 1 -->
-            <div class="testi-slide" x-show="active === 1" x-transition.opacity.duration.300ms style="display:none;">
-                <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.4rem; line-height: 1.6; color: #ffffff; margin: 0 0 32px;">A lot of companies promise you the world and then short your paycheck. With these guys, the settlements are clean, no hidden fees, and the money is in my account every single Friday. Period.</p>
-                <div style="width: 48px; height: 2px; background: #F4A259; margin-bottom: 24px;"></div>
-                <div style="display: flex; align-items: center; gap: 14px;">
-                    <div style="width: 44px; height: 44px; border-radius: 50%; background: #008B8B; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; color: #ffffff; flex-shrink: 0;">DR</div>
-                    <div>
-                        <div style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.05rem; color: #ffffff; line-height: 1.2;">Dave R.</div>
-                        <div style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 3px;">1.5 years with Nestway</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="testi-slide" x-show="active === 2" x-transition.opacity.duration.300ms style="display:none;">
-                <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.4rem; line-height: 1.6; color: #ffffff; margin: 0 0 32px;">The best part is they don't force dispatch. If a lane doesn't make sense for my bottom line, I say no and we move on to the next one. They treat me like a business partner, not a steering wheel holder.</p>
-                <div style="width: 48px; height: 2px; background: #F4A259; margin-bottom: 24px;"></div>
-                <div style="display: flex; align-items: center; gap: 14px;">
-                    <div style="width: 44px; height: 44px; border-radius: 50%; background: #008B8B; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; color: #ffffff; flex-shrink: 0;">JK</div>
-                    <div>
-                        <div style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.05rem; color: #ffffff; line-height: 1.2;">Jason K.</div>
-                        <div style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 3px;">4 years with Nestway</div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
 
         <!-- Bottom: Nav pills + dots -->
         <div style="display: flex; align-items: center; justify-content: flex-end; gap: 16px; margin-top: 40px; position: relative; z-index: 1;">
             <!-- Dots -->
             <div style="display: flex; align-items: center; gap: 8px; margin-right: auto;">
-                <button @click="active = 0" :style="active === 0 ? 'width:8px;height:8px;background:#F4A259;' : 'width:6px;height:6px;background:rgba(255,255,255,0.2);'" style="border-radius:50%; border:none; cursor:pointer; padding:0; transition: all 0.2s;" aria-label="Slide 1"></button>
-                <button @click="active = 1" :style="active === 1 ? 'width:8px;height:8px;background:#F4A259;' : 'width:6px;height:6px;background:rgba(255,255,255,0.2);'" style="border-radius:50%; border:none; cursor:pointer; padding:0; transition: all 0.2s;" aria-label="Slide 2"></button>
-                <button @click="active = 2" :style="active === 2 ? 'width:8px;height:8px;background:#F4A259;' : 'width:6px;height:6px;background:rgba(255,255,255,0.2);'" style="border-radius:50%; border:none; cursor:pointer; padding:0; transition: all 0.2s;" aria-label="Slide 3"></button>
+                {% for t in testimonials %}
+                <button @click="active = {{ forloop.counter0 }}" :style="active === {{ forloop.counter0 }} ? 'width:8px;height:8px;background:#F4A259;' : 'width:6px;height:6px;background:rgba(255,255,255,0.2);'" style="border-radius:50%; border:none; cursor:pointer; padding:0; transition: all 0.2s;" aria-label="Slide {{ forloop.counter }}"></button>
+                {% endfor %}
             </div>
             <!-- Prev pill -->
-            <button @click="active = active === 0 ? 2 : active - 1" class="testi-nav-pill" aria-label="Previous testimonial">
+            <button @click="active = active === 0 ? total - 1 : active - 1" class="testi-nav-pill" aria-label="Previous testimonial">
                 <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
             </button>
             <!-- Next pill -->
-            <button @click="active = active === 2 ? 0 : active + 1" class="testi-nav-pill" aria-label="Next testimonial">
+            <button @click="active = active === total - 1 ? 0 : active + 1" class="testi-nav-pill" aria-label="Next testimonial">
                 <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
             </button>
         </div>
 
     </div>
 </section>
+{% endif %}
 
 <script>
     (function() {
@@ -531,6 +508,7 @@
     }
 </style>
 
+{% if faqs %}
 <section class="faq-section">
     <div class="faq-grid">
         <!-- LEFT COLUMN -->
@@ -538,7 +516,6 @@
             <div style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: #008B8B; margin-bottom: 24px;">FAQ</div>
             <h2 class="m-section-title" style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1.1; color: #111111; margin: 0 0 16px;">Got<br>Questions?</h2>
             <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.95rem; color: rgba(0,0,0,0.6); margin: 0 0 32px;">Everything drivers ask before they apply.</p>
-            
             <div>
                 <div style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 1rem; color: #111111; margin-bottom: 4px;">Still unsure?</div>
                 <a href="{% url 'contact' %}" style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.9rem; color: #008B8B; text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Talk to our team &rarr;</a>
@@ -547,127 +524,23 @@
 
         <!-- RIGHT COLUMN -->
         <div class="faq-accordion" x-data="{ open: null }">
-
-            <!-- Q1 -->
-            <div class="faq-item" :class="open === 1 ? 'is-open' : ''">
-                <button @click="open = open === 1 ? null : 1" class="faq-btn">
-                    <span class="faq-q-text">What routes are available?</span>
+            {% for faq in faqs %}
+            <div class="faq-item" :class="open === {{ faq.id }} ? 'is-open' : ''">
+                <button @click="open = open === {{ faq.id }} ? null : {{ faq.id }}" class="faq-btn">
+                    <span class="faq-q-text">{{ faq.question }}</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer-wrapper">
                     <div class="faq-answer-inner">
-                        <div class="faq-answer m-body-text">We operate nationwide across all 48 contiguous states with consistent OTR freight and optimized load planning. Our network is built for long-haul efficiency and high-volume lanes.</div>
+                        <div class="faq-answer m-body-text">{{ faq.answer }}</div>
                     </div>
                 </div>
             </div>
-
-            <!-- Q2 -->
-            <div class="faq-item" :class="open === 2 ? 'is-open' : ''">
-                <button @click="open = open === 2 ? null : 2" class="faq-btn">
-                    <span class="faq-q-text">How often do I get home?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer-wrapper">
-                    <div class="faq-answer-inner">
-                        <div class="faq-answer m-body-text">Home time depends on your preferred schedule, freight availability, and how long you choose to stay out. Drivers who stay on the road longer typically maximize weekly earnings and load opportunities.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q3 -->
-            <div class="faq-item" :class="open === 3 ? 'is-open' : ''">
-                <button @click="open = open === 3 ? null : 3" class="faq-btn">
-                    <span class="faq-q-text">What does the pay package look like?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer-wrapper">
-                    <div class="faq-answer-inner">
-                        <div class="faq-answer m-body-text">$0.65&ndash;$0.72/mile with an average of $0.68 CPM. Transparent, weekly direct deposit. Zero holdbacks.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q4 -->
-            <div class="faq-item" :class="open === 4 ? 'is-open' : ''">
-                <button @click="open = open === 4 ? null : 4" class="faq-btn">
-                    <span class="faq-q-text">What's the truck age and condition?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer-wrapper">
-                    <div class="faq-answer-inner">
-                        <div class="faq-answer m-body-text">Our fleet averages 2.3 years old. All trucks are 2021 or newer &mdash; maintained, clean, and ready to roll.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q5 -->
-            <div class="faq-item" :class="open === 5 ? 'is-open' : ''">
-                <button @click="open = open === 5 ? null : 5" class="faq-btn">
-                    <span class="faq-q-text">How do I apply and how long does it take?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer-wrapper">
-                    <div class="faq-answer-inner">
-                        <div class="faq-answer m-body-text">3 minutes online. We review within 24 hours and will call you directly to walk through next steps.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q6 -->
-            <div class="faq-item" :class="open === 6 ? 'is-open' : ''">
-                <button @click="open = open === 6 ? null : 6" class="faq-btn">
-                    <span class="faq-q-text">How many miles can drivers expect weekly?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer-wrapper">
-                    <div class="faq-answer-inner">
-                        <div class="faq-answer m-body-text">Most OTR drivers average 2,500&ndash;3,200 miles per week depending on lanes and time out. Drivers who prioritize staying loaded consistently hit the higher end of that range.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q7 -->
-            <div class="faq-item" :class="open === 7 ? 'is-open' : ''">
-                <button @click="open = open === 7 ? null : 7" class="faq-btn">
-                    <span class="faq-q-text">Is there forced dispatch?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer-wrapper">
-                    <div class="faq-answer-inner">
-                        <div class="faq-answer m-body-text">No forced dispatch. Our dispatchers work with you to find loads that fit your direction and timing. The goal is to keep you moving efficiently, not to push loads that don&rsquo;t make sense for your operation.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q8 -->
-            <div class="faq-item" :class="open === 8 ? 'is-open' : ''">
-                <button @click="open = open === 8 ? null : 8" class="faq-btn">
-                    <span class="faq-q-text">How quickly are drivers reloaded?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer-wrapper">
-                    <div class="faq-answer-inner">
-                        <div class="faq-answer m-body-text">Our dispatch team actively pre-plans the next load before you deliver. Most drivers are reloaded same-day or within a few hours of dropping. Minimizing dead time is a core part of how we operate.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q9 -->
-            <div class="faq-item" :class="open === 9 ? 'is-open' : ''">
-                <button @click="open = open === 9 ? null : 9" class="faq-btn">
-                    <span class="faq-q-text">How does dispatch support drivers?</span>
-                    <span class="faq-icon">+</span>
-                </button>
-                <div class="faq-answer-wrapper">
-                    <div class="faq-answer-inner">
-                        <div class="faq-answer m-body-text">You have a dedicated dispatcher who knows your lanes and preferences. They handle load planning, check calls, and are reachable when you need support on the road. Communication is direct, not through a call center.</div>
-                    </div>
-                </div>
-            </div>
-
+            {% endfor %}
         </div>
     </div>
 </section>
+{% endif %}
 
 <!-- Section 05 — Bottom CTA section -->
 <style>

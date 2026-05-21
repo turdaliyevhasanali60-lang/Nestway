@@ -328,11 +328,11 @@
         <div class="about-hero-glow"></div>
         <div class="about-hero-content">
             <div class="about-hero-label">OUR STORY</div>
-            <h1 class="about-hero-headline m-hero-title">About Nestway</h1>
-            <p class="about-hero-subline m-body-text">A team built on the road. A company built for it.</p>
+            <h1 class="about-hero-headline m-hero-title">{{ about.hero_title|default:"About Nestway" }}</h1>
+            <p class="about-hero-subline m-body-text">{{ about.hero_subtitle|default:"A team built on the road. A company built for it." }}</p>
         </div>
         <div class="about-hero-img-wrap">
-            <img src="{% static 'images/Nestway-Team.webp' %}" alt="Nestway Team" class="about-hero-img">
+            <img src="{% if about.team_image %}{{ about.team_image.url }}{% else %}{% static 'images/Nestway-Team.webp' %}{% endif %}" alt="Nestway Team" class="about-hero-img">
             <div class="about-hero-img-gradient"></div>
         </div>
     </section>
@@ -393,16 +393,14 @@
         <div class="about-ceo-grid">
             <div>
                 <div class="about-ceo-label">Meet Our CEO</div>
-                <h3 class="about-ceo-name m-section-title">Khamidjon Odilov</h3>
+                <h3 class="about-ceo-name m-section-title">{{ about.ceo_name|default:"Khamidjon Odilov" }}</h3>
                 <div class="about-ceo-divider"></div>
                 <p class="about-ceo-body m-body-text">
-                    Our CEO founded Nestway with one mission: give owner-operators the tools, support, and
-                    transparency they deserve. With years of hands-on experience in trucking logistics, he
-                    built a company that treats drivers as partners — not just contractors.
+                    {{ about.ceo_bio|default:"Our CEO founded Nestway with one mission: give owner-operators the tools, support, and transparency they deserve. With years of hands-on experience in trucking logistics, he built a company that treats drivers as partners — not just contractors." }}
                 </p>
             </div>
             <div>
-                <img src="{% static 'images/CEO-Nestway.webp' %}" alt="Khamidjon Odilov — Founder & CEO of Nestway" class="about-ceo-img">
+                <img src="{% if about.ceo_image %}{{ about.ceo_image.url }}{% else %}{% static 'images/CEO-Nestway.webp' %}{% endif %}" alt="{{ about.ceo_name|default:'Khamidjon Odilov' }} — Founder & CEO of Nestway" class="about-ceo-img">
             </div>
         </div>
     </section>

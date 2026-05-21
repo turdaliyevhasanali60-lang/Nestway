@@ -81,6 +81,7 @@ class ContactLead(models.Model):
     phone = models.CharField(max_length=50, blank=True)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created_at']
@@ -153,3 +154,45 @@ class AboutPage(models.Model):
     def load(cls):
         obj, created = cls.objects.get_or_create(pk=1)
         return obj
+
+
+class Testimonial(models.Model):
+    """Driver testimonials shown on the homepage carousel."""
+    quote = models.TextField(help_text="The driver's testimonial text.")
+    author_name = models.CharField(max_length=255, help_text="e.g. Marcus T.")
+    author_subtitle = models.CharField(max_length=255, blank=True, help_text="e.g. 3 years with Nestway")
+    initials = models.CharField(max_length=4, blank=True, help_text="2–4 letter initials shown in the avatar circle, e.g. MT")
+    order = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = "Testimonial"
+        verbose_name_plural = "Testimonials"
+
+    def __str__(self):
+        return f"{self.author_name} — {self.author_subtitle}"
+
+    def save(self, *args, **kwargs):
+        if not self.initials and self.author_name:
+            parts = self.author_name.split()
+            self.initials = ''.join(p[0].upper() for p in parts if p)[:4]
+        super().save(*args, **kwargs)
+
+
+class FAQ(models.Model):
+    """FAQ items shown in the homepage accordion."""
+    question = models.CharField(max_length=500)
+    answer = models.TextField()
+    order = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = "FAQ"
+        verbose_name_plural = "FAQs"
+
+    def __str__(self):
+        return self.question
+
+

@@ -5,6 +5,7 @@ Django settings for nestway project.
 from pathlib import Path
 import environ
 import os
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -211,3 +212,77 @@ if not DEBUG:
                 print("[Media Restore] Media files synchronized successfully.")
             except Exception as e:
                 print(f"[Media Restore] Error copying media files: {e}")
+
+UNFOLD = {
+    "SIDEBAR": {
+        "show_search": True,
+        "show_all_applications": True,
+        "navigation": [
+            {
+                "title": "Core",
+                "separator": True,
+                "collapsible": True,
+                "items": [
+                    {
+                        "title": "Contact leads",
+                        "icon": "mail",
+                        "link": reverse_lazy("admin:core_contactlead_changelist"),
+                        "badge": "core.badges.unread_leads_badge",
+                    },
+                    {
+                        "title": "About Page",
+                        "icon": "info",
+                        "link": reverse_lazy("admin:core_aboutpage_changelist"),
+                    },
+                    {
+                        "title": "Blog posts",
+                        "icon": "article",
+                        "link": reverse_lazy("admin:core_blogpost_changelist"),
+                    },
+                    {
+                        "title": "FAQs",
+                        "icon": "help",
+                        "link": reverse_lazy("admin:core_faq_changelist"),
+                    },
+                    {
+                        "title": "Notification Emails",
+                        "icon": "mark_email_read",
+                        "link": reverse_lazy("admin:core_notificationemail_changelist"),
+                    },
+                    {
+                        "title": "Services",
+                        "icon": "build",
+                        "link": reverse_lazy("admin:core_service_changelist"),
+                    },
+                    {
+                        "title": "Site Settings",
+                        "icon": "settings",
+                        "link": reverse_lazy("admin:core_sitesettings_changelist"),
+                    },
+                    {
+                        "title": "Testimonials",
+                        "icon": "star",
+                        "link": reverse_lazy("admin:core_testimonial_changelist"),
+                    },
+                ],
+            },
+            {
+                "title": "Authentication and Authorization",
+                "separator": True,
+                "collapsible": True,
+                "items": [
+                    {
+                        "title": "Groups",
+                        "icon": "group",
+                        "link": reverse_lazy("admin:auth_group_changelist"),
+                    },
+                    {
+                        "title": "Users",
+                        "icon": "person",
+                        "link": reverse_lazy("admin:auth_user_changelist"),
+                    },
+                ],
+            },
+        ],
+    },
+}
