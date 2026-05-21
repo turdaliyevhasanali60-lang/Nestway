@@ -11,5 +11,9 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
+    from django.shortcuts import render
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += [
+        path('404/', lambda request: render(request, '404.html'))
+    ]
 
