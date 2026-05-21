@@ -8,3 +8,4 @@ resend
 cloudinary
 django-cloudinary-storage
 Pillow
+openpyxl
