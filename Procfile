@@ -1,1 +1,1 @@
-web: python manage.py migrate --noinput && python manage.py create_superuser && ./tailwindcss -i static/css/input.css -o static/css/output.css --minify && gunicorn nestway.wsgi --workers 2 --bind 0.0.0.0:$PORT
+web: python manage.py migrate --noinput && python manage.py create_superuser && python manage.py loaddata initial_data.json && mkdir -p /app/data/media && cp -rn core/fixtures/media/* /app/data/media/ && ./tailwindcss -i static/css/input.css -o static/css/output.css --minify && gunicorn nestway.wsgi --workers 2 --bind 0.0.0.0:$PORT
