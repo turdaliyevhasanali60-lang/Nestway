@@ -74,9 +74,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'nestway.wsgi.application'
 
 # Database
-DATABASES = {
-    'default': env.db('DATABASE_URL', default='sqlite:///db.sqlite3')
-}
+if DEBUG:
+    DATABASES = {
+        'default': env.db('DATABASE_URL', default='sqlite:///db.sqlite3')
+    }
+else:
+    # In production, always use the persistent volume path regardless of DATABASE_URL
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': '/app/data/db.sqlite3',
+        }
+    }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
