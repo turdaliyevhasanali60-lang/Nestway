@@ -166,6 +166,26 @@ UNFOLD = {
                         "link": reverse_lazy("admin:core_aboutpage_changelist"),
                     },
                     {
+                        "title": "US Team Members",
+                        "icon": "groups",
+                        "link": reverse_lazy("admin:core_usteammember_changelist"),
+                    },
+                    {
+                        "title": "Driver Requirements",
+                        "icon": "rule",
+                        "link": reverse_lazy("admin:core_driverrequirement_changelist"),
+                    },
+                    {
+                        "title": "Awards",
+                        "icon": "emoji_events",
+                        "link": reverse_lazy("admin:core_award_changelist"),
+                    },
+                    {
+                        "title": "Partner Reviews",
+                        "icon": "reviews",
+                        "link": reverse_lazy("admin:core_partnerreview_changelist"),
+                    },
+                    {
                         "title": "Blog posts",
                         "icon": "article",
                         "link": reverse_lazy("admin:core_blogpost_changelist"),

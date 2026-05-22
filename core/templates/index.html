@@ -154,12 +154,11 @@
 </div>
 
 <!-- Section 02 — Why Nestway -->
-<!-- Section 02 — Why Nestway -->
-<section class="m-section-pad" style="background: #F5F0E8; padding: 120px 0;">
+<section class="m-section-pad" style="background: #F5F0E8; padding: 100px 0;">
     <div class="max-w-[1440px] mx-auto px-6 md:px-10">
         
         <!-- Top Row -->
-        <div style="margin-bottom: 60px; max-width: 1000px;">
+        <div style="margin-bottom: 50px; max-width: 1000px;">
             <!-- Eyebrow -->
             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
                 <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0;">WHY NESTWAY</div>
@@ -175,69 +174,394 @@
             </p>
         </div>
 
-        <!-- 2x2 Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px] m-gap-12">
+        <!-- Split Grid (Visual Card Left, Stats Right) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             
-            <!-- Box 1 (Top Left) -->
-            <div class="m-card-pad bg-transparent rounded-[12px] flex flex-col justify-center">
-                <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #888888; margin-bottom: 24px;">CONSISTENT MILES</div>
-                <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(4rem, 6vw, 5.5rem); line-height: 0.9; text-transform: uppercase; color: #E8440A; margin-bottom: 12px; letter-spacing: -0.01em;">Steady</div>
-                <div class="m-card-title" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #111111; margin-bottom: 16px;">Steady freight across all 48 states</div>
-                <div class="m-body-text" style="font-family: 'Inter', sans-serif; font-size: 1.05rem; color: #666666; line-height: 1.6; font-weight: 400;">Stay moving with optimized dispatching and minimal downtime between loads.</div>
+            <!-- Left Side: Cinematic Highway Photo Card -->
+            <div class="lg:col-span-5 col-span-1">
+                <div style="position: relative; border-radius: 20px; overflow: hidden; border: 2px solid #111111; box-shadow: 6px 6px 0px #111111; height: 480px;">
+                    <img src="{% static 'images/way1.png' %}" alt="Nestway OTR Long Haul Highway" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div style="position: absolute; bottom: 24px; left: 24px; right: 24px; background: #ffffff; border: 1.5px solid #111111; border-radius: 12px; padding: 20px; box-shadow: 4px 4px 0px #111111; z-index: 10;">
+                        <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #E8440A; margin-bottom: 4px;">CONTRACT GUARANTEED</div>
+                        <h4 style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.4rem; text-transform: uppercase; color: #111111; margin: 0 0 6px;">Real assets, real people</h4>
+                        <p style="font-family: 'Inter', sans-serif; font-size: 0.82rem; color: #555555; margin: 0; line-height: 1.45;">Every promise is backed in writing under active OTR contracts.</p>
+                    </div>
+                </div>
             </div>
 
-            <!-- Box 2 (Top Right) -->
-            <div class="m-card-pad bg-transparent rounded-[12px] flex flex-col justify-center">
-                <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #888888; margin-bottom: 24px;">AVERAGE PAY</div>
-                <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(4rem, 6vw, 5.5rem); line-height: 0.9; text-transform: uppercase; color: #111111; margin-bottom: 12px; letter-spacing: -0.01em;">$0.68 <span style="color: #1AAFA0;">CPM</span></div>
-                <div class="m-card-title" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #111111; margin-bottom: 16px;">Top 15% in the industry</div>
-                <div class="m-body-text" style="font-family: 'Inter', sans-serif; font-size: 1.05rem; color: #666666; line-height: 1.6; font-weight: 400;">Transparent weekly settlements. No holdbacks, no forced dispatch, no surprises.</div>
+            <!-- Right Side: 2x2 Stats Grid with Premium Cards -->
+            <div class="lg:col-span-7 col-span-1">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Box 1 (Consistent Miles) -->
+                    <div style="background: #ffffff; border: 2px solid #111111; box-shadow: 4px 4px 0px #111111; padding: 28px 24px; border-radius: 16px; display: flex; flex-direction: column; justify-content: flex-start; min-height: 250px; transition: transform 0.2s, box-shadow 0.2s;" class="hover:-translate-y-1 hover:box-shadow-[6px_6px_0px_#111111]">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; width: 100%;">
+                            <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #888888;">CONSISTENT MILES</div>
+                            <div style="background: rgba(232,68,10,0.08); padding: 8px; border-radius: 8px; border: 1px solid rgba(232,68,10,0.2);">
+                                <svg width="18" height="18" fill="none" stroke="#E8440A" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" /></svg>
+                            </div>
+                        </div>
+                        <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 3.8rem); line-height: 0.9; text-transform: uppercase; color: #E8440A; margin-bottom: 10px; letter-spacing: -0.01em;">Steady</div>
+                        <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 16px; color: #111111; margin-bottom: 8px;">Steady freight across 48 states</div>
+                        <div style="font-family: 'Inter', sans-serif; font-size: 0.88rem; color: #555555; line-height: 1.5; font-weight: 400; margin-top: auto;">Stay moving with optimized dispatching and minimal downtime between loads.</div>
+                    </div>
+
+                    <!-- Box 2 (Average Pay) -->
+                    <div style="background: #ffffff; border: 2px solid #111111; box-shadow: 4px 4px 0px #111111; padding: 28px 24px; border-radius: 16px; display: flex; flex-direction: column; justify-content: flex-start; min-height: 250px; transition: transform 0.2s, box-shadow 0.2s;" class="hover:-translate-y-1 hover:box-shadow-[6px_6px_0px_#111111]">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; width: 100%;">
+                            <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #888888;">AVERAGE PAY</div>
+                            <div style="background: rgba(17,17,17,0.06); padding: 8px; border-radius: 8px; border: 1px solid rgba(17,17,17,0.15);">
+                                <svg width="18" height="18" fill="none" stroke="#111111" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            </div>
+                        </div>
+                        <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 3.8rem); line-height: 0.9; text-transform: uppercase; color: #111111; margin-bottom: 10px; letter-spacing: -0.01em;">$0.68 <span style="color: #1AAFA0; font-size: 1.5rem; vertical-align: middle;">CPM</span></div>
+                        <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 16px; color: #111111; margin-bottom: 8px;">Top 15% in the industry</div>
+                        <div style="font-family: 'Inter', sans-serif; font-size: 0.88rem; color: #555555; line-height: 1.5; font-weight: 400; margin-top: auto;">Transparent weekly settlements. No holdbacks, no forced dispatch, no surprises.</div>
+                    </div>
+
+                    <!-- Box 3 (Fleet Age) -->
+                    <div style="background: #ffffff; border: 2px solid #111111; box-shadow: 4px 4px 0px #111111; padding: 28px 24px; border-radius: 16px; display: flex; flex-direction: column; justify-content: flex-start; min-height: 250px; transition: transform 0.2s, box-shadow 0.2s;" class="hover:-translate-y-1 hover:box-shadow-[6px_6px_0px_#111111]">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; width: 100%;">
+                            <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #888888;">FLEET AGE</div>
+                            <div style="background: rgba(26,175,160,0.08); padding: 8px; border-radius: 8px; border: 1px solid rgba(26,175,160,0.2);">
+                                <svg width="18" height="18" fill="none" stroke="#1AAFA0" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 011-1v-9a1 1 0 011-1h3l4 4v5a1 1 0 01-1 1h-2" /></svg>
+                            </div>
+                        </div>
+                        <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 3.8rem); line-height: 0.9; text-transform: uppercase; color: #1AAFA0; margin-bottom: 10px; letter-spacing: -0.01em;">2.3yrs</div>
+                        <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 16px; color: #111111; margin-bottom: 8px;">Average truck age</div>
+                        <div style="font-family: 'Inter', sans-serif; font-size: 0.88rem; color: #555555; line-height: 1.5; font-weight: 400; margin-top: auto;">Newer equipment means less downtime and more earning miles every week.</div>
+                    </div>
+
+                    <!-- Box 4 (Coverage) -->
+                    <div style="background: #ffffff; border: 2px solid #111111; box-shadow: 4px 4px 0px #111111; padding: 28px 24px; border-radius: 16px; display: flex; flex-direction: column; justify-content: flex-start; min-height: 250px; transition: transform 0.2s, box-shadow 0.2s;" class="hover:-translate-y-1 hover:box-shadow-[6px_6px_0px_#111111]">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; width: 100%;">
+                            <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #888888;">COVERAGE</div>
+                            <div style="background: rgba(17,17,17,0.06); padding: 8px; border-radius: 8px; border: 1px solid rgba(17,17,17,0.15);">
+                                <svg width="18" height="18" fill="none" stroke="#111111" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            </div>
+                        </div>
+                        <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 3.8rem); line-height: 0.9; text-transform: uppercase; color: #111111; margin-bottom: 10px; letter-spacing: -0.01em;">48 States</div>
+                        <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 16px; color: #111111; margin-bottom: 8px;">Nationwide OTR Lanes</div>
+                        <div style="font-family: 'Inter', sans-serif; font-size: 0.88rem; color: #555555; line-height: 1.5; font-weight: 400; margin-top: auto;">Reliable freight network built for long-haul consistency and stronger weekly revenue.</div>
+                    </div>
+
+                </div>
             </div>
-
-            <!-- Box 3 (Bottom Left) -->
-            <div class="m-card-pad bg-transparent rounded-[12px] flex flex-col justify-center">
-                <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #888888; margin-bottom: 24px;">FLEET AGE</div>
-                <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(4rem, 6vw, 5.5rem); line-height: 0.9; text-transform: uppercase; color: #1AAFA0; margin-bottom: 12px; letter-spacing: -0.01em;">2.3yrs</div>
-                <div class="m-card-title" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #111111; margin-bottom: 16px;">Average truck age</div>
-                <div class="m-body-text" style="font-family: 'Inter', sans-serif; font-size: 1.05rem; color: #666666; line-height: 1.6; font-weight: 400;">Newer equipment means less downtime and more earning miles every week.</div>
-            </div>
-
-            <!-- Box 4 (Bottom Right) -->
-            <div class="m-card-pad bg-transparent rounded-[12px] flex flex-col justify-center">
-                <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #888888; margin-bottom: 24px;">COVERAGE</div>
-                <div class="m-stat-num" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(4rem, 6vw, 5.5rem); line-height: 0.9; text-transform: uppercase; color: #111111; margin-bottom: 12px; letter-spacing: -0.01em;">48 States</div>
-                <div class="m-card-title" style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #111111; margin-bottom: 16px;">Nationwide OTR Lanes</div>
-                <div class="m-body-text" style="font-family: 'Inter', sans-serif; font-size: 1.05rem; color: #666666; line-height: 1.6; font-weight: 400;">Reliable freight network built for long-haul consistency and stronger weekly revenue.</div>
-            </div>
-
-        </div>
-
-        <!-- Explore Services Button -->
-        <style>
-            .explore-services-btn {
-                background-color: transparent;
-                border: 1.5px solid #1a1a1a;
-                color: #1a1a1a;
-                border-radius: 6px;
-                padding: 14px 32px;
-                font-weight: 600;
-                font-size: 15px;
-                font-family: 'Inter', sans-serif;
-                transition: background-color 0.2s ease, color 0.2s ease;
-                display: inline-block;
-                text-decoration: none;
-            }
-            .explore-services-btn:hover {
-                background-color: #1a1a1a;
-                color: #ffffff;
-            }
-        </style>
-        <div style="margin-top: 48px; text-align: left;">
-            <a href="{% url 'services' %}" class="explore-services-btn">Explore Our Services &rarr;</a>
         </div>
 
     </div>
 </section>
+
+<!-- Section 02b — Services Showcase -->
+<style>
+    .home-srv-section {
+        background: #0a0a0a;
+        padding: 100px 0;
+        border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .home-srv-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+    }
+    .home-srv-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 56px;
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+    .home-srv-eyebrow {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 0.78rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #1AAFA0;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .home-srv-eyebrow-line {
+        width: 32px;
+        height: 2px;
+        background: #1AAFA0;
+        flex-shrink: 0;
+    }
+    .home-srv-headline {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: clamp(2.2rem, 5vw, 3.5rem);
+        text-transform: uppercase;
+        color: #ffffff;
+        letter-spacing: 0.02em;
+        line-height: 1.05;
+        margin: 0;
+    }
+    .home-srv-headline span { color: #E8440A; }
+    .home-srv-see-all {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 0.88rem;
+        color: rgba(255,255,255,0.4);
+        text-decoration: none;
+        white-space: nowrap;
+        transition: color 0.15s;
+        padding-bottom: 2px;
+        border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .home-srv-see-all:hover { color: #fff; border-bottom-color: rgba(255,255,255,0.5); }
+
+    /* Thumbnail for desktop */
+    .home-srv-thumb {
+        width: 52px;
+        height: 52px;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1.5px solid rgba(255,255,255,0.1);
+        flex-shrink: 0;
+        display: block;
+        transition: border-color 0.2s, transform 0.2s;
+    }
+    .home-srv-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .home-srv-row:hover .home-srv-thumb {
+        border-color: #1AAFA0;
+        transform: scale(1.05);
+    }
+
+    /* Rows */
+    .home-srv-list { border-top: 1px solid rgba(255,255,255,0.07); }
+    .home-srv-row {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        padding: 24px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        text-decoration: none;
+        transition: background 0.15s, margin 0.15s, padding 0.15s, border-radius 0.15s;
+        border-radius: 0;
+        cursor: pointer;
+    }
+    .home-srv-row:hover { background: rgba(255,255,255,0.025); margin: 0 -24px; padding-left: 24px; padding-right: 24px; border-radius: 12px; }
+    .home-srv-row:hover .home-srv-row-arrow { color: #E8440A; transform: translateX(4px); }
+    
+    .home-srv-row-content {
+        display: grid;
+        grid-template-columns: 48px 1.5fr 2.5fr auto;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .home-srv-num {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.12);
+        letter-spacing: 0.04em;
+    }
+    .home-srv-name {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: clamp(1.4rem, 2.8vw, 2rem);
+        text-transform: uppercase;
+        color: #ffffff;
+        letter-spacing: 0.02em;
+        line-height: 1;
+    }
+    .home-srv-desc {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.88rem;
+        color: rgba(255,255,255,0.38);
+        line-height: 1.5;
+        max-width: 340px;
+        text-align: right;
+    }
+    .home-srv-row-arrow {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.1rem;
+        color: rgba(255,255,255,0.2);
+        transition: color 0.15s, transform 0.15s;
+        flex-shrink: 0;
+    }
+
+    @media (max-width: 1000px) {
+        .home-srv-inner { padding: 0 24px; }
+        .home-srv-container { grid-template-columns: 1fr; }
+        .home-srv-preview-wrap { display: none; }
+        
+        .home-srv-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            border-top: none;
+        }
+        .home-srv-row {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            padding: 0 !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+            border: 1.5px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 16px !important;
+            overflow: hidden !important;
+            text-decoration: none !important;
+            transition: transform 0.2s, border-color 0.2s, background 0.2s !important;
+            margin: 0 !important;
+            cursor: pointer;
+            height: 100%;
+        }
+        .home-srv-row:hover {
+            transform: translateY(-4px) !important;
+            border-color: rgba(26, 175, 160, 0.4) !important;
+            background: rgba(26, 175, 160, 0.05) !important;
+        }
+        .home-srv-thumb {
+            width: 100% !important;
+            height: 190px !important;
+            border-radius: 0 !important;
+            border: none !important;
+            border-bottom: 1.5px solid rgba(255,255,255,0.06) !important;
+            display: block !important;
+        }
+        .home-srv-row-content {
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 24px !important;
+            width: 100% !important;
+            flex-grow: 1 !important;
+            gap: 0 !important;
+        }
+        .home-srv-num {
+            font-size: 0.85rem !important;
+            margin-bottom: 6px !important;
+            color: #1AAFA0 !important;
+        }
+        .home-srv-name {
+            font-size: 1.35rem !important;
+            margin-bottom: 8px !important;
+        }
+        .home-srv-desc {
+            display: block !important;
+            text-align: left !important;
+            max-width: 100% !important;
+            margin-bottom: 16px !important;
+            color: rgba(255, 255, 255, 0.5) !important;
+            font-size: 0.85rem !important;
+            line-height: 1.55 !important;
+        }
+        .home-srv-row-arrow {
+            margin-top: auto !important;
+            align-self: flex-start !important;
+            font-size: 0.88rem !important;
+            font-weight: 600 !important;
+            color: #E8440A !important;
+        }
+    }
+    
+    @media (max-width: 640px) {
+        .home-srv-section { padding: 64px 0; }
+        .home-srv-inner { padding: 0 16px; }
+        .home-srv-header { margin-bottom: 36px; }
+        .home-srv-headline { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+    }
+
+    /* Split Container */
+    .home-srv-container {
+        display: grid;
+        grid-template-columns: 1.3fr 0.7fr;
+        gap: 64px;
+        align-items: center;
+    }
+    .home-srv-preview-wrap {
+        position: relative;
+        height: 400px;
+        background: #000000;
+        border: 2px solid rgba(255,255,255,0.06);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .home-srv-preview-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.2s ease;
+        opacity: 1;
+    }
+</style>
+
+<section class="home-srv-section">
+    <div class="home-srv-inner">
+
+        <div class="home-srv-header">
+            <div>
+                <div class="home-srv-eyebrow">
+                    <span class="home-srv-eyebrow-line"></span>
+                    Our Services
+                </div>
+                <h2 class="home-srv-headline">Everything you need.<br><span>Under one roof.</span></h2>
+            </div>
+            <a href="{% url 'services' %}" class="home-srv-see-all">See all services &rarr;</a>
+        </div>
+
+        <div class="home-srv-container">
+            <!-- Left Column: Services list rows -->
+            <div class="home-srv-list">
+                {% for s in services %}
+                <a href="{% url 'services' %}#{{ s.slug }}" class="home-srv-row" data-preview="{% if s.image_home %}{{ s.image_home.url }}{% elif s.image %}{{ s.image.url }}{% else %}{% static 'images/services/' %}{{ s.slug }}.png{% endif %}">
+                    <div class="home-srv-thumb">
+                        <img src="{% if s.image_home %}{{ s.image_home.url }}{% elif s.image %}{{ s.image.url }}{% else %}{% static 'images/services/' %}{{ s.slug }}.png{% endif %}" alt="{{ s.title }}">
+                    </div>
+                    <div class="home-srv-row-content">
+                        <div class="home-srv-num">{{ forloop.counter|stringformat:"02d" }}</div>
+                        <div class="home-srv-name">{{ s.title }}</div>
+                        <div class="home-srv-desc">{{ s.description }}</div>
+                        <div class="home-srv-row-arrow">Explore Service &rarr;</div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+
+            <!-- Right Column: Premium Image Previewer (Desktop only) -->
+            <div class="home-srv-preview-wrap">
+                {% with first_srv=services|first %}
+                <img id="home-srv-preview-img" src="{% if first_srv.image_home %}{{ first_srv.image_home.url }}{% elif first_srv.image %}{{ first_srv.image.url }}{% else %}{% static 'images/services/' %}{{ first_srv.slug }}.png{% endif %}" alt="Nestway Logistics Service Preview">
+                {% endwith %}
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Dynamic Image Switcher Javascript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const rows = document.querySelectorAll(".home-srv-row");
+        const previewImg = document.getElementById("home-srv-preview-img");
+        
+        if (previewImg) {
+            rows.forEach(row => {
+                row.addEventListener("mouseenter", function() {
+                    const nextSrc = this.getAttribute("data-preview");
+                    if (nextSrc && previewImg.src !== nextSrc) {
+                        previewImg.style.opacity = "0";
+                        setTimeout(() => {
+                            previewImg.src = nextSrc;
+                            previewImg.style.opacity = "1";
+                        }, 120);
+                    }
+                });
+            });
+        }
+    });
+</script>
 
 <!-- Section 03 — What Drivers Say -->
 <style>

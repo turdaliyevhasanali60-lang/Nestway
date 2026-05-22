@@ -1,0 +1,383 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Awards & Partner Reviews — Nestway{% endblock %}
+
+{% block head %}
+<style>
+    .fixed.top-0 {
+        background: #0a0a0a !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<style>
+    /* ── HERO ─────────────────────────────────────────────────────── */
+    .aw-hero {
+        background: #0a0a0a;
+        padding-top: 140px;
+        padding-bottom: 80px;
+        text-align: center;
+    }
+    .aw-hero-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #F4A259;
+        margin-bottom: 20px;
+    }
+    .aw-hero h1 {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: clamp(2.2rem, 7vw, 4.5rem);
+        color: #fff;
+        line-height: 1.05;
+        margin: 0 0 20px;
+        letter-spacing: -0.01em;
+    }
+    .aw-hero h1 span { color: #F4A259; }
+    .aw-hero-sub {
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        color: rgba(255,255,255,0.45);
+        margin: 0 auto;
+        max-width: 480px;
+        line-height: 1.6;
+    }
+
+    /* ── AWARDS (white) ───────────────────────────────────────────── */
+    .aw-awards-section {
+        background: #fff;
+        padding: 80px 24px;
+    }
+    .aw-awards-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+    .aw-section-eyebrow {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #F4A259;
+        margin-bottom: 14px;
+    }
+    .aw-section-title {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        text-transform: uppercase;
+        color: #111;
+        letter-spacing: 0.02em;
+        line-height: 1.05;
+        margin: 0 0 48px;
+    }
+    .aw-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .aw-card {
+        background: #fafafa;
+        border: 1.5px solid rgba(0,0,0,0.08);
+        border-radius: 10px;
+        padding: 32px;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .aw-card:hover {
+        border-color: rgba(244,162,89,0.4);
+        box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+    .aw-card-year {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: 2.5rem;
+        color: rgba(0,0,0,0.06);
+        line-height: 1;
+        margin-bottom: 12px;
+        letter-spacing: 0.02em;
+    }
+    .aw-card-title {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: #111;
+        margin: 0 0 6px;
+    }
+    .aw-card-issuer {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #F4A259;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 0 0 12px;
+    }
+    .aw-card-desc {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        color: #888;
+        line-height: 1.65;
+        margin: 0;
+    }
+
+    /* ── REVIEWS (sand) ───────────────────────────────────────────── */
+    .aw-reviews-section {
+        background: #F0EBE1;
+        padding: 80px 24px;
+    }
+    .aw-reviews-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+    .aw-reviews-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-top: 48px;
+    }
+    .aw-review-card {
+        background: #fff;
+        border: 1.5px solid rgba(0,0,0,0.07);
+        border-radius: 10px;
+        padding: 32px;
+        position: relative;
+        transition: box-shadow 0.2s;
+    }
+    .aw-review-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+    .aw-stars {
+        font-size: 0.9rem;
+        color: #F4A259;
+        letter-spacing: 2px;
+        margin-bottom: 16px;
+    }
+    .aw-review-quote {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        line-height: 1.75;
+        color: #444;
+        font-style: italic;
+        margin: 0 0 24px;
+    }
+    .aw-review-divider {
+        width: 32px;
+        height: 2px;
+        background: #E8440A;
+        margin-bottom: 20px;
+    }
+    .aw-review-author {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+    .aw-review-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #111;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Unbounded', sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: #fff;
+        flex-shrink: 0;
+    }
+    .aw-review-name {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 0.92rem;
+        color: #111;
+        margin-bottom: 2px;
+    }
+    .aw-review-meta {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.78rem;
+        color: #008B8B;
+        font-weight: 500;
+    }
+
+    /* ── CTA (dark) ───────────────────────────────────────────────── */
+    .aw-cta {
+        background: #0D0D0D;
+        padding: 100px 24px;
+        text-align: center;
+    }
+    .aw-cta-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #008B8B;
+        margin-bottom: 20px;
+    }
+    .aw-cta-title {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: clamp(1.8rem, 5vw, 3rem);
+        color: #fff;
+        margin: 0 0 40px;
+        line-height: 1.2;
+    }
+    .aw-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #FF4500;
+        color: #fff;
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: 0.88rem;
+        padding: 16px 44px;
+        border-radius: 999px;
+        text-decoration: none;
+        transition: background 0.15s, box-shadow 0.15s;
+    }
+    .aw-cta-btn:hover {
+        background: #d63a00;
+        box-shadow: 0 8px 32px rgba(255,69,0,0.35);
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────────────────── */
+
+    /* Tablet */
+    @media (max-width: 900px) {
+        .aw-grid { grid-template-columns: 1fr; }
+        .aw-reviews-grid { grid-template-columns: 1fr; }
+        .aw-awards-inner, .aw-reviews-inner { max-width: 100%; }
+    }
+
+    /* Large mobile */
+    @media (max-width: 640px) {
+        /* Hero */
+        .aw-hero { padding-top: 100px; padding-bottom: 56px; padding-left: 16px; padding-right: 16px; }
+        .aw-hero h1 { font-size: clamp(1.9rem, 9vw, 2.8rem); }
+        .aw-hero-sub { font-size: 0.9rem; }
+
+        /* Awards */
+        .aw-awards-section { padding: 56px 16px; }
+        .aw-section-title { font-size: clamp(1.7rem, 7vw, 2.4rem); margin-bottom: 32px; }
+        .aw-card { padding: 22px 18px; }
+        .aw-card-year { font-size: 1.8rem; margin-bottom: 8px; }
+        .aw-card-title { font-size: 0.95rem; }
+        .aw-card-desc { font-size: 0.82rem; }
+        .aw-grid { gap: 12px; }
+
+        /* Reviews */
+        .aw-reviews-section { padding: 56px 16px; }
+        .aw-reviews-grid { gap: 12px; margin-top: 32px; }
+        .aw-review-card { padding: 24px 18px; }
+        .aw-review-quote { font-size: 0.88rem; line-height: 1.7; }
+        .aw-review-name { font-size: 0.88rem; }
+        .aw-review-meta { font-size: 0.74rem; }
+        .aw-stars { font-size: 0.82rem; letter-spacing: 1px; }
+
+        /* CTA */
+        .aw-cta { padding: 64px 16px; }
+        .aw-cta-title { font-size: clamp(1.5rem, 6vw, 2rem); margin-bottom: 28px; }
+        .aw-cta-btn { padding: 14px 32px; font-size: 0.82rem; display: block; width: fit-content; margin: 0 auto; }
+    }
+
+    /* Small mobile */
+    @media (max-width: 400px) {
+        .aw-hero h1 { font-size: 1.75rem; }
+        .aw-card { padding: 18px 14px; }
+        .aw-review-card { padding: 20px 14px; }
+        .aw-cta-btn { width: 100%; text-align: center; justify-content: center; }
+    }
+</style>
+
+<!-- HERO -->
+<section class="aw-hero">
+    <div class="aw-hero-label">Recognition &amp; Trust</div>
+    <h1>Earned.<br><span>Recognized.</span></h1>
+    <p class="aw-hero-sub">What the industry says about us — and the accolades we've earned for excellence.</p>
+</section>
+
+<!-- AWARDS -->
+<section class="aw-awards-section">
+    <div class="aw-awards-inner">
+        <div class="aw-section-eyebrow">Accolades</div>
+        <h2 class="aw-section-title">Recognition we're proud of.</h2>
+        <div class="aw-grid">
+            {% if awards %}
+                {% for award in awards %}
+                <div class="aw-card">
+                    <div class="aw-card-year">{% if award.year %}{{ award.year }}{% else %}—{% endif %}</div>
+                    <div class="aw-card-title">{{ award.title }}</div>
+                    <div class="aw-card-issuer">{{ award.issuer }}</div>
+                    {% if award.description %}<p class="aw-card-desc">{{ award.description }}</p>{% endif %}
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="aw-card">
+                    <div class="aw-card-year">2025</div>
+                    <div class="aw-card-title">Top Dispatch Service</div>
+                    <div class="aw-card-issuer">American Trucking Excellence Awards</div>
+                    <p class="aw-card-desc">Recognized for outstanding carrier support and load efficiency across the continental US.</p>
+                </div>
+                <div class="aw-card">
+                    <div class="aw-card-year">2024</div>
+                    <div class="aw-card-title">FMCSA Safety Certified</div>
+                    <div class="aw-card-issuer">Federal Motor Carrier Safety Administration</div>
+                    <p class="aw-card-desc">Full FMCSA compliance certification — unwavering commitment to road safety.</p>
+                </div>
+                <div class="aw-card">
+                    <div class="aw-card-year">2024</div>
+                    <div class="aw-card-title">Premium Carrier Alliance</div>
+                    <div class="aw-card-issuer">DAT Freight &amp; Analytics</div>
+                    <p class="aw-card-desc">Awarded Premium Carrier status on DAT One — consistently high performance and on-time delivery.</p>
+                </div>
+                <div class="aw-card">
+                    <div class="aw-card-year">2023</div>
+                    <div class="aw-card-title">Outstanding Partner of the Year</div>
+                    <div class="aw-card-issuer">Coyote Logistics</div>
+                    <p class="aw-card-desc">Selected for exceptional load acceptance, professional communication, and on-time performance.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- PARTNER REVIEWS -->
+<section class="aw-reviews-section">
+    <div class="aw-reviews-inner">
+        <div class="aw-section-eyebrow" style="color:#008B8B;">From Our Partners</div>
+        <h2 class="aw-section-title" style="color:#111;">What the industry says.</h2>
+        {% if partner_reviews %}
+        <div class="aw-reviews-grid">
+            {% for review in partner_reviews %}
+            <div class="aw-review-card">
+                <div class="aw-stars">★ ★ ★ ★ ★</div>
+                <p class="aw-review-quote">{{ review.quote }}</p>
+                <div class="aw-review-divider"></div>
+                <div class="aw-review-author">
+                    <div class="aw-review-avatar">{{ review.initials }}</div>
+                    <div>
+                        <div class="aw-review-name">{{ review.author_name }}</div>
+                        <div class="aw-review-meta">{{ review.company_name }}{% if review.relationship %} &middot; {{ review.relationship }}{% endif %}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="aw-cta">
+    <div class="aw-cta-label">Work With Us</div>
+    <h2 class="aw-cta-title">Ready to experience Nestway?</h2>
+    <a href="{% url 'contact' %}" class="aw-cta-btn">Get a Free Consultation &rarr;</a>
+</section>
+
+{% endblock %}

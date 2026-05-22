@@ -9,7 +9,8 @@ from unfold.admin import ModelAdmin, TabularInline
 
 from .models import (
     SiteSettings, Service, ServiceFeature, BlogPost, ContactLead,
-    AboutPage, NotificationEmail, Testimonial, FAQ
+    AboutPage, NotificationEmail, Testimonial, FAQ,
+    USTeamMember, Award, PartnerReview, DriverRequirement
 )
 
 @admin.register(SiteSettings)
@@ -248,10 +249,10 @@ def mark_as_read(modeladmin, request, queryset):
 
 @admin.register(ContactLead)
 class ContactLeadAdmin(ModelAdmin):
-    list_display = ('colored_name', 'email', 'created_at', 'is_read')
+    list_display = ('colored_name', 'lead_type', 'email', 'phone', 'created_at', 'is_read')
     list_editable = ('is_read',)
-    readonly_fields = ('name', 'email', 'phone', 'message', 'created_at')
-    list_filter = (ReadStatusFilter, CreatedAtFilter, YearFilter, MonthFilter, DayFilter)
+    readonly_fields = ('name', 'email', 'phone', 'message', 'lead_type', 'country', 'experience_level', 'created_at')
+    list_filter = ('lead_type', ReadStatusFilter, CreatedAtFilter, YearFilter, MonthFilter, DayFilter)
     actions = [export_as_xlsx, mark_as_read]
     
     @admin.display(description='Name', ordering='name')
@@ -336,3 +337,36 @@ class FAQAdmin(ModelAdmin):
     list_filter = ('is_active',)
     search_fields = ('question', 'answer')
     fields = ('question', 'answer', 'order', 'is_active')
+
+
+@admin.register(USTeamMember)
+class USTeamMemberAdmin(ModelAdmin):
+    list_display = ('name', 'role', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    search_fields = ('name', 'role', 'bio')
+    fields = ('name', 'role', 'bio', 'image', 'order', 'is_active')
+
+
+@admin.register(Award)
+class AwardAdmin(ModelAdmin):
+    list_display = ('title', 'issuer', 'year', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    search_fields = ('title', 'issuer', 'description')
+    fields = ('title', 'issuer', 'year', 'description', 'icon_name', 'order', 'is_active')
+
+
+@admin.register(PartnerReview)
+class PartnerReviewAdmin(ModelAdmin):
+    list_display = ('author_name', 'company_name', 'relationship', 'initials', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    search_fields = ('author_name', 'company_name', 'quote')
+    fields = ('quote', 'author_name', 'company_name', 'relationship', 'initials', 'order', 'is_active')
+
+
+@admin.register(DriverRequirement)
+class DriverRequirementAdmin(ModelAdmin):
+    list_display = ('requirement_text', 'driver_type', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    list_filter = ('driver_type', 'is_active')
+    search_fields = ('requirement_text',)
+    fields = ('requirement_text', 'driver_type', 'order', 'is_active')

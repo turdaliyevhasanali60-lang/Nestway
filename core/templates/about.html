@@ -361,6 +361,322 @@
         </div>
     </section>
 
+    <!-- USA OFFICE & PEOPLE -->
+    <section class="usa-office-section">
+        <style>
+            .usa-office-section { background: #0a0a0a; padding: 100px 24px; }
+            .usa-office-inner { max-width: 1200px; margin: 0 auto; }
+            .usa-office-header {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 80px;
+                align-items: center;
+                margin-bottom: 80px;
+            }
+            .usa-office-label {
+                font-family: 'Inter', sans-serif;
+                font-weight: 500;
+                font-size: 0.75rem;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: #008B8B;
+                margin-bottom: 16px;
+            }
+            .usa-office-title {
+                font-family: 'Unbounded', sans-serif;
+                font-weight: 700;
+                font-size: clamp(1.8rem, 5vw, 2.8rem);
+                color: #ffffff;
+                margin: 0 0 24px;
+                line-height: 1.15;
+            }
+            .usa-office-title span { color: #FF4500; }
+            .usa-office-body {
+                font-family: 'Inter', sans-serif;
+                font-size: 1.05rem;
+                line-height: 1.75;
+                color: rgba(255,255,255,0.5);
+                margin: 0 0 32px;
+            }
+            .usa-hq-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 12px;
+                background: rgba(0,139,139,0.07);
+                border: 1px solid rgba(0,139,139,0.22);
+                border-radius: 12px;
+                padding: 14px 20px;
+                margin-bottom: 20px;
+            }
+            .usa-hq-badge-icon { color: #008B8B; flex-shrink: 0; }
+            .usa-hq-badge-text {
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 0.92rem;
+                color: #ffffff;
+            }
+            .usa-hq-badge-sub {
+                font-family: 'Inter', sans-serif;
+                font-size: 0.78rem;
+                color: rgba(255,255,255,0.4);
+                margin: 3px 0 0;
+            }
+            .usa-flag-strip {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            .usa-flag-text {
+                font-family: 'Inter', sans-serif;
+                font-size: 0.85rem;
+                color: rgba(255,255,255,0.4);
+            }
+            .usa-map-visual {
+                position: relative;
+                height: 480px;
+                background-image: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.75) 100%), url("{% static 'images/driver_cab.png' %}");
+                background-size: cover;
+                background-position: center;
+                border: 1.5px solid rgba(255,255,255,0.12);
+                border-radius: 24px;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.55);
+            }
+            .usa-map-pin-wrap {
+                text-align: center;
+                background: rgba(10, 10, 10, 0.75);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1.5px solid rgba(255, 255, 255, 0.12);
+                border-radius: 20px;
+                padding: 30px 40px;
+                box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+                max-width: 85%;
+            }
+            .usa-map-ring {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                border: 2.5px solid rgba(0,139,139,0.45);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 20px;
+                position: relative;
+                animation: pulse-ring 3s ease-in-out infinite;
+            }
+            @keyframes pulse-ring {
+                0%, 100% { box-shadow: 0 0 0 0 rgba(0,139,139,0.25); }
+                50% { box-shadow: 0 0 0 16px rgba(0,139,139,0.0); }
+            }
+            .usa-map-ring::before {
+                content: '';
+                position: absolute;
+                width: 80px; height: 80px;
+                border-radius: 50%;
+                border: 2px solid rgba(0,139,139,0.55);
+            }
+            .usa-map-ring::after {
+                content: '';
+                position: absolute;
+                width: 16px; height: 16px;
+                border-radius: 50%;
+                background: #FF4500;
+                box-shadow: 0 0 20px rgba(255,69,0,0.7);
+            }
+            .usa-map-pin-city {
+                font-family: 'Unbounded', sans-serif;
+                font-size: 1.15rem;
+                font-weight: 700;
+                color: #ffffff;
+                margin-bottom: 4px;
+            }
+            .usa-map-pin-state {
+                font-family: 'Inter', sans-serif;
+                font-size: 0.82rem;
+                color: rgba(255,255,255,0.45);
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+            }
+            .usa-stats-row {
+                display: flex;
+                gap: 12px;
+                position: absolute;
+                bottom: 24px;
+                left: 24px;
+                right: 24px;
+            }
+            .usa-stat-pill {
+                flex: 1;
+                background: rgba(10, 10, 10, 0.8);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border: 1.5px solid rgba(255, 255, 255, 0.12);
+                border-radius: 12px;
+                padding: 12px 10px;
+                text-align: center;
+                box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            }
+            .usa-stat-pill-num {
+                font-family: 'Unbounded', sans-serif;
+                font-size: 1.05rem;
+                font-weight: 700;
+                color: #008B8B;
+            }
+            .usa-stat-pill-label {
+                font-family: 'Inter', sans-serif;
+                font-size: 0.68rem;
+                color: rgba(255,255,255,0.35);
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                margin-top: 2px;
+            }
+            .usa-team-heading {
+                font-family: 'Unbounded', sans-serif;
+                font-weight: 700;
+                font-size: 0.7rem;
+                color: rgba(255,255,255,0.3);
+                text-transform: uppercase;
+                letter-spacing: 0.15em;
+                margin: 0 0 28px;
+                padding-bottom: 16px;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            .usa-team-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 18px;
+            }
+            .usa-team-card {
+                background: rgba(255,255,255,0.025);
+                border: 1px solid rgba(255,255,255,0.07);
+                border-radius: 16px;
+                padding: 24px 18px;
+                transition: border-color 0.25s, background 0.25s, transform 0.25s;
+            }
+            .usa-team-card:hover {
+                border-color: rgba(0,139,139,0.3);
+                background: rgba(0,139,139,0.04);
+                transform: translateY(-4px);
+            }
+            .usa-team-avatar {
+                width: 48px; height: 48px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #008B8B, #005f5f);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: 'Unbounded', sans-serif;
+                font-size: 0.85rem;
+                font-weight: 700;
+                color: #fff;
+                margin-bottom: 14px;
+                overflow: hidden;
+            }
+            .usa-team-avatar img { width: 100%; height: 100%; object-fit: cover; }
+            .usa-team-card-name {
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: #ffffff;
+                margin-bottom: 4px;
+            }
+            .usa-team-card-role {
+                font-family: 'Inter', sans-serif;
+                font-size: 0.72rem;
+                color: #008B8B;
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                margin-bottom: 10px;
+            }
+            .usa-team-card-bio {
+                font-family: 'Inter', sans-serif;
+                font-size: 0.82rem;
+                line-height: 1.6;
+                color: rgba(255,255,255,0.4);
+            }
+            @media (max-width: 1000px) {
+                .usa-team-grid { grid-template-columns: repeat(2, 1fr); }
+                .usa-office-header { grid-template-columns: 1fr; gap: 40px; }
+            }
+            @media (max-width: 640px) {
+                .usa-team-grid { grid-template-columns: 1fr; }
+                .usa-office-section { padding: 64px 24px; }
+                .usa-map-visual { height: 380px !important; }
+                .usa-map-pin-wrap { padding: 20px 24px !important; }
+                .usa-map-ring { width: 90px !important; height: 90px !important; margin-bottom: 12px !important; }
+                .usa-map-ring::before { width: 60px !important; height: 60px !important; }
+                .usa-stats-row { gap: 8px !important; bottom: 16px !important; left: 16px !important; right: 16px !important; }
+                .usa-stat-pill { padding: 8px 6px !important; }
+                .usa-stat-pill-num { font-size: 0.9rem !important; }
+                .usa-stat-pill-label { font-size: 0.6rem !important; }
+            }
+        </style>
+
+        <div class="usa-office-inner">
+            <div class="usa-office-header">
+                <div>
+                    <div class="usa-office-label">Our US Presence</div>
+                    <h2 class="usa-office-title">Operating at the heart of <span>American</span> trucking</h2>
+                    <p class="usa-office-body">Nestway's operations are deeply rooted in the United States. Our US-based team works on the ground — building carrier relationships, coordinating freight, and ensuring every driver we serve has dedicated support from coast to coast.</p>
+                    <div class="usa-hq-badge">
+                        <svg class="usa-hq-badge-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <div>
+                            <div class="usa-hq-badge-text">Philadelphia, PA — US Operations HQ</div>
+                            <p class="usa-hq-badge-sub">(215) 770-2630 &nbsp;·&nbsp; info@nestway.net</p>
+                        </div>
+                    </div>
+                    <div class="usa-flag-strip">
+                        <span style="font-size:1.4rem;">🇺🇸</span>
+                        <span class="usa-flag-text">Licensed & FMCSA registered carrier operating across the continental US</span>
+                    </div>
+                </div>
+                <div class="usa-map-visual">
+                    <div class="usa-map-pin-wrap">
+                        <div class="usa-map-ring"></div>
+                        <div class="usa-map-pin-city">Philadelphia</div>
+                        <div class="usa-map-pin-state">Pennsylvania · USA</div>
+                    </div>
+                    <div class="usa-stats-row">
+                        <div class="usa-stat-pill">
+                            <div class="usa-stat-pill-num">48</div>
+                            <div class="usa-stat-pill-label">States</div>
+                        </div>
+                        <div class="usa-stat-pill">
+                            <div class="usa-stat-pill-num">24/7</div>
+                            <div class="usa-stat-pill-label">US Support</div>
+                        </div>
+                        <div class="usa-stat-pill">
+                            <div class="usa-stat-pill-num">500+</div>
+                            <div class="usa-stat-pill-label">Drivers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if us_team %}
+            <div class="usa-team-heading">Our People on the Ground</div>
+            <div class="usa-team-grid">
+                {% for member in us_team %}
+                <div class="usa-team-card">
+                    <div class="usa-team-avatar">
+                        {% if member.image %}<img src="{{ member.image.url }}" alt="{{ member.name }}">{% else %}{{ member.name|slice:":2"|upper }}{% endif %}
+                    </div>
+                    <div class="usa-team-card-name">{{ member.name }}</div>
+                    <div class="usa-team-card-role">{{ member.role }}</div>
+                    {% if member.bio %}<p class="usa-team-card-bio">{{ member.bio }}</p>{% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
     <!-- 3. TEAM BUILT FOR TRUCKERS -->
     <section class="about-team m-section-pad">
         <div class="about-team-grid">

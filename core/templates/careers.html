@@ -1,0 +1,655 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Careers — Drive With Nestway{% endblock %}
+
+{% block head %}
+<style>
+    .fixed.top-0 {
+        background: #0a0a0a !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<style>
+    /* ── HERO ─────────────────────────────────────────────────────── */
+    .car-hero {
+        background: #0a0a0a;
+        padding-top: 140px;
+        padding-bottom: 80px;
+        text-align: center;
+    }
+    .car-hero-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #FF4500;
+        margin-bottom: 20px;
+    }
+    .car-hero h1 {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: clamp(2.2rem, 7vw, 4.5rem);
+        color: #fff;
+        line-height: 1.05;
+        margin: 0 0 20px;
+        letter-spacing: -0.01em;
+    }
+    .car-hero h1 span { color: #FF4500; }
+    .car-hero-sub {
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        color: rgba(255,255,255,0.45);
+        margin: 0 auto;
+        max-width: 500px;
+        line-height: 1.6;
+    }
+
+    /* ── BODY (sand) ─────────────────────────────────────────────── */
+    .car-body {
+        background: #F0EBE1;
+    }
+
+    /* ── TABS NAV ─────────────────────────────────────────────────── */
+    .car-tabs-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 64px 24px 0;
+    }
+    .car-tabs-nav {
+        display: flex;
+        gap: 0;
+        border: 1.5px solid #111;
+        border-radius: 10px;
+        overflow: hidden;
+        width: fit-content;
+    }
+    .car-tab-btn {
+        padding: 13px 32px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 0.82rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        border: none;
+        background: transparent;
+        color: rgba(0,0,0,0.4);
+        cursor: pointer;
+        transition: background 0.15s, color 0.15s;
+        border-right: 1.5px solid #111;
+    }
+    .car-tab-btn:last-child { border-right: none; }
+    .car-tab-btn.active {
+        background: #111;
+        color: #fff;
+    }
+    .car-tab-btn:not(.active):hover {
+        background: rgba(0,0,0,0.06);
+        color: #111;
+    }
+
+    /* ── TAB PANELS ───────────────────────────────────────────────── */
+    .car-tab-panel { display: none; }
+    .car-tab-panel.active { display: block; }
+
+    .car-panel-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 56px 24px 80px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+        align-items: start;
+    }
+
+    /* Left info */
+    .car-panel-eyebrow {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #1AAFA0;
+        margin-bottom: 14px;
+    }
+    .car-panel-title {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: clamp(2rem, 4vw, 3rem);
+        text-transform: uppercase;
+        color: #111;
+        line-height: 1.05;
+        margin: 0 0 12px;
+        letter-spacing: 0.02em;
+    }
+    .car-panel-sub {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        color: #777;
+        line-height: 1.6;
+        margin: 0 0 32px;
+    }
+
+    /* Perks list */
+    .car-perks { list-style: none; padding: 0; margin: 0 0 32px; display: flex; flex-direction: column; gap: 10px; }
+    .car-perk {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.92rem;
+        color: #444;
+        line-height: 1.5;
+    }
+    .car-perk-dot {
+        color: #E8440A;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        line-height: 1.4;
+    }
+
+    /* Requirements box */
+    .car-req-box {
+        background: #fff;
+        border: 1.5px solid rgba(0,0,0,0.1);
+        border-radius: 10px;
+        padding: 24px;
+    }
+    .car-req-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #FF4500;
+        margin: 0 0 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255,69,0,0.12);
+    }
+    .car-req-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
+    .car-req-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.875rem;
+        color: #555;
+        line-height: 1.5;
+    }
+    .car-req-check { color: #008B8B; flex-shrink: 0; font-size: 0.75rem; margin-top: 3px; }
+
+    /* Investor income table */
+    .car-income-box {
+        background: #fff;
+        border: 1.5px solid rgba(0,0,0,0.1);
+        border-radius: 10px;
+        padding: 24px;
+        margin-top: 24px;
+    }
+    .car-income-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #888;
+        margin: 0 0 16px;
+    }
+    .car-income-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 9px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        font-family: 'Inter', sans-serif;
+        font-size: 0.88rem;
+    }
+    .car-income-row:last-child { border-bottom: none; }
+    .car-income-key { color: #777; }
+    .car-income-val { font-weight: 600; color: #111; }
+    .car-income-val.highlight { color: #E8440A; }
+
+    /* Form card */
+    .car-form-card {
+        background: #fff;
+        border: 2px solid #000000;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 6px 6px 0px #000000;
+    }
+    .car-form-title {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: 2.2rem;
+        text-transform: uppercase;
+        color: #000000;
+        letter-spacing: 0.01em;
+        margin: 0 0 28px;
+    }
+    .car-form-group { margin-bottom: 18px; }
+    .car-form-group label {
+        display: block;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #888888;
+        margin-bottom: 8px;
+    }
+    .car-form-group input,
+    .car-form-group select,
+    .car-form-group textarea {
+        width: 100%;
+        background: #ffffff;
+        border: 1.5px solid #E2E8F0;
+        border-radius: 10px;
+        padding: 12px 16px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        color: #0d0d0d;
+        outline: none;
+        transition: border-color 0.15s;
+        box-sizing: border-box;
+    }
+    .car-form-group input:focus,
+    .car-form-group select:focus,
+    .car-form-group textarea:focus { border-color: #000000; }
+    .car-form-group input::placeholder,
+    .car-form-group textarea::placeholder { color: #A0AEC0; }
+    .car-submit-btn {
+        width: 100%;
+        background: #FF3C00;
+        color: #ffffff;
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 16px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: background 0.15s, transform 0.1s;
+        margin-top: 8px;
+        letter-spacing: 0.01em;
+    }
+    .car-submit-btn:hover { background: #E03500; }
+    .car-submit-btn:active { transform: translateY(1px); }
+
+    /* Success */
+    .car-success {
+        background: #f0faf0;
+        border: 1.5px solid rgba(0,139,0,0.2);
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-bottom: 20px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9rem;
+        color: #2a7a2a;
+    }
+
+    /* ── CONTACT STRIP (dark) ─────────────────────────────────────── */
+    .car-contact {
+        background: #111;
+        padding: 80px 24px;
+    }
+    .car-contact-inner {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    .car-contact-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #1AAFA0;
+        margin-bottom: 16px;
+    }
+    .car-contact-headline {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: clamp(2rem, 4vw, 3rem);
+        text-transform: uppercase;
+        color: #fff;
+        letter-spacing: 0.02em;
+        margin: 0 0 48px;
+        line-height: 1.05;
+    }
+    .car-contact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5px;
+        background: rgba(255,255,255,0.08);
+        border: 1.5px solid rgba(255,255,255,0.08);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .car-contact-item {
+        background: #111;
+        padding: 28px 24px;
+    }
+    .car-contact-item-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.35);
+        margin-bottom: 8px;
+    }
+    .car-contact-item-value {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        color: #fff;
+    }
+    .car-contact-item-value a { color: #fff; text-decoration: none; }
+    .car-contact-item-value a:hover { color: #1AAFA0; }
+
+    /* ── RESPONSIVE ───────────────────────────────────────────────── */
+
+    /* Tablet */
+    @media (max-width: 900px) {
+        .car-panel-grid { grid-template-columns: 1fr; gap: 40px; }
+        .car-contact-grid { grid-template-columns: 1fr; }
+        .car-tabs-wrap { padding: 48px 16px 0; }
+    }
+
+    /* Large mobile */
+    @media (max-width: 640px) {
+        /* Hero */
+        .car-hero { padding-top: 100px; padding-bottom: 56px; padding-left: 16px; padding-right: 16px; }
+        .car-hero h1 { font-size: clamp(1.9rem, 9vw, 2.8rem); }
+        .car-hero-sub { font-size: 0.9rem; }
+
+        /* Tabs */
+        .car-tabs-wrap { padding: 40px 16px 0; }
+        .car-tabs-nav { flex-direction: column; width: 100%; border-radius: 10px; }
+        .car-tab-btn { border-right: none; border-bottom: 1.5px solid #111; padding: 14px 20px; text-align: left; }
+        .car-tab-btn:last-child { border-bottom: none; }
+
+        /* Panel */
+        .car-panel-grid { padding: 40px 16px 56px; gap: 32px; }
+        .car-panel-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+        .car-panel-sub { font-size: 0.88rem; }
+
+        /* Form */
+        .car-form-card { padding: 24px 20px; box-shadow: 2px 2px 0 #111; }
+        .car-form-title { font-size: 1.3rem; }
+        .car-submit-btn { min-height: 48px; font-size: 0.8rem; }
+
+        /* Requirements */
+        .car-req-box { padding: 18px; }
+        .car-income-box { padding: 18px; }
+
+        /* Contact */
+        .car-contact { padding: 56px 16px; }
+        .car-contact-headline { font-size: clamp(1.6rem, 7vw, 2.2rem); margin-bottom: 32px; }
+        .car-contact-grid { border-radius: 8px; }
+        .car-contact-item { padding: 20px 18px; }
+        .car-contact-item-value { font-size: 0.92rem; }
+    }
+
+    /* Small mobile */
+    @media (max-width: 400px) {
+        .car-hero h1 { font-size: 1.75rem; }
+        .car-panel-title { font-size: 1.5rem; }
+        .car-form-card { padding: 20px 16px; }
+    }
+
+    /* iOS input zoom prevention */
+    @media (max-width: 767px) {
+        .car-form-group input,
+        .car-form-group select,
+        .car-form-group textarea { font-size: 16px !important; }
+    }
+</style>
+
+<!-- HERO -->
+<section class="car-hero">
+    <div class="car-hero-label">Join Nestway</div>
+    <h1>Drive more.<br><span>Earn more.</span></h1>
+    <p class="car-hero-sub">Company drivers, owner-operators, and truck investors — we have a path for you.</p>
+</section>
+
+<!-- BODY -->
+<div class="car-body">
+
+    <!-- SUCCESS BANNER -->
+    {% if success %}
+    <div style="max-width:1200px;margin:0 auto;padding:32px 24px 0;">
+        <div class="car-success">
+            ✔ Application received — our HR team will contact you within 24 hours. Direct line: <strong>hr@nestway.net</strong>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- TABS -->
+    <div class="car-tabs-wrap">
+        <div class="car-tabs-nav">
+            <button class="car-tab-btn {% if active_tab == 'company' %}active{% endif %}" onclick="carTab('company')" id="car-btn-company">Company Drivers</button>
+            <button class="car-tab-btn {% if active_tab == 'owner' %}active{% endif %}" onclick="carTab('owner')" id="car-btn-owner">Owner Operators</button>
+            <button class="car-tab-btn {% if active_tab == 'investor' %}active{% endif %}" onclick="carTab('investor')" id="car-btn-investor">Truck Investors</button>
+        </div>
+    </div>
+
+    <!-- PANEL: COMPANY DRIVERS -->
+    <div class="car-tab-panel {% if active_tab == 'company' %}active{% endif %}" id="car-panel-company">
+        <div class="car-panel-grid">
+            <div>
+                <div class="car-panel-eyebrow">Company Drivers</div>
+                <h2 class="car-panel-title">Drive under<br>our authority.</h2>
+                <p class="car-panel-sub">Consistent OTR miles, weekly pay, 24/7 dispatch. No surprises.</p>
+                <ul class="car-perks">
+                    <li class="car-perk"><span class="car-perk-dot">&bull;</span> Competitive CPM — paid every week, no holdbacks</li>
+                    <li class="car-perk"><span class="car-perk-dot">&bull;</span> Consistent freight across 48 states, zero forced dispatch</li>
+                    <li class="car-perk"><span class="car-perk-dot">&bull;</span> 24/7 dispatch support from road veterans</li>
+                    <li class="car-perk"><span class="car-perk-dot">&bull;</span> Safety bonuses and performance incentives</li>
+                </ul>
+                {% if company_requirements %}
+                <div class="car-req-box">
+                    <div class="car-req-label">Requirements to Apply</div>
+                    <ul class="car-req-list">
+                        {% for req in company_requirements %}
+                        <li class="car-req-item">
+                            <span class="car-req-check">&#10003;</span>
+                            {{ req.requirement_text }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            <div class="car-form-card">
+                <div class="car-form-title">Apply Now</div>
+                <form method="POST" action="{% url 'careers' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="lead_type" value="company_driver">
+                    <div class="car-form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="name" placeholder="John Smith" required>
+                    </div>
+                    <div class="car-form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" placeholder="john@email.com" required>
+                    </div>
+                    <div class="car-form-group">
+                        <label>Phone</label>
+                        <input type="tel" name="phone" placeholder="+1 (555) 000-0000">
+                    </div>
+                    <div class="car-form-group">
+                        <label>CDL Experience</label>
+                        <select name="experience_level">
+                            <option value="">Select level</option>
+                            <option value="1-2 years">1–2 years</option>
+                            <option value="3-5 years">3–5 years</option>
+                            <option value="5-10 years">5–10 years</option>
+                            <option value="10+ years">10+ years</option>
+                        </select>
+                    </div>
+                    <div class="car-form-group">
+                        <label>Additional Info</label>
+                        <textarea name="message" placeholder="Preferred lanes, home time needs..." rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="car-submit-btn">Submit Application &rarr;</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANEL: OWNER OPERATORS -->
+    <div class="car-tab-panel {% if active_tab == 'owner' %}active{% endif %}" id="car-panel-owner">
+        <div class="car-panel-grid">
+            <div>
+                <div class="car-panel-eyebrow">Owner Operators</div>
+                <h2 class="car-panel-title">Run your truck.<br>We handle the rest.</h2>
+                <p class="car-panel-sub">88%+ of gross. We find the loads, negotiate rates, handle the paperwork.</p>
+                <ul class="car-perks">
+                    <li class="car-perk"><span class="car-perk-dot">&bull;</span> 88%+ gross revenue — industry-leading payout</li>
+                    <li class="car-perk"><span class="car-perk-dot">&bull;</span> Premium DAT &amp; Truckstop load board access</li>
+                    <li class="car-perk"><span class="car-perk-dot">&bull;</span> Rate negotiation specialists working for you</li>
+                    <li class="car-perk"><span class="car-perk-dot">&bull;</span> FMCSA compliance and safety file support</li>
+                </ul>
+                {% if owner_requirements %}
+                <div class="car-req-box">
+                    <div class="car-req-label">Requirements to Partner</div>
+                    <ul class="car-req-list">
+                        {% for req in owner_requirements %}
+                        <li class="car-req-item">
+                            <span class="car-req-check">&#10003;</span>
+                            {{ req.requirement_text }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            <div class="car-form-card">
+                <div class="car-form-title">Get Started</div>
+                <form method="POST" action="{% url 'careers' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="lead_type" value="owner_operator">
+                    <div class="car-form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="name" placeholder="John Smith" required>
+                    </div>
+                    <div class="car-form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" placeholder="john@email.com" required>
+                    </div>
+                    <div class="car-form-group">
+                        <label>Phone</label>
+                        <input type="tel" name="phone" placeholder="+1 (555) 000-0000">
+                    </div>
+                    <div class="car-form-group">
+                        <label>Truck Year &amp; Model</label>
+                        <input type="text" name="experience_level" placeholder="e.g. 2019 Freightliner Cascadia">
+                    </div>
+                    <div class="car-form-group">
+                        <label>Additional Info</label>
+                        <textarea name="message" placeholder="Current setup, preferred lanes..." rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="car-submit-btn">Submit Application &rarr;</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANEL: TRUCK INVESTORS -->
+    <div class="car-tab-panel {% if active_tab == 'investor' %}active{% endif %}" id="car-panel-investor">
+        <div class="car-panel-grid">
+            <div>
+                <div class="car-panel-eyebrow">Truck Investors</div>
+                <h2 class="car-panel-title">Buy a truck.<br>Earn passive.</h2>
+                <p class="car-panel-sub">You invest. Nestway manages everything — driver, dispatch, compliance, reporting.</p>
+                <ul class="car-perks">
+                    <li class="car-perk"><span class="car-perk-dot">&bull;</span> Full fleet management under Nestway's authority</li>
+                    <li class="car-perk"><span class="car-perk-dot">&bull;</span> Weekly transparent settlements and reporting</li>
+                    <li class="car-perk"><span class="car-perk-dot">&bull;</span> Professional driver placement and vetting</li>
+                    <li class="car-perk"><span class="car-perk-dot">&bull;</span> FMCSA compliance, insurance &amp; safety managed</li>
+                </ul>
+                <div class="car-income-box">
+                    <div class="car-income-label">Monthly Breakdown — Per Truck (Est.)</div>
+                    <div class="car-income-row"><span class="car-income-key">Avg. Gross Revenue</span><span class="car-income-val">$12,000 – $18,000</span></div>
+                    <div class="car-income-row"><span class="car-income-key">Driver Pay (est. 65%)</span><span class="car-income-val">– $8,000</span></div>
+                    <div class="car-income-row"><span class="car-income-key">Dispatch &amp; Mgmt Fee</span><span class="car-income-val">– $1,200</span></div>
+                    <div class="car-income-row"><span class="car-income-key">Fuel, ELD, Insurance</span><span class="car-income-val">– $2,500</span></div>
+                    <div class="car-income-row"><span class="car-income-key">Net Monthly Return</span><span class="car-income-val highlight">$300 – $6,300+</span></div>
+                </div>
+            </div>
+            <div class="car-form-card">
+                <div class="car-form-title">Schedule a Call</div>
+                <p style="font-family:'Inter',sans-serif;font-size:0.88rem;color:#888;margin:0 0 20px;line-height:1.6;">Leave your details and our team will walk you through the full opportunity.</p>
+                <form method="POST" action="{% url 'careers' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="lead_type" value="investor">
+                    <div class="car-form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="name" placeholder="John Smith" required>
+                    </div>
+                    <div class="car-form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" placeholder="john@email.com" required>
+                    </div>
+                    <div class="car-form-group">
+                        <label>Phone</label>
+                        <input type="tel" name="phone" placeholder="+1 (555) 000-0000">
+                    </div>
+                    <div class="car-form-group">
+                        <label>Trucks Interested In</label>
+                        <select name="experience_level">
+                            <option value="">Select...</option>
+                            <option value="1 truck">1 truck</option>
+                            <option value="2-3 trucks">2–3 trucks</option>
+                            <option value="4-5 trucks">4–5 trucks</option>
+                            <option value="6+ trucks">6+ trucks</option>
+                        </select>
+                    </div>
+                    <div class="car-form-group">
+                        <label>Message</label>
+                        <textarea name="message" placeholder="Investment goals or questions..." rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="car-submit-btn">Request Consultation &rarr;</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div><!-- end car-body -->
+
+<!-- CONTACT STRIP -->
+<section class="car-contact">
+    <div class="car-contact-inner">
+        <div class="car-contact-label">Reach Us Directly</div>
+        <h2 class="car-contact-headline">Questions before<br>you apply?</h2>
+        <div class="car-contact-grid">
+            <div class="car-contact-item">
+                <div class="car-contact-item-label">Phone</div>
+                <div class="car-contact-item-value"><a href="tel:+12157702630">(215) 770-2630</a></div>
+            </div>
+            <div class="car-contact-item">
+                <div class="car-contact-item-label">HR Department</div>
+                <div class="car-contact-item-value"><a href="mailto:hr@nestway.net">hr@nestway.net</a></div>
+            </div>
+            <div class="car-contact-item">
+                <div class="car-contact-item-label">General Support</div>
+                <div class="car-contact-item-value"><a href="mailto:info@nestway.net">info@nestway.net</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function carTab(tab) {
+    document.querySelectorAll('.car-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.car-tab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('car-btn-' + tab).classList.add('active');
+    document.getElementById('car-panel-' + tab).classList.add('active');
+}
+</script>
+{% endblock %}

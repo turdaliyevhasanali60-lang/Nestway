@@ -1,7 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.core.cache import cache
-from .models import SiteSettings, Service, BlogPost, ContactLead, AboutPage, NotificationEmail, Testimonial, FAQ
+from .models import (
+    SiteSettings, Service, BlogPost, ContactLead, AboutPage, NotificationEmail, Testimonial, FAQ,
+    USTeamMember, Award, PartnerReview, DriverRequirement
+)
+from .telegram_bot import send_telegram_lead
 import resend
 import logging
 
@@ -57,8 +61,12 @@ def about(request):
         about_page = AboutPage.load()
         cache.set('about_page', about_page, 86400)
 
+    # Fetch active US team members
+    us_team = list(USTeamMember.objects.filter(is_active=True).order_by('order'))
+
     return render(request, 'about.html', {
         'about': about_page,
+        'us_team': us_team,
     })
 
 def service_detail(request, slug):
@@ -108,12 +116,16 @@ def contact(request):
         message = request.POST.get('message')
         
         if name and email and message:
-            ContactLead.objects.create(
+            lead = ContactLead.objects.create(
                 name=name,
                 email=email,
                 phone=phone,
-                message=message
+                message=message,
+                lead_type='general'
             )
+            
+            # Send Telegram Bot notification
+            send_telegram_lead(lead)
             
             # Send email via Resend to all active notification recipients
             recipients = list(
@@ -123,7 +135,7 @@ def contact(request):
             # Fall back to ADMIN_EMAIL env var if no DB recipients configured
             if not recipients and settings.ADMIN_EMAIL:
                 recipients = [settings.ADMIN_EMAIL]
-
+ 
             if recipients and settings.RESEND_API_KEY:
                 resend.api_key = settings.RESEND_API_KEY
                 try:
@@ -151,3 +163,88 @@ def contact(request):
             success = True
             
     return render(request, 'contact.html', {'success': success})
+
+
+def careers(request):
+    success = False
+    active_tab = 'company'
+    
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone', '')
+        lead_type = request.POST.get('lead_type', 'company_driver')
+        experience_level = request.POST.get('experience_level', '')
+        message = request.POST.get('message', '')
+        
+        if name and email:
+            lead = ContactLead.objects.create(
+                name=name,
+                email=email,
+                phone=phone,
+                message=message,
+                lead_type=lead_type,
+                experience_level=experience_level
+            )
+            
+            # Send Telegram Bot notification
+            send_telegram_lead(lead)
+            
+            success = True
+            if lead_type == 'company_driver':
+                active_tab = 'company'
+            elif lead_type == 'owner_operator':
+                active_tab = 'owner'
+            elif lead_type == 'investor':
+                active_tab = 'investor'
+                
+    # Fetch active driver requirements
+    requirements = list(DriverRequirement.objects.filter(is_active=True).order_by('order'))
+    company_requirements = [r for r in requirements if r.driver_type in ['company', 'both']]
+    owner_requirements = [r for r in requirements if r.driver_type in ['owner_operator', 'both']]
+    
+    return render(request, 'careers.html', {
+        'success': success,
+        'active_tab': active_tab,
+        'company_requirements': company_requirements,
+        'owner_requirements': owner_requirements,
+    })
+
+
+def truvision(request):
+    success = False
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone', '')
+        country = request.POST.get('country', '')
+        experience_level = request.POST.get('experience_level', '')
+        message = request.POST.get('message', '')
+        
+        if name and email:
+            lead = ContactLead.objects.create(
+                name=name,
+                email=email,
+                phone=phone,
+                message=message,
+                lead_type='academy',
+                country=country,
+                experience_level=experience_level
+            )
+            
+            # Send Telegram Bot notification
+            send_telegram_lead(lead)
+            
+            success = True
+            
+    return render(request, 'truvision.html', {'success': success})
+
+
+def awards(request):
+    awards_list = list(Award.objects.filter(is_active=True).order_by('order'))
+    partner_reviews = list(PartnerReview.objects.filter(is_active=True).order_by('order'))
+    
+    return render(request, 'awards.html', {
+        'awards': awards_list,
+        'partner_reviews': partner_reviews,
+    })

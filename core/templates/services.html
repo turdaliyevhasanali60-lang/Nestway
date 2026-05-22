@@ -187,95 +187,26 @@
     <section class="services-list-section m-section-pad" style="background: #F0EBE1; max-width: 100%;">
         <div class="grid grid-cols-1 md:grid-cols-3 m-gap-24" style="gap: 20px; max-width: 1200px; margin: 0 auto; padding: 0 24px 0;">
             
-            <!-- 01 Dispatching -->
-            <a href="#dispatching" class="srv-card" style="background: #ffffff;">
+            {% for s in services %}
+            <a href="#{{ s.slug }}" class="srv-card"{% if forloop.first %} style="background: #ffffff;"{% endif %}>
                 <div class="srv-card-img-wrap">
-                    {% if services.0.image %}
-                    <img src="{{ services.0.image.url }}" alt="{{ services.0.title }}">
+                    {% if s.image %}
+                    <img src="{{ s.image.url }}" alt="{{ s.title }}">
+                    {% elif s.image_home %}
+                    <img src="{{ s.image_home.url }}" alt="{{ s.title }}">
                     {% else %}
-                    <img src="{% static 'images/services/dispatching.png' %}" alt="Dispatching Services">
+                    <img src="{% static 'images/services/' %}{{ s.slug }}.png" alt="{{ s.title }}">
                     {% endif %}
                 </div>
                 <div class="srv-card-content">
-                    <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.5rem; color: rgba(0,0,0,0.15); margin-bottom: 12px;">01</div>
+                    <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.5rem; color: rgba(0,0,0,0.15); margin-bottom: 12px;">{{ forloop.counter|stringformat:"02d" }}</div>
 
-                    <h3 class="m-card-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2.2rem; text-transform: uppercase; color: #111111; margin: 0 0 12px; letter-spacing: 0.02em;">Dispatching Services</h3>
-                    <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 0.95rem; line-height: 1.6; color: #777777; margin: 0 0 32px; flex-grow: 1;">Real-time load matching across nationwide and regional corridors. We keep your truck full and your routes efficient.</p>
+                    <h3 class="m-card-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2.2rem; text-transform: uppercase; color: #111111; margin: 0 0 12px; letter-spacing: 0.02em;">{{ s.title }}</h3>
+                    <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 0.95rem; line-height: 1.6; color: #777777; margin: 0 0 32px; flex-grow: 1;">{{ s.description }}</p>
                     <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; color: #1AAFA0; margin-top: auto;">Learn more &rarr;</div>
                 </div>
             </a>
-
-            <!-- 02 Accounting -->
-            <a href="#accounting" class="srv-card">
-                <div class="srv-card-img-wrap">
-                    {% if services.1.image %}
-                    <img src="{{ services.1.image.url }}" alt="{{ services.1.title }}">
-                    {% else %}
-                    <img src="{% static 'images/services/accounting.png' %}" alt="Accounting Services">
-                    {% endif %}
-                </div>
-                <div class="srv-card-content">
-                    <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.5rem; color: rgba(0,0,0,0.15); margin-bottom: 12px;">02</div>
-
-                    <h3 class="m-card-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2.2rem; text-transform: uppercase; color: #111111; margin: 0 0 12px; letter-spacing: 0.02em;">Accounting Services</h3>
-                    <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 0.95rem; line-height: 1.6; color: #777777; margin: 0 0 32px; flex-grow: 1;">Weekly transparent settlements, IFTA filing, and financial reporting &mdash; no surprises, no holdbacks.</p>
-                    <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; color: #1AAFA0; margin-top: auto;">Learn more &rarr;</div>
-                </div>
-            </a>
-
-            <!-- 03 Safety -->
-            <a href="#safety" class="srv-card">
-                <div class="srv-card-img-wrap">
-                    {% if services.2.image %}
-                    <img src="{{ services.2.image.url }}" alt="{{ services.2.title }}">
-                    {% else %}
-                    <img src="{% static 'images/services/safety.png' %}" alt="Safety Services">
-                    {% endif %}
-                </div>
-                <div class="srv-card-content">
-                    <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.5rem; color: rgba(0,0,0,0.15); margin-bottom: 12px;">03</div>
-
-                    <h3 class="m-card-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2.2rem; text-transform: uppercase; color: #111111; margin: 0 0 12px; letter-spacing: 0.02em;">Safety Services</h3>
-                    <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 0.95rem; line-height: 1.6; color: #777777; margin: 0 0 32px; flex-grow: 1;">DOT compliance, driver qualification files, and safety program management so you stay protected.</p>
-                    <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; color: #1AAFA0; margin-top: auto;">Learn more &rarr;</div>
-                </div>
-            </a>
-
-            <!-- 04 Fleet Management -->
-            <a href="#fleet" class="srv-card">
-                <div class="srv-card-img-wrap">
-                    {% if services.3.image %}
-                    <img src="{{ services.3.image.url }}" alt="{{ services.3.title }}">
-                    {% else %}
-                    <img src="{% static 'images/services/fleet.png' %}" alt="Fleet Management">
-                    {% endif %}
-                </div>
-                <div class="srv-card-content">
-                    <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.5rem; color: rgba(0,0,0,0.15); margin-bottom: 12px;">04</div>
-
-                    <h3 class="m-card-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2.2rem; text-transform: uppercase; color: #111111; margin: 0 0 12px; letter-spacing: 0.02em;">Fleet Management</h3>
-                    <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 0.95rem; line-height: 1.6; color: #777777; margin: 0 0 32px; flex-grow: 1;">Maintenance scheduling, permit handling, and vehicle tracking to keep your fleet rolling.</p>
-                    <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; color: #1AAFA0; margin-top: auto;">Learn more &rarr;</div>
-                </div>
-            </a>
-
-            <!-- 05 Business Consulting -->
-            <a href="#consulting" class="srv-card">
-                <div class="srv-card-img-wrap">
-                    {% if services.4.image %}
-                    <img src="{{ services.4.image.url }}" alt="{{ services.4.title }}">
-                    {% else %}
-                    <img src="{% static 'images/services/consulting.png' %}" alt="Business Consulting">
-                    {% endif %}
-                </div>
-                <div class="srv-card-content">
-                    <div style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.5rem; color: rgba(0,0,0,0.15); margin-bottom: 12px;">05</div>
-
-                    <h3 class="m-card-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2.2rem; text-transform: uppercase; color: #111111; margin: 0 0 12px; letter-spacing: 0.02em;">Business Consulting</h3>
-                    <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 0.95rem; line-height: 1.6; color: #777777; margin: 0 0 32px; flex-grow: 1;">Growth strategy, authority setup, and operational guidance for owner-operators ready to scale.</p>
-                    <div style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; color: #1AAFA0; margin-top: auto;">Learn more &rarr;</div>
-                </div>
-            </a>
+            {% endfor %}
 
             <!-- 06 CTA Block -->
             <div class="flex flex-col items-center justify-center text-center cursor-default m-card-pad" style="background: #111111; border-radius: 16px; padding: 48px 32px;">

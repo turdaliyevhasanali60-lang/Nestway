@@ -1,0 +1,504 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Truvision Academy — Dispatch Training by Nestway{% endblock %}
+
+{% block head %}
+<style>
+    .fixed.top-0 {
+        background: #0a0a0a !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<style>
+    /* ── HERO ─────────────────────────────────────────────────────── */
+    .truv-hero {
+        background: #0a0a0a;
+        padding-top: 140px;
+        padding-bottom: 80px;
+        text-align: center;
+    }
+    .truv-hero-label {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #008B8B;
+        margin-bottom: 20px;
+    }
+    .truv-hero h1 {
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 700;
+        font-size: clamp(2.2rem, 7vw, 4.5rem);
+        color: #fff;
+        line-height: 1.05;
+        margin: 0 0 20px;
+        letter-spacing: -0.01em;
+    }
+    .truv-hero h1 span { color: #008B8B; }
+    .truv-hero-sub {
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        color: rgba(255,255,255,0.45);
+        margin: 0 auto 40px;
+        max-width: 480px;
+        line-height: 1.6;
+    }
+    .truv-badges {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    .truv-badge {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: rgba(255,255,255,0.5);
+        padding: 6px 16px;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 999px;
+    }
+
+    /* ── CURRICULUM (white) ───────────────────────────────────────── */
+    .truv-curriculum {
+        background: #fff;
+        padding: 80px 24px;
+    }
+    .truv-curriculum-inner {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    .truv-section-eyebrow {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #1AAFA0;
+        margin-bottom: 14px;
+    }
+    .truv-section-title {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        text-transform: uppercase;
+        color: #111;
+        letter-spacing: 0.02em;
+        line-height: 1.05;
+        margin: 0 0 48px;
+    }
+    .truv-modules { display: flex; flex-direction: column; gap: 0; }
+    .truv-module {
+        display: grid;
+        grid-template-columns: 72px 1fr;
+        gap: 28px;
+        align-items: flex-start;
+        padding: 28px 0;
+        border-bottom: 1.5px solid rgba(0,0,0,0.07);
+    }
+    .truv-module:first-child { border-top: 1.5px solid rgba(0,0,0,0.07); }
+    .truv-module-num {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: rgba(0,0,0,0.12);
+        letter-spacing: 0.02em;
+        padding-top: 2px;
+    }
+    .truv-module-title {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #111;
+        margin: 0 0 6px;
+    }
+    .truv-module-desc {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.88rem;
+        color: #888;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* ── BENEFITS (sand) ──────────────────────────────────────────── */
+    .truv-benefits {
+        background: #F0EBE1;
+        padding: 80px 24px;
+    }
+    .truv-benefits-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .truv-benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-top: 48px;
+    }
+    .truv-benefit-card {
+        background: #fff;
+        border: 1.5px solid rgba(0,0,0,0.08);
+        border-radius: 10px;
+        padding: 28px 20px;
+    }
+    .truv-benefit-num {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: 2rem;
+        color: rgba(0,0,0,0.08);
+        margin-bottom: 12px;
+        letter-spacing: 0.02em;
+    }
+    .truv-benefit-title {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 0.92rem;
+        color: #111;
+        margin: 0 0 8px;
+    }
+    .truv-benefit-desc {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.82rem;
+        color: #777;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* ── ENROLL (dark) ────────────────────────────────────────────── */
+    .truv-enroll {
+        background: #0a0a0a;
+        padding: 80px 24px;
+    }
+    .truv-enroll-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+    }
+    .truv-enroll-eyebrow {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #008B8B;
+        margin-bottom: 14px;
+    }
+    .truv-enroll-title {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: clamp(2rem, 4vw, 3rem);
+        text-transform: uppercase;
+        color: #fff;
+        letter-spacing: 0.02em;
+        line-height: 1.05;
+        margin: 0 0 20px;
+    }
+    .truv-enroll-desc {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        color: rgba(255,255,255,0.4);
+        line-height: 1.65;
+        margin: 0 0 32px;
+    }
+    .truv-details { display: flex; flex-direction: column; gap: 12px; }
+    .truv-detail-item {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9rem;
+        color: rgba(255,255,255,0.55);
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    .truv-detail-dot { color: #008B8B; flex-shrink: 0; }
+
+    /* Form card */
+    .truv-form-card {
+        background: #fff;
+        border: 2px solid #000000;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 6px 6px 0px #000000;
+    }
+    .truv-form-title {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-weight: 800;
+        font-size: 2.2rem;
+        text-transform: uppercase;
+        color: #000000;
+        letter-spacing: 0.01em;
+        margin: 0 0 28px;
+    }
+    .truv-form-group { margin-bottom: 18px; }
+    .truv-form-group label {
+        display: block;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #888888;
+        margin-bottom: 8px;
+    }
+    .truv-form-group input,
+    .truv-form-group select,
+    .truv-form-group textarea {
+        width: 100%;
+        background: #ffffff;
+        border: 1.5px solid #E2E8F0;
+        border-radius: 10px;
+        padding: 12px 16px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        color: #0d0d0d;
+        outline: none;
+        transition: border-color 0.15s;
+        box-sizing: border-box;
+    }
+    .truv-form-group input:focus,
+    .truv-form-group select:focus,
+    .truv-form-group textarea:focus { border-color: #000000; }
+    .truv-form-group input::placeholder,
+    .truv-form-group textarea::placeholder { color: #A0AEC0; }
+    .truv-submit-btn {
+        width: 100%;
+        background: #FF3C00;
+        color: #ffffff;
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 16px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: background 0.15s, transform 0.1s;
+        margin-top: 8px;
+        letter-spacing: 0.01em;
+    }
+    .truv-submit-btn:hover { background: #E03500; }
+    .truv-submit-btn:active { transform: translateY(1px); }
+    .truv-success {
+        background: rgba(0,139,139,0.08);
+        border: 1.5px solid rgba(0,139,139,0.25);
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-bottom: 20px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9rem;
+        color: #008B8B;
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────────────────── */
+
+    /* Tablet */
+    @media (max-width: 900px) {
+        .truv-enroll-inner { grid-template-columns: 1fr; gap: 40px; }
+        .truv-benefits-grid { grid-template-columns: repeat(2, 1fr); }
+        .truv-curriculum-inner { padding: 0; }
+    }
+
+    /* Large mobile */
+    @media (max-width: 640px) {
+        /* Hero */
+        .truv-hero { padding-top: 100px; padding-bottom: 56px; padding-left: 16px; padding-right: 16px; }
+        .truv-hero h1 { font-size: clamp(1.9rem, 9vw, 2.8rem); }
+        .truv-hero-sub { font-size: 0.9rem; margin-bottom: 28px; }
+        .truv-badge { font-size: 0.72rem; padding: 5px 12px; }
+        .truv-badges { gap: 6px; }
+
+        /* Curriculum */
+        .truv-curriculum { padding: 56px 16px; }
+        .truv-section-title { font-size: clamp(1.7rem, 7vw, 2.4rem); margin-bottom: 32px; }
+        .truv-module { grid-template-columns: 48px 1fr; gap: 16px; padding: 22px 0; }
+        .truv-module-num { font-size: 1.1rem; }
+        .truv-module-title { font-size: 0.95rem; }
+        .truv-module-desc { font-size: 0.84rem; }
+
+        /* Benefits */
+        .truv-benefits { padding: 56px 16px; }
+        .truv-benefits-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 32px; }
+        .truv-benefit-card { padding: 22px 18px; display: flex; align-items: flex-start; gap: 16px; }
+        .truv-benefit-num { font-size: 1.4rem; margin-bottom: 0; flex-shrink: 0; min-width: 36px; }
+        .truv-benefit-title { font-size: 0.88rem; margin-bottom: 4px; }
+        .truv-benefit-desc { font-size: 0.8rem; }
+
+        /* Enroll */
+        .truv-enroll { padding: 56px 16px; }
+        .truv-enroll-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+        .truv-enroll-desc { font-size: 0.88rem; margin-bottom: 24px; }
+        .truv-detail-item { font-size: 0.85rem; }
+
+        /* Form */
+        .truv-form-card { padding: 24px 20px; }
+        .truv-form-title { font-size: 1.3rem; }
+        .truv-submit-btn { min-height: 48px; font-size: 0.8rem; }
+    }
+
+    /* Small mobile */
+    @media (max-width: 400px) {
+        .truv-hero h1 { font-size: 1.75rem; }
+        .truv-form-card { padding: 20px 16px; }
+    }
+
+    /* iOS input zoom prevention */
+    @media (max-width: 767px) {
+        .truv-form-group input,
+        .truv-form-group select,
+        .truv-form-group textarea { font-size: 16px !important; }
+    }
+</style>
+
+<!-- HERO -->
+<section class="truv-hero">
+    <div class="truv-hero-label">Truvision Academy by Nestway</div>
+    <h1>Learn <span>dispatch.</span><br>Build a career.</h1>
+    <p class="truv-hero-sub">Train online from anywhere. Real skills, real loads, real income.</p>
+    <div class="truv-badges">
+        <span class="truv-badge">100% Online</span>
+        <span class="truv-badge">Certificate of Completion</span>
+        <span class="truv-badge">Open Worldwide</span>
+        <span class="truv-badge">Live Mentorship</span>
+    </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="truv-curriculum">
+    <div class="truv-curriculum-inner">
+        <div class="truv-section-eyebrow">Curriculum</div>
+        <h2 class="truv-section-title">What you'll learn.</h2>
+        <div class="truv-modules">
+            <div class="truv-module">
+                <div class="truv-module-num">01</div>
+                <div>
+                    <div class="truv-module-title">Load Board Mastery</div>
+                    <p class="truv-module-desc">DAT, Truckstop, and beyond — filter, sort, and find the most profitable loads for any truck type and lane.</p>
+                </div>
+            </div>
+            <div class="truv-module">
+                <div class="truv-module-num">02</div>
+                <div>
+                    <div class="truv-module-title">Rate Negotiation &amp; Broker Communication</div>
+                    <p class="truv-module-desc">Scripts, real call simulations, and strategies to get the best rate and push back on low-ball offers.</p>
+                </div>
+            </div>
+            <div class="truv-module">
+                <div class="truv-module-num">03</div>
+                <div>
+                    <div class="truv-module-title">FMCSA Regulations &amp; Compliance</div>
+                    <p class="truv-module-desc">HOS, ELD, IFTA, and carrier safety ratings — protect your drivers and carriers from costly violations.</p>
+                </div>
+            </div>
+            <div class="truv-module">
+                <div class="truv-module-num">04</div>
+                <div>
+                    <div class="truv-module-title">Building Your Dispatcher Business</div>
+                    <p class="truv-module-desc">Land your first clients, set your fee structure, create contracts, and scale from one driver to a full roster.</p>
+                </div>
+            </div>
+            <div class="truv-module">
+                <div class="truv-module-num">05</div>
+                <div>
+                    <div class="truv-module-title">TMS Tools &amp; Back-Office Operations</div>
+                    <p class="truv-module-desc">Hands-on walkthroughs of TMS software, invoice tracking, TONU processing, and weekly settlements.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="truv-benefits">
+    <div class="truv-benefits-inner">
+        <div class="truv-section-eyebrow" style="color:#1AAFA0;">Why Truvision</div>
+        <h2 class="truv-section-title" style="color:#111;">Everything to succeed.</h2>
+        <div class="truv-benefits-grid">
+            <div class="truv-benefit-card">
+                <div class="truv-benefit-num">01</div>
+                <div class="truv-benefit-title">Practical Curriculum</div>
+                <p class="truv-benefit-desc">Built by active dispatchers — no theory fluff, just what actually works.</p>
+            </div>
+            <div class="truv-benefit-card">
+                <div class="truv-benefit-num">02</div>
+                <div class="truv-benefit-title">Learn at Your Pace</div>
+                <p class="truv-benefit-desc">Access all materials 24/7 from any device, in any time zone.</p>
+            </div>
+            <div class="truv-benefit-card">
+                <div class="truv-benefit-num">03</div>
+                <div class="truv-benefit-title">Live Mentorship</div>
+                <p class="truv-benefit-desc">Weekly Q&amp;A calls with Nestway's senior dispatchers. Real answers.</p>
+            </div>
+            <div class="truv-benefit-card">
+                <div class="truv-benefit-num">04</div>
+                <div class="truv-benefit-title">Certificate</div>
+                <p class="truv-benefit-desc">Earn a Truvision Academy certificate to show clients your credentials.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ENROLL -->
+<section class="truv-enroll">
+    <div class="truv-enroll-inner">
+        <div>
+            <div class="truv-enroll-eyebrow">Enroll Today</div>
+            <h2 class="truv-enroll-title">Start your dispatching career.</h2>
+            <p class="truv-enroll-desc">Fill out the form — our team will reach out within 24 hours with enrollment details, pricing, and the next start date.</p>
+            <div class="truv-details">
+                <div class="truv-detail-item"><span class="truv-detail-dot">&bull;</span> Course duration: 4–6 weeks, fully self-paced</div>
+                <div class="truv-detail-item"><span class="truv-detail-dot">&bull;</span> Questions? Call us: <strong style="color:#fff;">(215) 770-2630</strong></div>
+                <div class="truv-detail-item"><span class="truv-detail-dot">&bull;</span> Or email: <strong style="color:#fff;">info@nestway.net</strong></div>
+            </div>
+        </div>
+        <div class="truv-form-card">
+            {% if success %}
+            <div class="truv-success">&#10003; Enrollment received! We'll reach out within 24 hours with next steps.</div>
+            {% endif %}
+            <div class="truv-form-title">Enroll Now</div>
+            <form method="POST" action="{% url 'truvision' %}">
+                {% csrf_token %}
+                <div class="truv-form-group">
+                    <label>Full Name *</label>
+                    <input type="text" name="name" placeholder="Your full name" required>
+                </div>
+                <div class="truv-form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                </div>
+                <div class="truv-form-group">
+                    <label>Phone</label>
+                    <input type="tel" name="phone" placeholder="+1 (555) 000-0000 or international">
+                </div>
+                <div class="truv-form-group">
+                    <label>Country</label>
+                    <input type="text" name="country" placeholder="e.g. USA, Uzbekistan, Germany...">
+                </div>
+                <div class="truv-form-group">
+                    <label>Dispatching Experience</label>
+                    <select name="experience_level">
+                        <option value="">Select your level</option>
+                        <option value="No experience">No experience — complete beginner</option>
+                        <option value="Some experience">Some exposure — self-taught basics</option>
+                        <option value="1-2 years">1–2 years dispatching</option>
+                        <option value="3+ years">3+ years professional</option>
+                    </select>
+                </div>
+                <div class="truv-form-group">
+                    <label>Message (optional)</label>
+                    <textarea name="message" placeholder="Your goals or questions..." rows="3"></textarea>
+                </div>
+                <button type="submit" class="truv-submit-btn">Enroll in Truvision Academy &rarr;</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

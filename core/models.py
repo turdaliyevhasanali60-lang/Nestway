@@ -29,6 +29,7 @@ class Service(models.Model):
     slug = models.SlugField(max_length=255, blank=True, null=True, unique=True)
     description = models.TextField()
     image = models.ImageField(upload_to='services/', blank=True, null=True)
+    image_home = models.ImageField(upload_to='services/', blank=True, null=True, verbose_name="Homepage Image")
     order = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
 
@@ -76,10 +77,20 @@ class BlogPost(models.Model):
         return self.title
 
 class ContactLead(models.Model):
+    LEAD_TYPE_CHOICES = [
+        ('general', 'General Contact'),
+        ('company_driver', 'Company Driver Application'),
+        ('owner_operator', 'Owner Operator Application'),
+        ('investor', 'Truck Investor Program'),
+        ('academy', 'Truvision Academy Enrollment'),
+    ]
     name = models.CharField(max_length=255)
     email = models.EmailField()
     phone = models.CharField(max_length=50, blank=True)
     message = models.TextField()
+    lead_type = models.CharField(max_length=50, choices=LEAD_TYPE_CHOICES, default='general')
+    country = models.CharField(max_length=100, blank=True, null=True)
+    experience_level = models.CharField(max_length=50, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
 
@@ -194,5 +205,101 @@ class FAQ(models.Model):
 
     def __str__(self):
         return self.question
+
+
+class USTeamMember(models.Model):
+    """US-based staff shown in the USA Office section of the About page."""
+    name = models.CharField(max_length=255)
+    role = models.CharField(max_length=255)
+    bio = models.TextField(blank=True)
+    image = models.ImageField(upload_to='us_team/', blank=True, null=True)
+    order = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = "US Team Member"
+        verbose_name_plural = "US Team Members"
+
+    def __str__(self):
+        return f"{self.name} — {self.role}"
+
+
+class Award(models.Model):
+    """Logistics awards or accolades won by the company."""
+    title = models.CharField(max_length=255)
+    issuer = models.CharField(max_length=255)
+    year = models.CharField(max_length=10, blank=True)
+    description = models.TextField(blank=True)
+    icon_name = models.CharField(
+        max_length=50, 
+        default='award',
+        help_text="Name of icon to display, e.g. 'award', 'shield', 'star', 'truck'"
+    )
+    order = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = "Award"
+        verbose_name_plural = "Awards"
+
+    def __str__(self):
+        return f"{self.title} ({self.year})"
+
+
+class PartnerReview(models.Model):
+    """Testimonials specifically from brokers, shippers, and key partners."""
+    quote = models.TextField()
+    author_name = models.CharField(max_length=255)
+    company_name = models.CharField(max_length=255, blank=True)
+    relationship = models.CharField(
+        max_length=100, 
+        blank=True, 
+        help_text="e.g. Primary Broker, Major Shipper"
+    )
+    initials = models.CharField(max_length=4, blank=True)
+    order = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = "Partner Review"
+        verbose_name_plural = "Partner Reviews"
+
+    def __str__(self):
+        company = f" ({self.company_name})" if self.company_name else ""
+        return f"{self.author_name}{company} — {self.relationship}"
+
+    def save(self, *args, **kwargs):
+        if not self.initials and self.author_name:
+            parts = self.author_name.split()
+            self.initials = ''.join(p[0].upper() for p in parts if p)[:4]
+        super().save(*args, **kwargs)
+
+
+class DriverRequirement(models.Model):
+    """Hiring requirements shown on the Careers page."""
+    DRIVER_TYPE_CHOICES = [
+        ('company', 'Company Drivers only'),
+        ('owner_operator', 'Owner Operators only'),
+        ('both', 'Both categories'),
+    ]
+    requirement_text = models.CharField(max_length=500)
+    driver_type = models.CharField(
+        max_length=50,
+        choices=DRIVER_TYPE_CHOICES,
+        default='both'
+    )
+    order = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = "Driver Requirement"
+        verbose_name_plural = "Driver Requirements"
+
+    def __str__(self):
+        return f"[{self.get_driver_type_display()}] {self.requirement_text}"
 
 
