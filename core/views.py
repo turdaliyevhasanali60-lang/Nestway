@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.core.cache import cache
 from .models import (
-    SiteSettings, Service, BlogPost, ContactLead, AboutPage, NotificationEmail, Testimonial, FAQ,
+    SiteSettings, Service, BlogPost, ContactLead, AboutPage, AcademyPage, NotificationEmail, Testimonial, FAQ,
     USTeamMember, Award, PartnerReview, DriverRequirement
 )
 from .telegram_bot import send_telegram_lead
@@ -113,15 +113,16 @@ def contact(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         phone = request.POST.get('phone', '')
-        message = request.POST.get('message')
+        message = request.POST.get('message', 'Requested free consultation / callback.')
+        lead_type = request.POST.get('lead_type', 'general')
         
-        if name and email and message:
+        if name and email:
             lead = ContactLead.objects.create(
                 name=name,
                 email=email,
                 phone=phone,
                 message=message,
-                lead_type='general'
+                lead_type=lead_type
             )
             
             # Send Telegram Bot notification
@@ -148,6 +149,7 @@ def contact(request):
                             f"<p><strong>Name:</strong> {name}</p>"
                             f"<p><strong>Email:</strong> {email}</p>"
                             f"<p><strong>Phone:</strong> {phone or 'N/A'}</p>"
+                            f"<p><strong>Category/Role:</strong> {lead.get_lead_type_display()}</p>"
                             f"<p><strong>Message:</strong></p>"
                             f"<p>{message}</p>"
                         ),
@@ -236,8 +238,22 @@ def truvision(request):
             send_telegram_lead(lead)
             
             success = True
+
+    # Fetch dynamic academy page content
+    academy = cache.get('academy_page')
+    if academy is None:
+        academy = AcademyPage.load()
+        cache.set('academy_page', academy, 86400)
+
+    modules = academy.modules.all()
+    benefits = academy.benefits.all()
             
-    return render(request, 'truvision.html', {'success': success})
+    return render(request, 'truvision.html', {
+        'success': success,
+        'academy': academy,
+        'modules': modules,
+        'benefits': benefits
+    })
 
 
 def awards(request):

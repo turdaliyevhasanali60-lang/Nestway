@@ -9,7 +9,7 @@ from unfold.admin import ModelAdmin, TabularInline
 
 from .models import (
     SiteSettings, Service, ServiceFeature, BlogPost, ContactLead,
-    AboutPage, NotificationEmail, Testimonial, FAQ,
+    AboutPage, AcademyPage, AcademyModule, AcademyBenefit, NotificationEmail, Testimonial, FAQ,
     USTeamMember, Award, PartnerReview, DriverRequirement
 )
 
@@ -312,6 +312,42 @@ class AboutPageAdmin(ModelAdmin):
     def changelist_view(self, request, extra_context=None):
         about = AboutPage.load()
         url = reverse('admin:core_aboutpage_change', args=[about.pk])
+        return HttpResponseRedirect(url)
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+class AcademyModuleInline(TabularInline):
+    model = AcademyModule
+    extra = 1
+    fields = ('order', 'title', 'description')
+
+
+class AcademyBenefitInline(TabularInline):
+    model = AcademyBenefit
+    extra = 1
+    fields = ('order', 'title', 'description')
+
+
+@admin.register(AcademyPage)
+class AcademyPageAdmin(ModelAdmin):
+    fieldsets = (
+        ('Hero Section', {
+            'fields': ('hero_label', 'hero_title', 'hero_subtitle'),
+        }),
+        ('Enrollment Info', {
+            'fields': ('course_duration', 'phone', 'email'),
+        }),
+    )
+    inlines = [AcademyModuleInline, AcademyBenefitInline]
+
+    def changelist_view(self, request, extra_context=None):
+        academy = AcademyPage.load()
+        url = reverse('admin:core_academypage_change', args=[academy.pk])
         return HttpResponseRedirect(url)
 
     def has_add_permission(self, request):

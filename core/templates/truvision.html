@@ -359,15 +359,9 @@
 
 <!-- HERO -->
 <section class="truv-hero">
-    <div class="truv-hero-label">Truvision Academy by Nestway</div>
-    <h1>Learn <span>dispatch.</span><br>Build a career.</h1>
-    <p class="truv-hero-sub">Train online from anywhere. Real skills, real loads, real income.</p>
-    <div class="truv-badges">
-        <span class="truv-badge">100% Online</span>
-        <span class="truv-badge">Certificate of Completion</span>
-        <span class="truv-badge">Open Worldwide</span>
-        <span class="truv-badge">Live Mentorship</span>
-    </div>
+    <div class="truv-hero-label">{{ academy.hero_label|default:"Truvision Academy by Nestway" }}</div>
+    <h1>{{ academy.hero_title|safe|default:"Learn <span>dispatch.</span><br>Build a career." }}</h1>
+    <p class="truv-hero-sub">{{ academy.hero_subtitle|default:"Train online from anywhere. Real skills, real loads, real income." }}</p>
 </section>
 
 <!-- CURRICULUM -->
@@ -376,6 +370,15 @@
         <div class="truv-section-eyebrow">Curriculum</div>
         <h2 class="truv-section-title">What you'll learn.</h2>
         <div class="truv-modules">
+            {% for m in modules %}
+            <div class="truv-module">
+                <div class="truv-module-num">{{ forloop.counter|stringformat:"02d" }}</div>
+                <div>
+                    <div class="truv-module-title">{{ m.title }}</div>
+                    <p class="truv-module-desc">{{ m.description }}</p>
+                </div>
+            </div>
+            {% empty %}
             <div class="truv-module">
                 <div class="truv-module-num">01</div>
                 <div>
@@ -411,6 +414,7 @@
                     <p class="truv-module-desc">Hands-on walkthroughs of TMS software, invoice tracking, TONU processing, and weekly settlements.</p>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -421,6 +425,13 @@
         <div class="truv-section-eyebrow" style="color:#1AAFA0;">Why Truvision</div>
         <h2 class="truv-section-title" style="color:#111;">Everything to succeed.</h2>
         <div class="truv-benefits-grid">
+            {% for b in benefits %}
+            <div class="truv-benefit-card">
+                <div class="truv-benefit-num">{{ forloop.counter|stringformat:"02d" }}</div>
+                <div class="truv-benefit-title">{{ b.title }}</div>
+                <p class="truv-benefit-desc">{{ b.description }}</p>
+            </div>
+            {% empty %}
             <div class="truv-benefit-card">
                 <div class="truv-benefit-num">01</div>
                 <div class="truv-benefit-title">Practical Curriculum</div>
@@ -441,6 +452,7 @@
                 <div class="truv-benefit-title">Certificate</div>
                 <p class="truv-benefit-desc">Earn a Truvision Academy certificate to show clients your credentials.</p>
             </div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -453,9 +465,9 @@
             <h2 class="truv-enroll-title">Start your dispatching career.</h2>
             <p class="truv-enroll-desc">Fill out the form — our team will reach out within 24 hours with enrollment details, pricing, and the next start date.</p>
             <div class="truv-details">
-                <div class="truv-detail-item"><span class="truv-detail-dot">&bull;</span> Course duration: 4–6 weeks, fully self-paced</div>
-                <div class="truv-detail-item"><span class="truv-detail-dot">&bull;</span> Questions? Call us: <strong style="color:#fff;">(215) 770-2630</strong></div>
-                <div class="truv-detail-item"><span class="truv-detail-dot">&bull;</span> Or email: <strong style="color:#fff;">info@nestway.net</strong></div>
+                <div class="truv-detail-item"><span class="truv-detail-dot">&bull;</span> {{ academy.course_duration|default:"Course duration: 4–6 weeks, fully self-paced" }}</div>
+                <div class="truv-detail-item"><span class="truv-detail-dot">&bull;</span> Questions? Call us: <strong style="color:#fff;">{{ academy.phone|default:"(215) 770-2630" }}</strong></div>
+                <div class="truv-detail-item"><span class="truv-detail-dot">&bull;</span> Or email: <strong style="color:#fff;">{{ academy.email|default:"info@nestway.net" }}</strong></div>
             </div>
         </div>
         <div class="truv-form-card">

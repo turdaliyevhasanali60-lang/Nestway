@@ -79,8 +79,9 @@ class BlogPost(models.Model):
 class ContactLead(models.Model):
     LEAD_TYPE_CHOICES = [
         ('general', 'General Contact'),
-        ('company_driver', 'Company Driver Application'),
-        ('owner_operator', 'Owner Operator Application'),
+        ('company_driver', 'Company Driver'),
+        ('owner_operator', 'Owner Operator'),
+        ('company_owner', 'Company Owner'),
         ('investor', 'Truck Investor Program'),
         ('academy', 'Truvision Academy Enrollment'),
     ]
@@ -165,6 +166,63 @@ class AboutPage(models.Model):
     def load(cls):
         obj, created = cls.objects.get_or_create(pk=1)
         return obj
+
+
+class AcademyPage(models.Model):
+    """Singleton model for the Truvision Academy page content."""
+    hero_label = models.CharField(max_length=255, default="Truvision Academy by Nestway")
+    hero_title = models.CharField(max_length=255, default="Learn dispatch.<br>Build a career.")
+    hero_subtitle = models.TextField(default="Train online from anywhere. Real skills, real loads, real income.")
+    
+    course_duration = models.CharField(max_length=255, default="Course duration: 4–6 weeks, fully self-paced")
+    phone = models.CharField(max_length=50, default="(215) 770-2630")
+    email = models.EmailField(default="info@nestway.net")
+
+    class Meta:
+        verbose_name = "Academy Page"
+        verbose_name_plural = "Academy Page"
+
+    def __str__(self):
+        return "Academy Page"
+
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super(AcademyPage, self).save(*args, **kwargs)
+
+    @classmethod
+    def load(cls):
+        obj, created = cls.objects.get_or_create(pk=1)
+        return obj
+
+
+class AcademyModule(models.Model):
+    academy_page = models.ForeignKey(AcademyPage, on_delete=models.CASCADE, related_name='modules')
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = "Curriculum Module"
+        verbose_name_plural = "Curriculum Modules"
+
+    def __str__(self):
+        return f"Module {self.order}: {self.title}"
+
+
+class AcademyBenefit(models.Model):
+    academy_page = models.ForeignKey(AcademyPage, on_delete=models.CASCADE, related_name='benefits')
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = "Academy Benefit"
+        verbose_name_plural = "Academy Benefits"
+
+    def __str__(self):
+        return self.title
 
 
 class Testimonial(models.Model):

@@ -33,6 +33,7 @@
         margin-bottom: 8px;
     }
     .con-form-group input,
+    .con-form-group select,
     .con-form-group textarea {
         width: 100%;
         background: #ffffff;
@@ -47,6 +48,7 @@
         box-sizing: border-box;
     }
     .con-form-group input:focus,
+    .con-form-group select:focus,
     .con-form-group textarea:focus { border-color: #000000; }
     .con-form-group input::placeholder,
     .con-form-group textarea::placeholder { color: #A0AEC0; }
@@ -153,12 +155,21 @@
                             <input type="text" name="name" id="name" placeholder="John Smith" required>
                         </div>
                         <div class="con-form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" name="phone" id="phone" placeholder="+1 (555) 000-0000" required>
+                        </div>
+                        <div class="con-form-group">
                             <label for="email">Email Address *</label>
                             <input type="email" name="email" id="email" placeholder="john@email.com" required>
                         </div>
                         <div class="con-form-group">
-                            <label for="phone">Phone Number (Optional)</label>
-                            <input type="tel" name="phone" id="phone" placeholder="+1 (555) 000-0000">
+                            <label for="lead_type">I am a *</label>
+                            <select name="lead_type" id="lead_type" required>
+                                <option value="" disabled selected>Select your role...</option>
+                                <option value="company_driver">Company driver</option>
+                                <option value="owner_operator">Owner operator</option>
+                                <option value="company_owner">Company owner</option>
+                            </select>
                         </div>
                         <div class="con-form-group">
                             <label for="message">Message *</label>
