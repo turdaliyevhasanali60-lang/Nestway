@@ -28,7 +28,7 @@
     flex-shrink: 0;
     width: 2.75rem;
     height: 2.75rem;
-    border-radius: 0.75rem;
+    border-radius: 8px;
     background-color: #008B8B;
     display: flex;
     align-items: center;
@@ -71,7 +71,7 @@
     font-size: 1.25rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border-radius: 1rem;
+    border-radius: 8px;
     box-shadow: 0 20px 40px rgba(244, 162, 89, 0.3);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: inline-block;
@@ -359,7 +359,7 @@ html, body {
     textarea {
         font-size: 16px !important; /* Prevents auto-zoom on iOS */
         min-height: 48px;
-        border-radius: 8px !important;
+        border-radius: 6px !important;
         padding: 12px 16px !important;
         border: 1px solid rgba(0, 0, 0, 0.15) !important;
         background-color: #ffffff !important;

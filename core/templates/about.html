@@ -126,7 +126,7 @@
     .stat-item {
         background: rgba(0,0,0,0.03);
         border: 1px solid rgba(0,0,0,0.08);
-        border-radius: 16px;
+        border-radius: 10px;
         padding: 32px 24px;
     }
     .stat-num {
@@ -261,7 +261,7 @@
         height: 500px;
         object-fit: cover;
         object-position: top;
-        border-radius: 16px;
+        border-radius: 8px;
         border: 1px solid rgba(0,139,139,0.25);
     }
     @media (max-width: 900px) {
@@ -299,7 +299,7 @@
         font-weight: 700;
         font-size: 1rem;
         padding: 18px 48px;
-        border-radius: 999px;
+        border-radius: 8px;
         text-decoration: none;
         transition: background 0.2s, box-shadow 0.2s;
     }
@@ -427,7 +427,7 @@
                 gap: 20px;
                 background: rgba(255, 255, 255, 0.02);
                 border: 1px solid rgba(255, 255, 255, 0.05);
-                border-radius: 16px;
+                border-radius: 10px;
                 padding: 18px 24px;
                 max-width: 480px;
                 transition: border-color 0.25s, background 0.25s, transform 0.25s;
@@ -459,7 +459,7 @@
                 height: auto;
                 max-height: 500px;
                 object-fit: contain;
-                border-radius: 16px;
+                border-radius: 10px;
                 opacity: 0.9;
                 transition: transform 0.3s ease, opacity 0.3s ease;
                 display: block;
@@ -548,10 +548,10 @@
             <p style="font-family: 'Inter', sans-serif; font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 40px;">Book a free 15-minute consultation directly with our CEO — no pressure, just answers.</p>
             <form action="{% url 'contact' %}" method="POST" style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 24px;">
                 {% csrf_token %}
-                <input type="text" name="name" placeholder="Your Name" required style="flex: 1; min-width: 180px; padding: 14px 20px; border-radius: 10px; border: none; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none;">
-                <input type="tel" name="phone" placeholder="Phone Number" required style="flex: 1; min-width: 180px; padding: 14px 20px; border-radius: 10px; border: none; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none;">
-                <input type="email" name="email" placeholder="Email Address" required style="flex: 1; min-width: 180px; padding: 14px 20px; border-radius: 10px; border: none; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none;">
-                <select name="lead_type" required style="flex: 1; min-width: 180px; padding: 14px 20px; border-radius: 10px; border: none; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none; background: #ffffff; color: #1a1a1a; cursor: pointer;">
+                <input type="text" name="name" placeholder="Your Name" required style="flex: 1; min-width: 180px; padding: 14px 20px; border-radius: 6px; border: none; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none;">
+                <input type="tel" name="phone" placeholder="Phone Number" required style="flex: 1; min-width: 180px; padding: 14px 20px; border-radius: 6px; border: none; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none;">
+                <input type="email" name="email" placeholder="Email Address" required style="flex: 1; min-width: 180px; padding: 14px 20px; border-radius: 6px; border: none; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none;">
+                <select name="lead_type" required style="flex: 1; min-width: 180px; padding: 14px 20px; border-radius: 6px; border: none; font-family: 'Inter', sans-serif; font-size: 0.95rem; outline: none; background: #ffffff; color: #1a1a1a; cursor: pointer;">
                     <option value="" disabled selected>Select your role...</option>
                     <option value="company_driver">Company driver</option>
                     <option value="owner_operator">Owner operator</option>
