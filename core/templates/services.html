@@ -119,11 +119,40 @@
         flex-grow: 1;
     }
     @media (max-width: 767px) {
+        .services-list-section {
+            padding: 48px 12px !important;
+        }
+        .services-list-section .grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+            padding: 0 !important;
+        }
+        .srv-card {
+            border-radius: 12px !important;
+        }
         .srv-card-img-wrap {
-            height: 160px;
+            height: 120px !important;
         }
         .srv-card-content {
-            padding: 24px 24px 32px;
+            padding: 16px !important;
+        }
+        .srv-card-content h3 {
+            font-size: 1.25rem !important;
+            margin-bottom: 8px !important;
+        }
+        .srv-card-content p {
+            font-size: 0.82rem !important;
+            margin-bottom: 12px !important;
+            line-height: 1.4 !important;
+        }
+        .srv-card-content div {
+            font-size: 0.8rem !important;
+        }
+        /* Make the Ready to Roll CTA block span 2 columns on mobile */
+        .services-list-section .grid > div:last-child {
+            grid-column: span 2 !important;
+            padding: 28px 16px !important;
         }
     }
     
@@ -221,7 +250,7 @@
     <!-- 3. DETAILED BREAKDOWN -->
 
     <!-- 01 Dispatching — DARK -->
-    <section id="dispatching" class="m-section-pad px-6 md:px-10" style="background: #0a0a0a;">
+    <section id="dispatching-services" class="m-section-pad px-6 md:px-10" style="background: #0a0a0a;">
         <div style="max-width: 1000px; margin: 0 auto;">
             <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 16px;">01 &mdash; Dispatching</div>
             <h2 class="m-section-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; color: #ffffff; margin: 0 0 32px; letter-spacing: 0.02em;">Real-Time Load Matching</h2>
@@ -244,7 +273,7 @@
     </section>
 
     <!-- 02 Accounting — OFF-WHITE -->
-    <section id="accounting" class="m-section-pad px-6 md:px-10" style="background: #F0EBE1;">
+    <section id="accounting-services" class="m-section-pad px-6 md:px-10" style="background: #F0EBE1;">
         <div style="max-width: 1000px; margin: 0 auto;">
             <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 16px;">02 &mdash; Accounting</div>
             <h2 class="m-section-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; color: #111111; margin: 0 0 32px; letter-spacing: 0.02em;">Transparent Settlements</h2>
@@ -267,7 +296,7 @@
     </section>
 
     <!-- 03 Safety — DARK -->
-    <section id="safety" class="m-section-pad px-6 md:px-10" style="background: #0a0a0a;">
+    <section id="safety-services" class="m-section-pad px-6 md:px-10" style="background: #0a0a0a;">
         <div style="max-width: 1000px; margin: 0 auto;">
             <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 16px;">03 &mdash; Safety</div>
             <h2 class="m-section-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; color: #ffffff; margin: 0 0 32px; letter-spacing: 0.02em;">Compliance &amp; Protection</h2>
@@ -290,7 +319,7 @@
     </section>
 
     <!-- 04 Fleet — OFF-WHITE -->
-    <section id="fleet" class="m-section-pad px-6 md:px-10" style="background: #F0EBE1;">
+    <section id="fleet-management" class="m-section-pad px-6 md:px-10" style="background: #F0EBE1;">
         <div style="max-width: 1000px; margin: 0 auto;">
             <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 16px;">04 &mdash; Fleet Management</div>
             <h2 class="m-section-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; color: #111111; margin: 0 0 32px; letter-spacing: 0.02em;">Keeping You Rolling</h2>
@@ -313,7 +342,7 @@
     </section>
 
     <!-- 05 Consulting — DARK -->
-    <section id="consulting" class="m-section-pad px-6 md:px-10" style="background: #0a0a0a;">
+    <section id="business-consulting" class="m-section-pad px-6 md:px-10" style="background: #0a0a0a;">
         <div style="max-width: 1000px; margin: 0 auto;">
             <div style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: #1AAFA0; margin-bottom: 16px;">05 &mdash; Business Consulting</div>
             <h2 class="m-section-title" style="font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 5vw, 4rem); text-transform: uppercase; color: #ffffff; margin: 0 0 32px; letter-spacing: 0.02em;">Scale Your Operation</h2>
