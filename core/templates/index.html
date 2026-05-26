@@ -973,6 +973,57 @@
         .faq-answer { font-size: 0.9375rem; line-height: 1.6; } /* 15px min */
         .faq-btn { padding: 20px 0; min-height: 44px; }
     }
+
+    /* Still Unsure CTA */
+    .faq-still-unsure {
+        margin-top: 56px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+    }
+    .faq-unsure-text {
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 1.1rem;
+        color: rgba(0,0,0,0.8);
+    }
+    .faq-unsure-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #111111;
+        color: #ffffff !important;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 14px 32px;
+        border-radius: 999px;
+        text-decoration: none;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+        transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+    .faq-unsure-btn:hover {
+        background: #1AAFA0;
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(26,175,160,0.25);
+    }
+    @media (max-width: 640px) {
+        .faq-still-unsure {
+            margin-top: 40px;
+            gap: 10px;
+        }
+        .faq-unsure-text {
+            font-size: 1rem;
+        }
+        .faq-unsure-btn {
+            width: 100%;
+            padding: 14px 24px;
+            box-sizing: border-box;
+        }
+    }
 </style>
 
 {% if faqs %}
@@ -983,10 +1034,6 @@
             <div style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: #008B8B; margin-bottom: 24px;">FAQ</div>
             <h2 class="m-section-title" style="font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(2rem, 8vw, 3.5rem); line-height: 1.1; color: #111111; margin: 0 0 16px;">Got<br>Questions?</h2>
             <p class="m-body-text" style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.95rem; color: rgba(0,0,0,0.6); margin: 0 0 32px;">Everything drivers ask before they apply.</p>
-            <div>
-                <div style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 1rem; color: #111111; margin-bottom: 4px;">Still unsure?</div>
-                <a href="{% url 'contact' %}" style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.9rem; color: #008B8B; text-decoration: none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Talk to our team &rarr;</a>
-            </div>
         </div>
 
         <!-- RIGHT COLUMN -->
@@ -1005,6 +1052,12 @@
             </div>
             {% endfor %}
         </div>
+    </div>
+
+    <!-- Still Unsure CTA (centered below grid) -->
+    <div class="faq-still-unsure">
+        <div class="faq-unsure-text">Still unsure?</div>
+        <a href="{% url 'contact' %}" class="faq-unsure-btn">Talk to our team &rarr;</a>
     </div>
 </section>
 {% endif %}
