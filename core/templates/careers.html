@@ -362,23 +362,25 @@
 
     /* Phablet — enforce single column, 48px section padding */
     @media (max-width: 768px) {
-        /* Tabs: horizontally scrollable strip instead of stacking */
+        /* Tabs: vertical stack on mobile so all buttons are fully visible & clickable */
         .car-tabs-nav {
-            flex-direction: row;
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            border-radius: 10px;
+            flex-direction: column !important;
+            width: 100% !important;
+            border: 1.5px solid #111 !important;
+            border-radius: 10px !important;
+            overflow: hidden !important;
         }
-        .car-tabs-nav::-webkit-scrollbar { display: none; }
         .car-tab-btn {
-            flex-shrink: 0;
-            border-right: 1.5px solid #111;
-            border-bottom: none;
-            white-space: nowrap;
+            width: 100% !important;
+            border-right: none !important;
+            border-bottom: 1.5px solid #111 !important;
+            text-align: center !important;
+            padding: 14px 20px !important;
+            font-size: 0.9rem !important;
+            white-space: normal !important;
+            flex-shrink: 1 !important;
         }
-        .car-tab-btn:last-child { border-right: none; }
+        .car-tab-btn:last-child { border-bottom: none !important; }
     }
 
     /* Large mobile */
