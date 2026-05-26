@@ -53,7 +53,13 @@ def services(request):
     if services_list is None:
         services_list = list(Service.objects.filter(is_active=True))
         cache.set('active_services', services_list, 3600)  # 1 hour
-    return render(request, 'services.html', {'services': services_list})
+
+    faqs = cache.get('active_faqs')
+    if faqs is None:
+        faqs = list(FAQ.objects.filter(is_active=True))
+        cache.set('active_faqs', faqs, 3600)
+
+    return render(request, 'services.html', {'services': services_list, 'faqs': faqs})
 
 def about(request):
     about_page = cache.get('about_page')
