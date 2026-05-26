@@ -360,46 +360,67 @@
         .car-tabs-wrap { padding: 48px 16px 0; }
     }
 
+    /* Phablet — enforce single column, 48px section padding */
+    @media (max-width: 768px) {
+        /* Tabs: horizontally scrollable strip instead of stacking */
+        .car-tabs-nav {
+            flex-direction: row;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            border-radius: 10px;
+        }
+        .car-tabs-nav::-webkit-scrollbar { display: none; }
+        .car-tab-btn {
+            flex-shrink: 0;
+            border-right: 1.5px solid #111;
+            border-bottom: none;
+            white-space: nowrap;
+        }
+        .car-tab-btn:last-child { border-right: none; }
+    }
+
     /* Large mobile */
     @media (max-width: 640px) {
         /* Hero */
-        .car-hero { padding-top: 100px; padding-bottom: 56px; padding-left: 16px; padding-right: 16px; }
-        .car-hero h1 { font-size: clamp(1.9rem, 9vw, 2.8rem); }
-        .car-hero-sub { font-size: 0.9rem; }
+        .car-hero { padding-top: 100px; padding-bottom: 48px; padding-left: 16px; padding-right: 16px; }
+        .car-hero h1 { font-size: clamp(1.75rem, 8vw, 2.6rem); }
+        .car-hero-sub { font-size: 0.9375rem; line-height: 1.6; } /* 15px min */
 
         /* Tabs */
         .car-tabs-wrap { padding: 40px 16px 0; }
-        .car-tabs-nav { flex-direction: column; width: 100%; border-radius: 10px; }
-        .car-tab-btn { border-right: none; border-bottom: 1.5px solid #111; padding: 14px 20px; text-align: left; }
-        .car-tab-btn:last-child { border-bottom: none; }
 
         /* Panel */
-        .car-panel-grid { padding: 40px 16px 56px; gap: 32px; }
-        .car-panel-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
-        .car-panel-sub { font-size: 0.88rem; }
+        .car-panel-grid { padding: 40px 16px 48px; gap: 28px; }
+        .car-panel-title { font-size: clamp(1.55rem, 7vw, 2rem); }
+        .car-panel-sub { font-size: 0.9375rem; line-height: 1.6; } /* 15px min */
+        .car-perk { font-size: 0.9375rem; line-height: 1.55; } /* 15px min */
+        .car-req-item { font-size: 0.9375rem; line-height: 1.55; } /* 15px min */
+        .car-income-row { font-size: 0.9375rem; } /* 15px min */
 
         /* Form */
-        .car-form-card { padding: 24px 20px; box-shadow: 2px 2px 0 #111; }
+        .car-form-card { padding: 20px 16px; box-shadow: 2px 2px 0 #111; border-radius: 14px; }
         .car-form-title { font-size: 1.3rem; }
-        .car-submit-btn { min-height: 48px; font-size: 0.8rem; }
+        .car-submit-btn { min-height: 48px; font-size: 0.9rem; width: 100%; }
 
         /* Requirements */
-        .car-req-box { padding: 18px; }
-        .car-income-box { padding: 18px; }
+        .car-req-box { padding: 16px; }
+        .car-income-box { padding: 16px; margin-top: 16px; }
 
         /* Contact */
-        .car-contact { padding: 56px 16px; }
-        .car-contact-headline { font-size: clamp(1.6rem, 7vw, 2.2rem); margin-bottom: 32px; }
+        .car-contact { padding: 48px 16px; }
+        .car-contact-headline { font-size: clamp(1.55rem, 7vw, 2rem); margin-bottom: 28px; }
         .car-contact-grid { border-radius: 8px; }
-        .car-contact-item { padding: 20px 18px; }
-        .car-contact-item-value { font-size: 0.92rem; }
+        .car-contact-item { padding: 18px 16px; }
+        .car-contact-item-value { font-size: 0.9375rem; } /* 15px min */
     }
 
     /* Small mobile */
     @media (max-width: 400px) {
-        .car-hero h1 { font-size: 1.75rem; }
-        .car-panel-title { font-size: 1.5rem; }
-        .car-form-card { padding: 20px 16px; }
+        .car-hero h1 { font-size: 1.65rem; }
+        .car-panel-title { font-size: 1.45rem; }
+        .car-form-card { padding: 16px; }
     }
 
     /* iOS input zoom prevention */

@@ -248,49 +248,49 @@
 
     /* ── RESPONSIVE ───────────────────────────────────────────────── */
 
-    /* Tablet */
+    /* Tablet — collapse grids to single column */
     @media (max-width: 900px) {
         .aw-grid { grid-template-columns: 1fr; }
         .aw-reviews-grid { grid-template-columns: 1fr; }
         .aw-awards-inner, .aw-reviews-inner { max-width: 100%; }
     }
 
-    /* Large mobile */
+    /* Large mobile — 48px section padding, 15px+ body text */
     @media (max-width: 640px) {
         /* Hero */
-        .aw-hero { padding-top: 100px; padding-bottom: 56px; padding-left: 16px; padding-right: 16px; }
-        .aw-hero h1 { font-size: clamp(1.9rem, 9vw, 2.8rem); }
-        .aw-hero-sub { font-size: 0.9rem; }
+        .aw-hero { padding-top: 100px; padding-bottom: 48px; padding-left: 16px; padding-right: 16px; }
+        .aw-hero h1 { font-size: clamp(1.75rem, 8vw, 2.6rem); }
+        .aw-hero-sub { font-size: 0.9375rem; line-height: 1.6; } /* 15px min */
 
         /* Awards */
-        .aw-awards-section { padding: 56px 16px; }
-        .aw-section-title { font-size: clamp(1.7rem, 7vw, 2.4rem); margin-bottom: 32px; }
-        .aw-card { padding: 22px 18px; }
+        .aw-awards-section { padding: 48px 16px; }
+        .aw-section-title { font-size: clamp(1.6rem, 7vw, 2.2rem); margin-bottom: 28px; }
+        .aw-card { padding: 20px 16px; }
         .aw-card-year { font-size: 1.8rem; margin-bottom: 8px; }
-        .aw-card-title { font-size: 0.95rem; }
-        .aw-card-desc { font-size: 0.82rem; }
+        .aw-card-title { font-size: 1rem; }
+        .aw-card-desc { font-size: 0.9375rem; line-height: 1.65; } /* 15px min */
         .aw-grid { gap: 12px; }
 
         /* Reviews */
-        .aw-reviews-section { padding: 56px 16px; }
-        .aw-reviews-grid { gap: 12px; margin-top: 32px; }
-        .aw-review-card { padding: 24px 18px; }
-        .aw-review-quote { font-size: 0.88rem; line-height: 1.7; }
-        .aw-review-name { font-size: 0.88rem; }
-        .aw-review-meta { font-size: 0.74rem; }
-        .aw-stars { font-size: 0.82rem; letter-spacing: 1px; }
+        .aw-reviews-section { padding: 48px 16px; }
+        .aw-reviews-grid { gap: 12px; margin-top: 28px; }
+        .aw-review-card { padding: 20px 16px; }
+        .aw-review-quote { font-size: 0.9375rem; line-height: 1.7; } /* 15px min */
+        .aw-review-name { font-size: 0.9375rem; } /* 15px min */
+        .aw-review-meta { font-size: 0.8rem; }
+        .aw-stars { font-size: 0.85rem; letter-spacing: 1px; }
 
         /* CTA */
-        .aw-cta { padding: 64px 16px; }
-        .aw-cta-title { font-size: clamp(1.5rem, 6vw, 2rem); margin-bottom: 28px; }
-        .aw-cta-btn { padding: 14px 32px; font-size: 0.82rem; display: block; width: fit-content; margin: 0 auto; }
+        .aw-cta { padding: 48px 16px; }
+        .aw-cta-title { font-size: clamp(1.45rem, 6vw, 2rem); margin-bottom: 28px; }
+        .aw-cta-btn { padding: 14px 32px; font-size: 0.85rem; min-height: 48px; display: flex; align-items: center; width: fit-content; margin: 0 auto; }
     }
 
     /* Small mobile */
     @media (max-width: 400px) {
-        .aw-hero h1 { font-size: 1.75rem; }
-        .aw-card { padding: 18px 14px; }
-        .aw-review-card { padding: 20px 14px; }
+        .aw-hero h1 { font-size: 1.65rem; }
+        .aw-card { padding: 16px; }
+        .aw-review-card { padding: 18px 14px; }
         .aw-cta-btn { width: 100%; text-align: center; justify-content: center; }
     }
 </style>

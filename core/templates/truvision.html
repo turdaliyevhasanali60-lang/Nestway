@@ -306,46 +306,51 @@
         .truv-curriculum-inner { padding: 0; }
     }
 
-    /* Large mobile */
+    /* Large mobile — 48px section padding, 15px+ body text, 16px card padding */
+    @media (max-width: 768px) {
+        /* Force single column for benefit cards on mobile */
+        .truv-benefits-grid { grid-template-columns: 1fr !important; gap: 12px; }
+    }
+
     @media (max-width: 640px) {
         /* Hero */
-        .truv-hero { padding-top: 100px; padding-bottom: 56px; padding-left: 16px; padding-right: 16px; }
-        .truv-hero h1 { font-size: clamp(1.9rem, 9vw, 2.8rem); }
-        .truv-hero-sub { font-size: 0.9rem; margin-bottom: 28px; }
+        .truv-hero { padding-top: 100px; padding-bottom: 48px; padding-left: 16px; padding-right: 16px; }
+        .truv-hero h1 { font-size: clamp(1.75rem, 8vw, 2.6rem); }
+        .truv-hero-sub { font-size: 0.95rem; margin-bottom: 28px; line-height: 1.6; }
         .truv-badge { font-size: 0.72rem; padding: 5px 12px; }
         .truv-badges { gap: 6px; }
 
         /* Curriculum */
-        .truv-curriculum { padding: 56px 16px; }
-        .truv-section-title { font-size: clamp(1.7rem, 7vw, 2.4rem); margin-bottom: 32px; }
-        .truv-module { grid-template-columns: 48px 1fr; gap: 16px; padding: 22px 0; }
-        .truv-module-num { font-size: 1.1rem; }
-        .truv-module-title { font-size: 0.95rem; }
-        .truv-module-desc { font-size: 0.84rem; }
+        .truv-curriculum { padding: 48px 16px; }
+        .truv-section-title { font-size: clamp(1.6rem, 7vw, 2.2rem); margin-bottom: 28px; }
+        .truv-module { grid-template-columns: 44px 1fr; gap: 14px; padding: 20px 0; }
+        .truv-module-num { font-size: 1rem; }
+        .truv-module-title { font-size: 1rem; }
+        .truv-module-desc { font-size: 0.9375rem; line-height: 1.6; } /* 15px min */
 
         /* Benefits */
-        .truv-benefits { padding: 56px 16px; }
-        .truv-benefits-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 32px; }
-        .truv-benefit-card { padding: 22px 18px; display: flex; align-items: flex-start; gap: 16px; }
+        .truv-benefits { padding: 48px 16px; }
+        .truv-benefits-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
+        .truv-benefit-card { padding: 16px; display: flex; align-items: flex-start; gap: 14px; }
         .truv-benefit-num { font-size: 1.4rem; margin-bottom: 0; flex-shrink: 0; min-width: 36px; }
-        .truv-benefit-title { font-size: 0.88rem; margin-bottom: 4px; }
-        .truv-benefit-desc { font-size: 0.8rem; }
+        .truv-benefit-title { font-size: 0.9375rem; margin-bottom: 4px; }
+        .truv-benefit-desc { font-size: 0.9375rem; line-height: 1.6; }
 
         /* Enroll */
-        .truv-enroll { padding: 56px 16px; }
-        .truv-enroll-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
-        .truv-enroll-desc { font-size: 0.88rem; margin-bottom: 24px; }
-        .truv-detail-item { font-size: 0.85rem; }
+        .truv-enroll { padding: 48px 16px; }
+        .truv-enroll-title { font-size: clamp(1.5rem, 7vw, 2rem); }
+        .truv-enroll-desc { font-size: 0.9375rem; margin-bottom: 24px; line-height: 1.6; }
+        .truv-detail-item { font-size: 0.9375rem; line-height: 1.55; }
 
         /* Form */
-        .truv-form-card { padding: 24px 20px; }
-        .truv-form-title { font-size: 1.3rem; }
-        .truv-submit-btn { min-height: 48px; font-size: 0.8rem; }
+        .truv-form-card { padding: 20px 16px; border-radius: 14px; }
+        .truv-form-title { font-size: 1.3rem; margin-bottom: 20px; }
+        .truv-submit-btn { min-height: 48px; font-size: 0.9rem; width: 100%; }
     }
 
     /* Small mobile */
     @media (max-width: 400px) {
-        .truv-hero h1 { font-size: 1.75rem; }
+        .truv-hero h1 { font-size: 1.65rem; }
         .truv-form-card { padding: 20px 16px; }
     }
 

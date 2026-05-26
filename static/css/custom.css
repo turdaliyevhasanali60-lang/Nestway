@@ -103,6 +103,13 @@
 body {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
+  overflow-x: hidden;
+}
+
+/* Prevent images from ever overflowing their container */
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 h1, h2, h3, .hero__display, .section-title {
@@ -290,8 +297,8 @@ html, body {
     
     /* Spacing & Layout Scale (Mobile) */
     .m-section-pad { 
-        padding-top: 64px !important; 
-        padding-bottom: 64px !important; 
+        padding-top: 48px !important; 
+        padding-bottom: 48px !important; 
     }
     .m-card-pad { 
         padding: 24px !important; 

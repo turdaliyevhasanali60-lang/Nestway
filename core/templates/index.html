@@ -465,11 +465,82 @@
         }
     }
     
+    /* Swipeable carousel layout for service cards on mobile/tablet (max-width: 768px) */
+    @media (max-width: 768px) {
+        .home-srv-container {
+            display: block !important;
+            width: 100% !important;
+        }
+        .home-srv-left-col {
+            display: block !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        .home-srv-list {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory !important;
+            gap: 16px !important;
+            padding: 8px 4px 20px 4px !important;
+            margin: 0 -16px !important; /* Bleed layout to screen edge */
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+            -webkit-overflow-scrolling: touch !important;
+            scrollbar-width: none !important; /* Firefox hide scrollbar */
+        }
+        .home-srv-list::-webkit-scrollbar {
+            display: none !important; /* Chrome/Safari/Opera hide scrollbar */
+        }
+        .home-srv-row {
+            flex: 0 0 280px !important;
+            width: 280px !important;
+            scroll-snap-align: start !important;
+            height: auto !important;
+        }
+        .home-srv-thumb {
+            height: 170px !important;
+        }
+    }
+
+    /* Carousel Dot Indicators */
+    .home-srv-carousel-dots {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 24px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .home-srv-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .home-srv-dot.active {
+        background: #1AAFA0;
+        width: 24px;
+        border-radius: 4px;
+    }
+    @media (max-width: 768px) {
+        .home-srv-carousel-dots {
+            display: flex;
+        }
+    }
+
     @media (max-width: 640px) {
-        .home-srv-section { padding: 64px 0; }
+        .home-srv-section { padding: 48px 0; }
         .home-srv-inner { padding: 0 16px; }
-        .home-srv-header { margin-bottom: 36px; }
-        .home-srv-headline { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+        .home-srv-header { margin-bottom: 32px; }
+        .home-srv-headline { font-size: clamp(1.7rem, 7vw, 2.2rem); }
     }
 
     /* Split Container */
@@ -513,20 +584,29 @@
 
         <div class="home-srv-container">
             <!-- Left Column: Services list rows -->
-            <div class="home-srv-list">
-                {% for s in services %}
-                <a href="{% url 'services' %}#{{ s.slug }}" class="home-srv-row" data-preview="{% if s.image_home %}{{ s.image_home.url }}{% elif s.image %}{{ s.image.url }}{% else %}{% static 'images/services/' %}{{ s.slug }}.png{% endif %}">
-                    <div class="home-srv-thumb">
-                        <img src="{% if s.image_home %}{{ s.image_home.url }}{% elif s.image %}{{ s.image.url }}{% else %}{% static 'images/services/' %}{{ s.slug }}.png{% endif %}" alt="{{ s.title }}">
-                    </div>
-                    <div class="home-srv-row-content">
-                        <div class="home-srv-num">{{ forloop.counter|stringformat:"02d" }}</div>
-                        <div class="home-srv-name">{{ s.title }}</div>
-                        <div class="home-srv-desc">{{ s.description }}</div>
-                        <div class="home-srv-row-arrow">Explore Service &rarr;</div>
-                    </div>
-                </a>
-                {% endfor %}
+            <div class="home-srv-left-col">
+                <div class="home-srv-list" id="home-srv-list">
+                    {% for s in services %}
+                    <a href="{% url 'services' %}#{{ s.slug }}" class="home-srv-row" data-preview="{% if s.image_home %}{{ s.image_home.url }}{% elif s.image %}{{ s.image.url }}{% else %}{% static 'images/services/' %}{{ s.slug }}.png{% endif %}">
+                        <div class="home-srv-thumb">
+                            <img src="{% if s.image_home %}{{ s.image_home.url }}{% elif s.image %}{{ s.image.url }}{% else %}{% static 'images/services/' %}{{ s.slug }}.png{% endif %}" alt="{{ s.title }}">
+                        </div>
+                        <div class="home-srv-row-content">
+                            <div class="home-srv-num">{{ forloop.counter|stringformat:"02d" }}</div>
+                            <div class="home-srv-name">{{ s.title }}</div>
+                            <div class="home-srv-desc">{{ s.description }}</div>
+                            <div class="home-srv-row-arrow">Explore Service &rarr;</div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+
+                <!-- Mobile Carousel Indicators -->
+                <div class="home-srv-carousel-dots">
+                    {% for s in services %}
+                    <button class="home-srv-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}" aria-label="Go to service {{ forloop.counter }}"></button>
+                    {% endfor %}
+                </div>
             </div>
 
             <!-- Right Column: Premium Image Previewer (Desktop only) -->
@@ -556,6 +636,63 @@
                             previewImg.src = nextSrc;
                             previewImg.style.opacity = "1";
                         }, 120);
+                    }
+                });
+            });
+        }
+
+        // Mobile Carousel logic
+        const scroller = document.getElementById("home-srv-list");
+        const dots = document.querySelectorAll(".home-srv-dot");
+        
+        if (scroller && dots.length > 0) {
+            const updateActiveDot = () => {
+                const scrollerRect = scroller.getBoundingClientRect();
+                let closestIndex = 0;
+                let minDistance = Infinity;
+
+                rows.forEach((card, index) => {
+                    const cardRect = card.getBoundingClientRect();
+                    const scrollerCenter = scrollerRect.left + scrollerRect.width / 2;
+                    const cardCenter = cardRect.left + cardRect.width / 2;
+                    const distance = Math.abs(cardCenter - scrollerCenter);
+
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        closestIndex = index;
+                    }
+                });
+
+                dots.forEach((dot, index) => {
+                    if (index === closestIndex) {
+                        dot.classList.add("active");
+                    } else {
+                        dot.classList.remove("active");
+                    }
+                });
+            };
+
+            let isScrolling = false;
+            scroller.addEventListener("scroll", function() {
+                if (!isScrolling) {
+                    window.requestAnimationFrame(function() {
+                        updateActiveDot();
+                        isScrolling = false;
+                    });
+                    isScrolling = true;
+                }
+            }, { passive: true });
+
+            dots.forEach(dot => {
+                dot.addEventListener("click", function() {
+                    const index = parseInt(this.getAttribute("data-index"));
+                    const card = rows[index];
+                    if (card) {
+                        card.scrollIntoView({
+                            behavior: "smooth",
+                            block: "nearest",
+                            inline: "center"
+                        });
                     }
                 });
             });
@@ -830,6 +967,12 @@
             padding: 64px 24px !important;
         }
     }
+    @media (max-width: 640px) {
+        .faq-section { padding: 48px 16px !important; }
+        .faq-q-text { font-size: 1rem; }
+        .faq-answer { font-size: 0.9375rem; line-height: 1.6; } /* 15px min */
+        .faq-btn { padding: 20px 0; min-height: 44px; }
+    }
 </style>
 
 {% if faqs %}
@@ -963,6 +1106,10 @@
         .cta-trust-dot {
             display: none;
         }
+    }
+    @media (max-width: 640px) {
+        .cta-section { padding: 48px 16px !important; }
+        .cta-button { min-height: 48px; width: 100%; display: flex; align-items: center; justify-content: center; }
     }
 </style>
 
