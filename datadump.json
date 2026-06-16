@@ -503,5 +503,299 @@
     "is_active": false,
     "created_at": "2026-05-17T09:03:11.370Z"
   }
+},
+{
+  "model": "core.usteammember",
+  "pk": 1,
+  "fields": {
+    "name": "Marcus T.",
+    "role": "Director of US Operations",
+    "bio": "Over 15 years in the trucking industry across the Eastern US corridor. Marcus oversees all dispatch coordination, carrier relations, and compliance across our US-based fleet.",
+    "image": "us_team/marcus.png",
+    "order": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "core.usteammember",
+  "pk": 2,
+  "fields": {
+    "name": "Angela R.",
+    "role": "Driver Success Manager",
+    "bio": "Angela is the first point of contact for all driver onboarding. With a background in logistics and HR, she ensures every driver feels supported from day one on the road.",
+    "image": "us_team/angela.png",
+    "order": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "core.usteammember",
+  "pk": 3,
+  "fields": {
+    "name": "James O.",
+    "role": "Fleet Safety & Compliance",
+    "bio": "FMCSA-certified safety specialist with deep expertise in DOT regulations, HOS compliance, and carrier risk management. James keeps every truck running clean and compliant.",
+    "image": "us_team/james.png",
+    "order": 3,
+    "is_active": true
+  }
+},
+{
+  "model": "core.usteammember",
+  "pk": 4,
+  "fields": {
+    "name": "Carla M.",
+    "role": "Freight Coordinator",
+    "bio": "Carla works directly with brokers and shippers to secure premium loads for our drivers. Her relationships with top-tier carriers ensure consistent high-paying freight for our fleet.",
+    "image": "us_team/carla.png",
+    "order": 4,
+    "is_active": true
+  }
+},
+{
+  "model": "core.award",
+  "pk": 1,
+  "fields": {
+    "title": "Top Dispatch Service",
+    "issuer": "American Trucking Excellence Awards",
+    "year": "2025",
+    "description": "Recognized as one of the top-performing dispatch services in the continental US for outstanding carrier support and load efficiency.",
+    "icon_name": "award",
+    "order": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "core.award",
+  "pk": 2,
+  "fields": {
+    "title": "FMCSA Safety Standard Certified",
+    "issuer": "Federal Motor Carrier Safety Administration",
+    "year": "2024",
+    "description": "Achieved full FMCSA compliance certification, demonstrating our unwavering commitment to road safety and regulatory excellence.",
+    "icon_name": "shield",
+    "order": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "core.award",
+  "pk": 3,
+  "fields": {
+    "title": "Premium Carrier Alliance",
+    "issuer": "DAT Freight & Analytics",
+    "year": "2024",
+    "description": "Awarded Premium Carrier status on DAT One — recognizing our consistently high performance scores, on-time delivery rate, and broker satisfaction ratings.",
+    "icon_name": "star",
+    "order": 3,
+    "is_active": true
+  }
+},
+{
+  "model": "core.award",
+  "pk": 4,
+  "fields": {
+    "title": "Outstanding Partner of the Year",
+    "issuer": "Coyote Logistics",
+    "year": "2023",
+    "description": "Selected as Outstanding Carrier Partner for exceptional load acceptance rates, professional communication, and consistent on-time performance across high-volume lanes.",
+    "icon_name": "truck",
+    "order": 4,
+    "is_active": true
+  }
+},
+{
+  "model": "core.partnerreview",
+  "pk": 1,
+  "fields": {
+    "quote": "Working with Khamidjon and the Nestway team has been a game changer for our freight network. Their dispatchers are professional, fast, and never leave a load hanging. We've moved hundreds of loads together and the reliability is unmatched.",
+    "author_name": "David K.",
+    "company_name": "BlueStar Brokerage LLC",
+    "relationship": "Primary Broker Partner",
+    "initials": "DK",
+    "order": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "core.partnerreview",
+  "pk": 2,
+  "fields": {
+    "quote": "Kim runs a tight, professional operation. Every time we book with Nestway, the driver shows up on time, communicates clearly, and delivers without issues. In this industry, that kind of reliability is rare — and we are proud to call them partners.",
+    "author_name": "Sarah M.",
+    "company_name": "FastLane Freight Solutions",
+    "relationship": "Freight Broker",
+    "initials": "SM",
+    "order": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "core.partnerreview",
+  "pk": 3,
+  "fields": {
+    "quote": "I've worked with dozens of dispatch services over the years. Nestway is in a different league. Kim personally oversees complex loads and their team is available around the clock. Highly recommend for any broker looking for a dependable carrier.",
+    "author_name": "Robert T.",
+    "company_name": "Keystone Logistics Group",
+    "relationship": "Senior Freight Broker",
+    "initials": "RT",
+    "order": 3,
+    "is_active": true
+  }
+},
+{
+  "model": "core.partnerreview",
+  "pk": 4,
+  "fields": {
+    "quote": "Nestway's drivers are always well-prepared, compliant, and professional. Their back-office support team under Khamidjon's leadership makes booking easy and stress-free. One of our top-rated carrier partners year over year.",
+    "author_name": "Linda P.",
+    "company_name": "Coyote Logistics",
+    "relationship": "Carrier Relationship Manager",
+    "initials": "LP",
+    "order": 4,
+    "is_active": true
+  }
+},
+{
+  "model": "core.driverrequirement",
+  "pk": 1,
+  "fields": {
+    "requirement_text": "Valid Class A Commercial Driver's License (CDL)",
+    "driver_type": "both",
+    "order": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "core.driverrequirement",
+  "pk": 2,
+  "fields": {
+    "requirement_text": "Clean Motor Vehicle Record (MVR) for the past 3 years",
+    "driver_type": "both",
+    "order": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "core.driverrequirement",
+  "pk": 3,
+  "fields": {
+    "requirement_text": "Minimum 23 years of age",
+    "driver_type": "both",
+    "order": 3,
+    "is_active": true
+  }
+},
+{
+  "model": "core.driverrequirement",
+  "pk": 4,
+  "fields": {
+    "requirement_text": "No DUI/DWI convictions in the past 5 years",
+    "driver_type": "both",
+    "order": 4,
+    "is_active": true
+  }
+},
+{
+  "model": "core.driverrequirement",
+  "pk": 5,
+  "fields": {
+    "requirement_text": "Able to pass DOT pre-employment drug screen",
+    "driver_type": "both",
+    "order": 5,
+    "is_active": true
+  }
+},
+{
+  "model": "core.driverrequirement",
+  "pk": 6,
+  "fields": {
+    "requirement_text": "Minimum 1 year OTR or regional driving experience",
+    "driver_type": "company",
+    "order": 6,
+    "is_active": true
+  }
+},
+{
+  "model": "core.driverrequirement",
+  "pk": 7,
+  "fields": {
+    "requirement_text": "Valid Medical Examiner's Certificate (DOT Physical)",
+    "driver_type": "company",
+    "order": 7,
+    "is_active": true
+  }
+},
+{
+  "model": "core.driverrequirement",
+  "pk": 8,
+  "fields": {
+    "requirement_text": "No more than 2 preventable accidents in the last 3 years",
+    "driver_type": "company",
+    "order": 8,
+    "is_active": true
+  }
+},
+{
+  "model": "core.driverrequirement",
+  "pk": 9,
+  "fields": {
+    "requirement_text": "Minimum 2 years OTR experience as a professional driver",
+    "driver_type": "owner_operator",
+    "order": 6,
+    "is_active": true
+  }
+},
+{
+  "model": "core.driverrequirement",
+  "pk": 10,
+  "fields": {
+    "requirement_text": "Truck must be 2015 model year or newer",
+    "driver_type": "owner_operator",
+    "order": 7,
+    "is_active": true
+  }
+},
+{
+  "model": "core.driverrequirement",
+  "pk": 11,
+  "fields": {
+    "requirement_text": "Must carry $1M liability and $100K cargo insurance",
+    "driver_type": "owner_operator",
+    "order": 8,
+    "is_active": true
+  }
+},
+{
+  "model": "core.driverrequirement",
+  "pk": 12,
+  "fields": {
+    "requirement_text": "Active MC/DOT authority or willing to lease under Nestway's",
+    "driver_type": "owner_operator",
+    "order": 9,
+    "is_active": true
+  }
+},
+{
+  "model": "core.driverrequirement",
+  "pk": 13,
+  "fields": {
+    "requirement_text": "ELD device compliant (Samsara or Motive preferred)",
+    "driver_type": "owner_operator",
+    "order": 10,
+    "is_active": true
+  }
+},
+{
+  "model": "core.academypage",
+  "pk": 1,
+  "fields": {
+    "hero_label": "Truvision Academy by Nestway",
+    "hero_title": "Learn dispatch.<br>Build a career.",
+    "hero_subtitle": "Train online from anywhere. Real skills, real loads, real income.",
+    "course_duration": "Course duration: 4–6 weeks, fully self-paced",
+    "phone": "(215) 770-2630",
+    "email": "info@nestway.net"
+  }
 }
 ]
