@@ -24,8 +24,16 @@ SECRET_KEY = env('SECRET_KEY', default='django-insecure-default-key')
 
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['nestway-production.up.railway.app', 'nestway-demo-production.up.railway.app', 'localhost', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['https://nestway-production.up.railway.app', 'https://nestway-demo-production.up.railway.app']
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[
+    'nestway-production.up.railway.app', 
+    'nestway-demo-production.up.railway.app', 
+    'localhost', 
+    '127.0.0.1'
+])
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[
+    'https://nestway-production.up.railway.app', 
+    'https://nestway-demo-production.up.railway.app'
+])
 
 # Application definition
 INSTALLED_APPS = [
