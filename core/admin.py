@@ -307,6 +307,9 @@ class AboutPageAdmin(ModelAdmin):
                 'stat_4_number', 'stat_4_label',
             ),
         }),
+        ('US Operations Map', {
+            'fields': ('us_map_image',),
+        }),
     )
 
     def changelist_view(self, request, extra_context=None):
