@@ -149,12 +149,12 @@ html, body {
 /* Hero & Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .hero video { display: none !important; }
-  .hero { background-image: url('../images/truck2.png'); background-size: cover; background-position: center; }
+  .hero { background-image: url('../images/truck2.webp'); background-size: cover; background-position: center; }
 }
 
 @media (max-width: 768px) {
   .hero video { display: none !important; }
-  .hero { background-image: url('../images/truck2.png'); background-size: cover; background-position: center; }
+  .hero { background-image: url('../images/truck2.webp'); background-size: cover; background-position: center; }
   
   .trust-strip {
       grid-template-columns: 1fr 1fr;
