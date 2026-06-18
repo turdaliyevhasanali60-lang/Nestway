@@ -5,6 +5,7 @@ class SiteSettings(models.Model):
     company_name = models.CharField(max_length=255, default="Nestway")
     tagline = models.CharField(max_length=255, blank=True)
     phone = models.CharField(max_length=50, blank=True)
+    whatsapp = models.CharField(max_length=50, blank=True, help_text="WhatsApp number (e.g. +1234567890 or 1234567890). Leave blank to hide the WhatsApp floating button.")
     email = models.EmailField(blank=True)
     address = models.TextField(blank=True)
 
@@ -18,6 +19,8 @@ class SiteSettings(models.Model):
     def save(self, *args, **kwargs):
         self.pk = 1
         super(SiteSettings, self).save(*args, **kwargs)
+        from django.core.cache import cache
+        cache.delete('site_settings')
 
     @classmethod
     def load(cls):
