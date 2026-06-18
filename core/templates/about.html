@@ -516,7 +516,11 @@
 
                 <!-- Right Side: SVG Route Map Visual -->
                 <div class="usa-split-visual">
-                    <img src="{% static 'images/US-MAP.png' %}" alt="US OTR Routing Map" class="usa-map-standalone">
+                    {% if about.us_map_image %}
+                        <img src="{{ about.us_map_image.url }}" alt="US OTR Routing Map" class="usa-map-standalone">
+                    {% else %}
+                        <img src="{% static 'images/US-MAP.png' %}" alt="US OTR Routing Map" class="usa-map-standalone">
+                    {% endif %}
                 </div>
             </div>
         </div>

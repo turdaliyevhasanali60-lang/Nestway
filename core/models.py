@@ -150,6 +150,7 @@ class AboutPage(models.Model):
     stat_3_label = models.CharField(max_length=100, default="Happy Drivers")
     stat_4_number = models.CharField(max_length=50, default="7+")
     stat_4_label = models.CharField(max_length=100, default="Years of Experience")
+    us_map_image = models.ImageField(upload_to='about/', blank=True, null=True, verbose_name='US Operations Map', help_text='Upload your US routing/operations map image here.')
 
     class Meta:
         verbose_name = "About Page"
